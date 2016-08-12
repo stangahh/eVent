@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 
 <dom-module id="my-view1">
 
@@ -43,11 +44,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 16px 0;
         color: #212121;
       }
+      paper-slider.red {
+        width: auto;
+         --paper-slider-knob-color: var(--paper-red-500);
+         --paper-slider-active-color: var(--paper-red-500);
+       }
     </style>
 
     <div class="card">
       <div class="circle">1</div>
       <h1>View One</h1>
+      <paper-slider class="red" pin value="23" max="255" editable></paper-slider>
+
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
     </div>

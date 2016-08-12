@@ -102,7 +102,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-drawer-layout>
 
   </template>
-
+  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ",
+      authDomain: "ifb299-b0b2a.firebaseapp.com",
+      databaseURL: "https://ifb299-b0b2a.firebaseio.com",
+      storageBucket: "ifb299-b0b2a.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
   <script>
 
     Polymer({
