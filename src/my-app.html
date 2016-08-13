@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
 <dom-module id="my-app">
@@ -29,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       :host {
         display: block;
-        --app-primary-color: #4285f4;
+        --app-primary-color: #0d5c95;
         --app-secondary-color: black;
       }
 
@@ -102,17 +103,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-drawer-layout>
 
   </template>
-  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ",
-      authDomain: "ifb299-b0b2a.firebaseapp.com",
-      databaseURL: "https://ifb299-b0b2a.firebaseio.com",
-      storageBucket: "ifb299-b0b2a.appspot.com",
-    };
-    firebase.initializeApp(config);
-  </script>
+  <!-- Import firebase server infomation -->
+  <firebase-app
+  name="299Site"
+  api-key="AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ"
+  auth-domain="b0b2a"
+  database-url="https://ifb299-b0b2a.firebaseio.com">
+  </firebase-app>
+
   <script>
 
     Polymer({
