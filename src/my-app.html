@@ -20,7 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
 <link rel="import" href="my-icons.html">
+
 
 <dom-module id="my-app">
 
@@ -89,6 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div title>My App</div>
+              <!--<paper-button onclick="loginPopUp.open()" raised>Login</paper-button>-->
           </app-toolbar>
         </app-header>
 
@@ -104,6 +107,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </template>
   <!-- Import firebase server infomation -->
+            <firebase-app
+            name="IFB299"
+            api-key="AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ"
+            auth-domain="ifb299-b0b2a.firebaseapp.com"
+            database-url="https://ifb299-b0b2a.firebaseio.com">
+            </firebase-app>
 
 
   <script>

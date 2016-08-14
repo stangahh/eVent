@@ -12,11 +12,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="../bower_components/login-fire/login-fire.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
-<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
+
+
+
+<!--<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation.html">
 <link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
@@ -24,10 +26,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-fit-behavior/iron-fit-behavior.html">
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../bower_components/iron-meta/iron-meta.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/font-roboto/roboto.html">
-<link rel="import" href="../bower_components/web-animations-js/web-animations.html">
+<link rel="import" href="../bower_components/web-animations-js/web-animations.html">-->
 
 <dom-module id="my-view1">
 
@@ -76,20 +80,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-      <paper-button onclick="loginPopUp.open()" raised>Login</paper-button>
-    <paper-dialog id="loginPopUp" center with-backdrop>
-          <paper-dialog-scrollable>
-            <firebase-app
-            name="IFB299"
-            api-key="AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ"
-            auth-domain="ifb299-b0b2a.firebaseapp.com"
-            database-url="https://ifb299-b0b2a.firebaseio.com">
-            </firebase-app>
-            <login-fire app-name="IFB299" email-password facebook google ></login-fire>
-          </paper-dialog-scrollable>
-    </paper-dialog>
 
     </div>
+    <login-fire app-name="IFB299" email-password facebook google debug></login-fire>
+
 
   </template>
 
