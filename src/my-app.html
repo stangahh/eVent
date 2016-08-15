@@ -20,7 +20,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../bower_components/login-fire/login-fire.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="my-icons.html">
 
 
@@ -65,6 +70,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
+    <paper-dialog id="loginPopup" center with-backdrop modal>
+      <paper-dialog-scrollable>
+      <h2>Login</h2>
+      <firebase-app
+      name="IFB299"
+      api-key="AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ"
+      auth-domain="ifb299-b0b2a.firebaseapp.com"
+      database-url="https://ifb299-b0b2a.firebaseio.com">
+      </firebase-app>
+
+      <login-fire app-name="IFB299" email-password facebook google debug></login-fire>
+      </paper-dialog-scrollable>
+    </paper-dialog>
+
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
@@ -91,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div title>My App</div>
-              <!--<paper-button onclick="loginPopUp.open()" raised>Login</paper-button>-->
+            <paper-button onclick="loginPopup.open()" raised>Login</paper-button>
           </app-toolbar>
         </app-header>
 
@@ -140,7 +159,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     });
-
+    // firebase.auth().onAuthStateChanged(firebaseUser => {
+    //   if(firebaseUser){
+    //     console.log(firebaseUser);
+    //     loginPopup.close();
+    //   } else {
+    //     console.log('Not logged in');
+    //     //loginPopup.open();
+    //   }
+    // });
   </script>
 
 </dom-module>

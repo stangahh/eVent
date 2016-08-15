@@ -77,16 +77,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
 
-    </div>
-    <firebase-app
-    name="IFB299"
-    api-key="AIzaSyA3QBAFrhmi6dbyy9sNy2NmhnGrki2nUSQ"
-    auth-domain="ifb299-b0b2a.firebaseapp.com"
-    database-url="https://ifb299-b0b2a.firebaseio.com">
-    </firebase-app>
+  
 
-    <login-fire app-name="IFB299" email-password facebook google debug></login-fire>
+<paper-button onclick="modal.open()" raised>modal dialog</paper-button>
 
+
+
+<paper-dialog id="actions">
+  <h2>Dialog Title</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="buttons">
+    <paper-button>More Info...</paper-button>
+    <paper-button dialog-dismiss>Decline</paper-button>
+    <paper-button autofocus dialog-confirm>Accept</paper-button>
+  </div>
+</paper-dialog>
+
+<paper-dialog id="modal" center with-backdrop>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="buttons">
+    <paper-button dialog-confirm>Tap me to close</paper-button>
+  </div>
+</paper-dialog>
+
+
+<paper-button onclick="animated.open()" raised>open</paper-button>
+<paper-dialog id="animated" with-backdrop exit-animation="scale-down-animation" entry-animation="slide-from-bottom-animation">
+  <h2>Dialog Title</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</paper-dialog>
+
+
+</div>
 
   </template>
 
