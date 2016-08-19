@@ -16,8 +16,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 
-<!--<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
+<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../bower_components/neon-animation/neon-animation.html">
 <link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
@@ -27,10 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-meta/iron-meta.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/font-roboto/roboto.html">-->
+<link rel="import" href="../bower_components/font-roboto/roboto.html">
 
 <dom-module id="my-view1">
-
   <template>
 
     <style>
@@ -67,61 +67,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          --paper-slider-knob-color: var(--paper-red-500);
          --paper-slider-active-color: var(--paper-red-500);
        }
+      paper-fab.fab-add-event {
+        --paper-fab-background: var(--paper-light-blue-500);
+        --paper-fab-keyboard-focus-background: var(--paper-light-blue-900);
+        margin: 20px 10px 20px;
+      }
+      paper-fab.fab-search {
+        --paper-fab-background: var(--paper-orange-500);
+        --paper-fab-keyboard-focus-background: var(--paper-orange-900);
+        margin: 20px 10px 20px;
+      }
+
+      div.br-fabs {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+      }
     </style>
 
     <div class="card">
       <div class="circle">1</div>
-      <h1>View One</h1>
+      
+      <h1>Test Event 1</h1>
+
       <paper-slider class="red" pin value="23" max="255" editable></paper-slider>
 
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
 
-  
+    <paper-button onclick="modal.open()" raised>modal dialog</paper-button>
 
-<paper-button onclick="modal.open()" raised>modal dialog</paper-button>
+    <paper-dialog id="actions">
+      <h2>Dialog Title</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      
+      <div class="buttons">
+        <paper-button>More Info...</paper-button>
+        <paper-button dialog-dismiss>Decline</paper-button>
+        <paper-button autofocus dialog-confirm>Accept</paper-button>
+      </div>
+
+    </paper-dialog>
+
+    <paper-dialog id="modal" center with-backdrop>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+      <div class="buttons">
+        <paper-button dialog-confirm>Tap me to close</paper-button>
+      </div>
+    </paper-dialog>
 
 
+    <paper-button onclick="animated.open()" raised>open</paper-button>
 
-<paper-dialog id="actions">
-  <h2>Dialog Title</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <div class="buttons">
-    <paper-button>More Info...</paper-button>
-    <paper-button dialog-dismiss>Decline</paper-button>
-    <paper-button autofocus dialog-confirm>Accept</paper-button>
   </div>
-</paper-dialog>
-
-<paper-dialog id="modal" center with-backdrop>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <div class="buttons">
-    <paper-button dialog-confirm>Tap me to close</paper-button>
+  <div class="br-fabs">
+    <paper-fab icon="favorite" title="add-event" class="fab-add-event"></paper-fab>
+    <paper-fab icon="favorite" title="search" class="fab-search"></paper-fab>
   </div>
-</paper-dialog>
 
+</template>
 
-<paper-button onclick="animated.open()" raised>open</paper-button>
-<paper-dialog id="animated" with-backdrop exit-animation="scale-down-animation" entry-animation="slide-from-bottom-animation">
-  <h2>Dialog Title</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</paper-dialog>
+<script>
+  Polymer({
+    is: 'my-view1'
+  });
 
-
-</div>
-
-  </template>
-
-  <script>
-
-    Polymer({
-
-      is: 'my-view1'
-
-    });
-
-  </script>
+</script>
 
 </dom-module>
