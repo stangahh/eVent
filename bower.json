@@ -18,7 +18,7 @@
     "polymer": "polymer/polymer#^1.4.0",
     "paper-slider": "PolymerElements/paper-slider#^1.0.11",
     "login-fire": "^0.1.0",
-    "polymerfire": "^0.9.4",
+    "polymerfire": "^0.9.5",
     "paper-input": "PolymerElements/paper-input#^1.1.17",
     "paper-material": "PolymerElements/paper-material#^1.0.6",
     "paper-toast": "PolymerElements/paper-toast#^1.3.0",
@@ -40,5 +40,11 @@
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
+  },
+  "resolutions": {
+    "paper-ripple": "^1.0.0",
+    "font-roboto": "^1.0.1",
+    "polymer": "master",
+    "paper-card": "^1.1.2"
   }
 }
