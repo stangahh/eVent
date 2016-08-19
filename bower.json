@@ -36,7 +36,8 @@
     "web-animations-js": "2.2.2",
     "paper-dialog": "PolymerElements/paper-dialog#^1.1.0",
     "paper-search-input": "^1.0.1",
-    "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^1.1.5"
+    "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^1.1.5",
+    "paper-fab": "PolymerElements/paper-fab#^1.2.0"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
