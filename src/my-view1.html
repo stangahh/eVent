@@ -94,30 +94,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
 
-    <paper-button onclick="modal.open()" raised>modal dialog</paper-button>
+      <paper-dialog id="actions">
+        <h2>Dialog Title</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        
+        <div class="buttons">
+          <paper-button>More Info...</paper-button>
+          <paper-button dialog-dismiss>Decline</paper-button>
+          <paper-button autofocus dialog-confirm>Accept</paper-button>
+        </div>
 
-    <paper-dialog id="actions">
-      <h2>Dialog Title</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      
-      <div class="buttons">
-        <paper-button>More Info...</paper-button>
-        <paper-button dialog-dismiss>Decline</paper-button>
-        <paper-button autofocus dialog-confirm>Accept</paper-button>
-      </div>
+      </paper-dialog>
 
-    </paper-dialog>
+      <paper-dialog id="modal" center with-backdrop>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-    <paper-dialog id="modal" center with-backdrop>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-      <div class="buttons">
-        <paper-button dialog-confirm>Tap me to close</paper-button>
-      </div>
-    </paper-dialog>
+        <div class="buttons">
+          <paper-button dialog-confirm>Tap me to close</paper-button>
+        </div>
+      </paper-dialog>
 
 
-    <paper-button onclick="animated.open()" raised>open</paper-button>
+    <paper-button onclick="animated.open()" raised>Full Details</paper-button>
 
   </div>
   <div class="br-fabs">
