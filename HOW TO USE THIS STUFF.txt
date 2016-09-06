@@ -1,0 +1,14 @@
+//----------TO INSTALL THE THINGS-----------//
+
+go to your repository directory
+
+cd .. blah
+
+npm install
+
+npm start
+
+
+//----------TO BUILD------------//
+
+npm run build
