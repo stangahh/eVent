@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
-import AppBarExampleIcon from './AppBarExampleIcon'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+
 class App extends Component {
 
   constructor() {
@@ -32,7 +34,6 @@ class App extends Component {
           <h3>Welcome to React</h3>
         </div>
 
-        <AppBarExampleIcon />
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
