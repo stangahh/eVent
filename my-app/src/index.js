@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './App';
 import './index.css';
 import * as  firebase from 'firebase';
@@ -12,6 +13,8 @@ var config = {
   storageBucket: "ifb299-2b973.appspot.com",
 };
 firebase.initializeApp(config);
+
+injectTapEventPlugin();
 
 ReactDOM.render(
   <App />,

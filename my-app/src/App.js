@@ -8,34 +8,35 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      //default if data won't load
-      speed: 10
+      //default for when loading data
+      num1: 'loading'
     };
   }
-
-  // componentDidMount() {
-  //     this.setState({
-  //       speed: 39
-  //     });
-  // }
   componentDidMount() {
-    const rootRef = firebase.database().ref().child('react');
-    const speedRef = rootRef.child('speed');
-    speedRef.on('value', snap => {
+    const rootRef = firebase.database().ref().child('globaldata');
+    const num1Ref = rootRef.child('num1');
+    num1Ref.on('value', snap => {
       this.setState({
-        speed: snap.val()
+        num1: snap.val()
       });
     });
   }
 
+
   render() {
+
+
+
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>{this.state.speed}</h2>
+          <h2>{this.state.num1}</h2>
           <h3>Welcome to React</h3>
         </div>
+
+
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
