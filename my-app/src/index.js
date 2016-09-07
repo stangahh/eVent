@@ -8,7 +8,7 @@ import * as  firebase from 'firebase';
 var config = {
   apiKey: "AIzaSyDkYdLo3EcIYrJ45UbL3FGMtZCXrpO5C64",
   authDomain: "ifb299-2b973.firebaseapp.com",
-  databaseURL: "https://ifb299-2b973.firebaseio.com",
+  databaseURL: "https://ifb299-2b973.firebaseio.com/",
   storageBucket: "ifb299-2b973.appspot.com",
 };
 firebase.initializeApp(config);

@@ -4,7 +4,7 @@ cd my-app/
 
 npm install material-ui
 npm install firebase --save
-
+npm install bootstrap
 
 //to run the code
 npm start
