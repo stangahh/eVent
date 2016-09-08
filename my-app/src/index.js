@@ -7,8 +7,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import FlatButton from 'material-ui/FlatButton';
 import Main from './Main';
 import CardThing from './Card';
+import FlatButtonExampleSimple from './Button';
 
 injectTapEventPlugin();
 //Initialize Firebase
@@ -30,13 +32,19 @@ const Site2 = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <CardThing />
   </MuiThemeProvider>
+);
 
+const Site3 = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <FlatButtonExampleSimple />
+  </MuiThemeProvider>
 );
 
 ReactDOM.render(
   <div>
     <Site />
   <App />
+  <Site3 />
   <Site2 />
   </div>,
   document.getElementById('root')

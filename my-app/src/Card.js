@@ -14,18 +14,15 @@ class CardThing extends React.Component {
         <CardMedia
           overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
         >
-          <img src="https://nothingaboutscotthere.files.wordpress.com/2015/02/a-mc-random-28.jpg" />
+          <img src="" />
         </CardMedia>
         <CardTitle title="EVENT TITLE" subtitle="EVENT SUBTITLE" />
         <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          This is where event information will go yay.
         </CardText>
         <CardActions>
-          <FlatButton label="Action1" />
-          <FlatButton label="Action2" />
+          <FlatButton label="Join Event" />
+          <FlatButton label="Learn More" />
         </CardActions>
       </Card>
     );
