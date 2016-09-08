@@ -9,15 +9,22 @@ class App extends Component {
     super();
     this.state = {
       //default for when loading data
-      num1: 'loading'
+      num1: 'EventWebsite',
+      num2: 'loading'
     };
   }
   componentDidMount() {
     const rootRef = firebase.database().ref().child('globaldata');
     const num1Ref = rootRef.child('num1');
+    const num2Ref = rootRef.child('num2');
     num1Ref.on('value', snap => {
       this.setState({
         num1: snap.val()
+      });
+    });
+    num2Ref.on('value', snap => {
+      this.setState({
+        num2: snap.val()
       });
     });
   }
@@ -28,11 +35,11 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>{this.state.num1}</h2>
-          <h3>Welcome to React</h3>
+          <h2>{this.state.num2}</h2>
         </div>
 
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          You
         </p>
       </div>
     );
