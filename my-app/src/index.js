@@ -8,6 +8,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import Main from './Main';
+import CardThing from './Card';
+
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 injectTapEventPlugin();
 //Initialize Firebase
@@ -25,12 +29,18 @@ const Site = () => (
   </MuiThemeProvider>
 );
 
+const Site2 = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <CardThing />
+  </MuiThemeProvider>
+
+);
 
 ReactDOM.render(
   <div>
     <Site />
   <App />
-
+  <Site2 />
   </div>,
   document.getElementById('root')
 );
