@@ -9,7 +9,7 @@ class App extends Component {
     super();
     this.state = {
       //default for when loading data
-      num1: 'lame'
+      num1: 'u suk'
     };
   }
   componentDidMount() {

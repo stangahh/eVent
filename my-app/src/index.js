@@ -4,6 +4,9 @@ import './index.css';
 import * as  firebase from 'firebase';
 import App from './App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MyAwesomeReactComponent from './MyAwesomeReactComponent';
+
 
 injectTapEventPlugin();
 //Initialize Firebase
@@ -15,7 +18,17 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const Site = () => (
+  <MuiThemeProvider>
+    <MyAwesomeReactComponent />
+  </MuiThemeProvider>
+);
+
+
 ReactDOM.render(
-  <App />,
+  <div>
+  <App />
+  <Site />
+  </div>,
   document.getElementById('root')
 );
