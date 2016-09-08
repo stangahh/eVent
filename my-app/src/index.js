@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import AppBar from './AppBar';
+import AppBarExampleIcon from './AppBarExampleIcon';
 
 injectTapEventPlugin();
 //Initialize Firebase
@@ -21,7 +21,7 @@ firebase.initializeApp(config);
 
 const App = () => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-    <AppBar />
+    <AppBarExampleIcon />
   </MuiThemeProvider>
 );
 
