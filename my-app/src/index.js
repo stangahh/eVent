@@ -2,12 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as  firebase from 'firebase';
+import App from './App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import AppBarExampleIcon from './AppBarExampleIcon';
 
 injectTapEventPlugin();
 //Initialize Firebase
@@ -18,12 +14,6 @@ var config = {
   storageBucket: "ifb299-2b973.appspot.com",
 };
 firebase.initializeApp(config);
-
-const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-    <AppBarExampleIcon />
-  </MuiThemeProvider>
-);
 
 ReactDOM.render(
   <App />,
