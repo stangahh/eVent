@@ -9,12 +9,12 @@ class CardThing extends React.Component {
         <CardHeader
           title="URL Avatar"
           subtitle="Subtitle"
-          avatar="images/random.jpg"
+          avatar="https://nothingaboutscotthere.files.wordpress.com/2015/02/a-mc-random-28.jpg"
         />
         <CardMedia
           overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
         >
-          <img src="images/random.jpg" />
+          <img src="https://nothingaboutscotthere.files.wordpress.com/2015/02/a-mc-random-28.jpg" />
         </CardMedia>
         <CardTitle title="EVENT TITLE" subtitle="EVENT SUBTITLE" />
         <CardText>

@@ -10,9 +10,6 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import Main from './Main';
 import CardThing from './Card';
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-
 injectTapEventPlugin();
 //Initialize Firebase
 var config = {

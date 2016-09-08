@@ -3,7 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class MenuDrawer extends React.Component {
+class MenuDrawer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -27,3 +27,5 @@ export default class MenuDrawer extends React.Component {
     );
   }
 }
+
+export default MenuDrawer;
