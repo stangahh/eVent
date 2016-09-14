@@ -6,6 +6,7 @@
   <title>oZbot</title>
 
   <!-- CSS  -->
+  <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -20,15 +21,13 @@
       </ul>
 
         <ul id="nav-mobile" class="side-nav">
-        <li><div class="userView">
+        <li>
            <img class="background" src="media/event_img.png">
-           <br><br>
-           <a href="#!name"><span class="white-text name">John Doe</span></a>
-           <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-       </div></li>
+           <a href="#!name"><span class="name">John Doe</span></a>
+       </li>
 
         <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
-        <li><a href="lsp.php"><i class="material-icons">my_location</i>Find things nearby</a></li>
+        <li><a href="lsp.php">Find things nearby</a></li>
         <li><div class="divider"></div></li>
         <li><i class="material-icons">lock_open</i><a href="login.php?status=loggout">Logout</a></li>
       </ul>
@@ -46,13 +45,12 @@
       </div>
       <div class="row center">
         <a href="#signUpForm" id="download-button" onclick="Materialize.showStaggeredList('#signUpForm')" class="btn-large waves-effect waves-red dark-blue tooltipped" data-position="bottom" data-delay="50" data-tooltip="Do it">Sign up</a>
-
-        <a href="#loginForm" id="download-button" onclick="Materialize.showStaggeredList('#loginForm')" class="btn-large waves-effect waves-light dark-blue tooltipped" data-position="bottom" data-delay="50" data-tooltip="Do it">Sign in</a>
       </div>
     </div>
   </div>
 </div>
-  <ul class="row section scrollspy hidden" id="loginForm">
+<br>
+  <ul class="row section scrollspy" id="signUpForm">
     <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0 ">
       <li style="transform: translateX(0px); opacity: 0";>
       <div class="row">
