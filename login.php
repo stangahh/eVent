@@ -4,7 +4,7 @@
 	$membership = new Membership();
 
 	//when status is pushed via 'loggout'
-	if(isset($_GET['status']) && $_GET['status'] == 'loggout'){
+	if(isset($_GET['status']) && $_GET['status'] == 'logout'){
 		$membership->log_user_out();
 	}
 

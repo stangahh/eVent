@@ -32,7 +32,7 @@
         <!-- Items on the top nav bar in desktop mode -->
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
         <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
-        <li><a href="login.php?status=loggout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
+        <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
       </ul>
       <!-- Code for the sidenav -->
         <ul id="nav-mobile" class="side-nav">
@@ -62,19 +62,19 @@
 			$id = substr($p, 0, 5);
 			$p = substr($p, 5);
 		?>
-    <card class="col s12 m3">
-    <div class="card hoverable">
+    <card class="col s12 m6 l3">
+    <div class="card medium hoverable">
       <div class="card-image waves-effect waves-block waves-light">
-        <img href="event.php?eventid=<?php echo $id; ?> src="http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg">
+        <img href="event.php?eventid=<?php echo $id; ?>" src="http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg">
       </div>
       <div class="card-stacked">
         <div class="card-content">
           <li><p><?php echo $p; ?></p></li>
         </div>
-        <a href="event.php?eventid=<?php echo $id; ?>">
-          <div>Read more</div>
-        </a>
-      </div>
+        <div class="card-action">
+          <a href="event.php?eventid=<?php echo $id; ?>">Read more</a>
+        </div>
+    </div>
     </div>
   </card>
 		<?php endforeach; ?>
