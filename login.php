@@ -12,6 +12,12 @@
 	if($_POST && !empty($_POST['username']) && !empty($_POST['pwd'])){
 		$catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
 	}
+
+  //user signed up
+  if($_POST && !empty($_POST['email']) && !empty($_POST['organisationID'])){
+    $catch = $membership->register_user($_POST['username'], $_POST['pwd'], $_POST['email'], $_POST['organisationID']);
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -98,8 +104,12 @@
           <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
       </div>
+      <div class="input-field col s12">
+          <input id="org_id" name="organisationID"type="text" class="validate">
+          <label for="org_id">Organisation ID</label>
+        </div>
       <p class="col s6">Already registered? <a href="#">Sign In</a></p>
-      <button class="btn-large waves-effect waves-light right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
+      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>
     </form>
