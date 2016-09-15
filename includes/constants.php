@@ -1,5 +1,5 @@
 <?php
-	//Author: Maxwell McLeod
+	//Author: None of the above
 	//Constants Used Globally, Despite how it appears this is good practice
 	define('DB_SERVER', 'ozbot.com.au');
 	define('DB_USER', 'ifb299');

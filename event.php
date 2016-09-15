@@ -8,7 +8,8 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
-  
+	$animals = array("11111cat", "22222dog", "33333mouse"); // array used for testing purposes
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +48,10 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-<!-- home page content  -->
-<h1 class="center heading">eVents</h1>
+<!-- event page content  -->
+<div class="parallax-container z-depth-2">
+<div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
+</div>
 	<article>
     <div class="row center">
 		<input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials...">
