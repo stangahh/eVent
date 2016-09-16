@@ -196,8 +196,8 @@
 		$query_users = "INSERT INTO users (users_username, users_email, users_password, users_org_id) 
 						VALUES ('" . $un . "','" . $email . "','" . $pw . "','" . $org_id . "')";
 
-		$query_ud = "INSERT INTO user_details (users_username, users_email, users_password, users_org_id) 
-						VALUES ('" . $un . "','" . $email . "','" . $pw . "','" . $org_id . "')";
+		$query_ud = "INSERT INTO user_details (ud_username, ud_email) 
+						VALUES ('" . $un . "','" . $email . "')";
 
 		$stmt_users = mysqli_prepare($connection, $query_users);
 		$stmt_ud = mysqli_prepare($connection, $query_ud);
