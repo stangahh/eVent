@@ -19,8 +19,7 @@
 	$GLOBALS['first_name'] = "NULL";
 	$GLOBALS['username'] = "NULL";
 	$GLOBALS['last_name'] = "NULL";
-	$GLOBALS['home_phone'] = "NULL";
-	$GLOBALS['mobile_phone'] = "NULL";
+	$GLOBALS['phone'] = "NULL";
 	$GLOBALS['address'] = "NULL";
 	$GLOBALS['DOB'] = "NULL";
 	$GLOBALS['sex'] = "NULL";
@@ -33,7 +32,7 @@
 	function get_spec_info($userid){
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_hphone, ud_mphone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
+		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
 			ud_user_id = '". $userid . "' LIMIT 1";
 
 		$response = mysqli_query($connection, $query);
@@ -45,8 +44,7 @@
 					$GLOBALS['first_name'] = $row['ud_fname'];
 					$GLOBALS['middle_name'] = $row['ud_username'];
 					$GLOBALS['last_name'] = $row['ud_lname'];
-					$GLOBALS['home_phone'] = $row['ud_hphone'];
-					$GLOBALS['mobile_phone'] = $row['ud_mphone'];
+					$GLOBALS['phone'] = $row['ud_phone'];
 					$GLOBALS['address'] = $row['ud_address'];
 					$GLOBALS['DOB'] = $row['ud_dob'];
 					$GLOBALS['sex'] = $row['ud_sex'];
@@ -62,7 +60,7 @@
 
 	//yes this is super lazy and terrible code, please fix
 	if($_POST){
-		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['hphone'], $_POST['mphone'],
+		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
 				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
 			echo "<SCRIPT>alert('Failed to Update Details');</SCRIPT>";
 		} else{
@@ -152,12 +150,9 @@
 				<!-- Last Name -->
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
-				<!-- Home Phone -->
-					<label for="hphone" id="flabel">Home Phone</label>
-					<input type="text" id="hphone" name="hphone" value="<?php echo $GLOBALS['home_phone']; ?>">
-				<!-- Mobile Phone -->
-					<label for="mphone" id="flabel">Mobile Phone</label>
-					<input type="text" id="mphone" name="mphone" value="<?php echo $GLOBALS['mobile_phone']; ?>">
+				<!-- Phone -->
+					<label for="phone" id="flabel">Phone</label>
+					<input type="text" id="phone" name="phone" value="<?php echo $GLOBALS['phone']; ?>">
 				<!-- Address -->
 					<label for="address" id="flabel">Address</label>
 					<input type="text" id="address" name="address" value="<?php echo $GLOBALS['address']; ?>">

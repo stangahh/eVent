@@ -136,7 +136,7 @@
 		}
 		
 		//method used to update a users details
-		function update_details($userid, $title, $fname, $username, $lname, $hphone, $mphone, $address, $dob, $sex, $email, $occupation){
+		function update_details($userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation){
 			
 			//i created these to try and find the issue
 			$userid = "67863";
@@ -144,8 +144,7 @@
 			$fname = "Aden";
 			$username = "username";
 			$lname = "Max";
-			$hphone = "7777777777";
-			$mphone = "8888888888";
+			$phone = "0412345678";
 			$address = "27 Smith Lane, Greater Brisbane, 4311, Australia";
 			$dob = "1994-09-07";
 			$sex = "Male";
@@ -160,8 +159,7 @@
 			ud_fname = '" . $fname . "', 
 			ud_username = '" . $username . "', 
 			ud_lname = '" . $lname . "', 
-			ud_hphone = '" . $hphone . "', 
-			ud_mphone = '" . $mphone . "', 
+			ud_phone = '" . $phone . "', 
 			ud_address = '" . $address . "', 
 			ud_email = '" . $email . "', 
 			ud_dob = '" . $dob . "', 
