@@ -195,49 +195,35 @@
 	function register_user($un, $pw, $email, $org_id) {
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
-		$query = "INSERT INTO users (users_username, users_password, users_org_id) 
-						VALUES ('" . $un . "','" . $pw . "','" . $org_id . "')";
+		$query_users = "INSERT INTO users (users_username, users_email, users_password, users_org_id) 
+						VALUES ('" . $un . "','" . $email . "','" . $pw . "','" . $org_id . "')";
 
-		$stmt = mysqli_prepare($connection, $query);
+		$query_ud = "INSERT INTO user_details (users_username, users_email, users_password, users_org_id) 
+						VALUES ('" . $un . "','" . $email . "','" . $pw . "','" . $org_id . "')";
 
-		mysqli_stmt_execute($stmt);
+		$stmt_users = mysqli_prepare($connection, $query_users);
+		$stmt_ud = mysqli_prepare($connection, $query_ud);
 
-		$affected_rows = mysqli_stmt_affected_rows($stmt);
+		mysqli_stmt_execute($stmt_users);
+		mysqli_stmt_execute($stmt_ud);
+
+		$affected_rows = mysqli_stmt_affected_rows($stmt_users);
+		$affected_rows = mysqli_stmt_affected_rows($stmt_ud);
 			
 			if($affected_rows == 1){
-				mysqli_stmt_close($stmt);
+				mysqli_stmt_close($stmt_users);
+				mysqli_stmt_close($stmt_ud);
 				mysqli_close($connection);
 				return true;
 				
 			} else {
-				echo mysqli_error($stmt);
-				mysqli_stmt_close($stmt);
+				echo mysqli_error($stmt_users);
+				mysqli_stmt_close($stmt_users);
+				echo mysqli_error($stmt_ud);
+				mysqli_stmt_close($stmt_ud);
 				mysqli_close($connection);
 				return false;
 			}
 	}
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
