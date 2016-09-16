@@ -136,13 +136,13 @@
 		}
 		
 		//method used to update a users details
-		function update_details($userid, $title, $fname, $mname, $lname, $hphone, $mphone, $address, $dob, $sex, $email, $occupation){
+		function update_details($userid, $title, $fname, $username, $lname, $hphone, $mphone, $address, $dob, $sex, $email, $occupation){
 			
 			//i created these to try and find the issue
 			$userid = "67863";
 			$title = "Mr";
 			$fname = "Aden";
-			$mname = "dffsd";
+			$username = "username";
 			$lname = "Max";
 			$hphone = "7777777777";
 			$mphone = "8888888888";
@@ -158,7 +158,7 @@
 			$query = "UPDATE user_details
 			SET ud_title = '" . $title . "', 
 			ud_fname = '" . $fname . "', 
-			ud_mname = '" . $mname . "', 
+			ud_username = '" . $username . "', 
 			ud_lname = '" . $lname . "', 
 			ud_hphone = '" . $hphone . "', 
 			ud_mphone = '" . $mphone . "', 

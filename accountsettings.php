@@ -17,7 +17,7 @@
 	//also the php on this page should be moved to its own class so please do that i cbf
 	$GLOBALS['title'] = "NULL";
 	$GLOBALS['first_name'] = "NULL";
-	$GLOBALS['middle_name'] = "NULL";
+	$GLOBALS['username'] = "NULL";
 	$GLOBALS['last_name'] = "NULL";
 	$GLOBALS['home_phone'] = "NULL";
 	$GLOBALS['mobile_phone'] = "NULL";
@@ -33,7 +33,7 @@
 	function get_spec_info($userid){
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-		$query = "SELECT ud_title, ud_fname, ud_lname, ud_mname, ud_hphone, ud_mphone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
+		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_hphone, ud_mphone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
 			ud_user_id = '". $userid . "' LIMIT 1";
 
 		$response = mysqli_query($connection, $query);
@@ -43,7 +43,7 @@
 
 					$GLOBALS['title'] = $row['ud_title'];
 					$GLOBALS['first_name'] = $row['ud_fname'];
-					$GLOBALS['middle_name'] = $row['ud_mname'];
+					$GLOBALS['middle_name'] = $row['ud_username'];
 					$GLOBALS['last_name'] = $row['ud_lname'];
 					$GLOBALS['home_phone'] = $row['ud_hphone'];
 					$GLOBALS['mobile_phone'] = $row['ud_mphone'];
@@ -62,7 +62,7 @@
 
 	//yes this is super lazy and terrible code, please fix
 	if($_POST){
-		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['mname'], $_POST['lname'], $_POST['hphone'], $_POST['mphone'],
+		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['hphone'], $_POST['mphone'],
 				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
 			echo "<SCRIPT>alert('Failed to Update Details');</SCRIPT>";
 		} else{
@@ -147,8 +147,8 @@
 					<label for="fname" id="flabel">First Name</label>
 					<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
 				<!-- Middle Name -->
-					<label for="mname" id="flabel">Middle Name</label>
-					<input type="text" id="mname" name="mname" value="<?php echo $GLOBALS['middle_name']; ?>">
+					<label for="username" id="flabel">Middle Name</label>
+					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['middle_name']; ?>">
 				<!-- Last Name -->
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
