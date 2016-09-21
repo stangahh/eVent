@@ -10,21 +10,22 @@
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 ?>
 <?php
-		$id = '12345';
-		$event_name = 'Booty';
-		$org_id = 'Booty';
-		$location_address = '10 booty lane';
-		$event_org_name = 'Booty';
-		$longitude = '32.23432';
-		$latitude = '64.34432';
-		$postcode = '4000';
-		$amount_funded = '20';
-		$amount_needed = '100';
-		$creator_id = '12353';
-		$event_photo = 'http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg';
-		$event_date = '20/9/16';
-		$event_time = '4:20';
-		$event_descrption = ' Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet.';
+		$id = 46387;
+		$eventarray = $membership->get_event_information($id);
+		$event_name = $eventarray[0];
+		$org_id = $eventarray[1];
+		$event_org_name = $membership->get_org_name($org_id);
+		$location_address = $eventarray[2];
+		$latitude = $eventarray[3];
+		$longitude = $eventarray[4];
+		$postcode = $eventarray[5];
+		$amount_funded = $eventarray[6];
+		$amount_needed = $eventarray[7];
+		$creator_id = $eventarray[8];
+		$event_date = $eventarray[9];
+		//$event_time = $eventarray[1];
+		$event_descrption = $eventarray[10];
+		$event_photo = $eventarray[11];
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +88,7 @@
 			<div class="card blue-grey darken-1">
 				<div class="card-content white-text">
 					<span class="card-title"><?php echo $location_address?></span>
-					<p class="card-title"><?php echo $event_time?></p>
+					<!-- <p class="card-title"><?php echo $event_time?></p> -->
 					<p class="card-title"><?php echo $event_date?></p>
 
 

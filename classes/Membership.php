@@ -27,7 +27,7 @@
 				unset($_SESSION['status']);
 				
 			if(isset($_COOKIE[session_name()])) setcookie(session_name(), '', time() - 10000);
-			session_destroy();
+				session_destroy();
 			}
 		}
 		
@@ -53,9 +53,9 @@
 			
 			if($response){
 				while($row = mysqli_fetch_array($response)){
-				$uname = $row['users_id'];
-			};
-			return $uname;
+					return $uname = $row['users_id'];
+				};
+				//return $uname;
 			}
 		}
 		
@@ -79,9 +79,9 @@
 			
 			if($response){
 				while($row = mysqli_fetch_array($response)){
-				$id = $row['users_org_id'];
-			};
-			return $id;
+					return $id = $row['users_org_id'];
+				};
+				//return $id;
 			}
 		}
 		
@@ -93,9 +93,9 @@
 			
 			if($response){
 				while($row = mysqli_fetch_array($response)){
-				$name = $row['org_name'];
-			};
-			return $name;
+					return $name = $row['org_name'];
+				};
+				//return $name;
 			}
 		}
 		
