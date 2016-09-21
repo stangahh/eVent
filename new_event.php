@@ -15,7 +15,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>eVent - Home</title>
+  <title>eVent - New</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -47,44 +47,59 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-<!-- home page content  -->
-<h1 class="center heading">eVents</h1>
-	<article>
-    <div class="row center">
-		<input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials...">
-  </div>
-  <div class="row center">
-    <ul id="listOfEvents">
-		<?php
-			foreach( $events as &$p ):
-			$p = trim($p);
-			$id = substr($p, 0, 5);
-			$eventarray = $membership->get_event_information($id);
-			$event_photo = $eventarray[11];
-			$p = substr($p, 5);
-		?>
-    <card class="col s12 m6 l3">
-    <div class="card medium hoverable">
-			<a href="event.php?eventid=<?php echo $id; ?>">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img src="<?php echo $event_photo; ?>">
+<!-- New page content  -->
+<h1 class="center heading">New event</h1>
+  <div class="row">
+    <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
+    <div class="row">
+        <div class="input-field col s12">
+          <input id="event_name" name="eventname" type="text" class="validate">
+          <label for="event_name">Event Name</label>
+        </div>
       </div>
-			</a>
-      <div class="card-stacked">
-        <div class="card-content">
-          <li><p><?php echo $p; ?></p></li>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="event_location" name="location" type="text" class="validate">
+          <label for="event_location">Location</label>
         </div>
-        <div class="card-action">
-          <a href="event.php?eventid=<?php echo $id; ?>">Read more</a>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="postcode" type="text" class="validate">
+          <label for="postcode">Postcode</label>
         </div>
-    </div>
-    </div>
-  </card>
-		<?php endforeach; ?>
-
-		</ul>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="amt_required" type="text" class="validate">
+          <label for="amt_required">Amount Required</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="event_date" type="date" class="datepicker" class="validate">
+          <label for="event_date">Date</label>
+        </div>
+      </div>
+      <div class="input-field col s12">
+          <input id="event_desc" name="description" class="materialize-textarea" type="text" class="validate">
+          <label for="event_desc">Event Description</label>
+      </div>
+      <div class="btn">
+        <span>Upload Image</span>
+        <input type="file">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
   </div>
-	</article>
+    <br>
+//AUTOFILL: event_id, event_org_id, event_creator_user_id
+//NEED SOME WAY TO UPLOAD IMAGE
 
 <!-- footer with team name -->
   <footer class="page-footer orange">
