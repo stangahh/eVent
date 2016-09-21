@@ -8,7 +8,23 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
-	$animals = array("11111cat", "22222dog", "33333mouse"); // array used for testing purposes
+?>
+<?php
+		$id = '12345';
+		$event_name = 'Booty';
+		$org_id = 'Booty';
+		$location_address = '10 booty lane';
+		$event_org_name = 'Booty';
+		$longitude = '32.23432';
+		$latitude = '64.34432';
+		$postcode = '4000';
+		$amount_funded = '20';
+		$amount_needed = '100';
+		$creator_id = '12353';
+		$event_photo = 'http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg';
+		$event_date = '20/9/16';
+		$event_time = '4:20';
+		$event_descrption = ' Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet.';
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +32,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>eVent - Home</title>
+  <title><?php echo $event_name?> - eVent</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -50,42 +66,57 @@
   </nav>
 <!-- event page content  -->
 <div class="parallax-container z-depth-2">
-<div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
+<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
+<div class="section no-pad-bot" id="index-banner">
+	<div class="container">
+		<!-- title on image -->
+		<h1 class="header center orange-text"><?php echo $event_name; ?></h1>
+		<!-- sign up button -->
+		<div class="row center">
+			<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-4 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
+		</div>
+	</div>
 </div>
-	<article>
-    <div class="row center">
-		<input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials...">
-  </div>
-  <div class="row center">
-    <ul id="listOfEvents">
-		<?php
-			foreach( $events as &$p ):
-			$p = trim($p);
-			$id = substr($p, 0, 5);
-			$p = substr($p, 5);
-		?>
-    <card class="col s12 m6 l3">
-    <div class="card medium hoverable">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img href="event.php?eventid=<?php echo $id; ?>" src="http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg">
+</div>
+<br>
+<div class="row">
+	<div class="progress col l12 s12">
+		 <div class="determinate" style="width: <?php echo $amount_funded?>%"></div>
+ </div>
+		<div class="col s12 m6">
+			<div class="card blue-grey darken-1">
+				<div class="card-content white-text">
+					<span class="card-title"><?php echo $location_address?></span>
+					<p class="card-title"><?php echo $event_time?></p>
+					<p class="card-title"><?php echo $event_date?></p>
+
+
+				</div>
+				<div class="card-action">
+					<a href="#">This is a link</a>
+					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
+				</div>
+			</div>
+		</div>
+</ul>
+<ul class="center collapsible col s12 l6 " data-collapsible="accordion">
+	<li>
+		<div class="collapsible-header truncate hoverable"><?php echo $event_descrption?></div>
+		<div class="collapsible-body"><p><?php echo $event_descrption?></p></div>
+	</li>
+</ul>
+</div>
+
+
+<!-- footer with team name -->
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container" href="tos.php">
+      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <li><p><?php echo $p; ?></p></li>
-        </div>
-        <div class="card-action">
-          <a href="event.php?eventid=<?php echo $id; ?>">Read more</a>
-        </div>
     </div>
-    </div>
-  </card>
-		<?php endforeach; ?>
+  </footer>
 
-		</ul>
-  </div>
-	</article>
-
-<?php include 'includes/footer.php';?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
