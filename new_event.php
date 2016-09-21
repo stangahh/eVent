@@ -57,14 +57,16 @@
           <label for="event_name">Event Name</label>
         </div>
       </div>
-      <div class="row">
+        <div class="input-field col s12">
+          <input id="event_desc" name="description" class="materialize-textarea" type="text" class="validate">
+          <label for="event_desc">Event Description</label>
+        </div>
         <div class="input-field col s12">
           <input id="event_location" name="location" type="text" class="validate">
-          <label for="event_location">Location</label>
+          <label for="event_location">Address</label>
         </div>
-      </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s4">
           <input id="postcode" type="text" class="validate">
           <label for="postcode">Postcode</label>
         </div>
@@ -81,17 +83,16 @@
           <label for="event_date">Date</label>
         </div>
       </div>
-      <div class="input-field col s12">
-          <input id="event_desc" name="description" class="materialize-textarea" type="text" class="validate">
-          <label for="event_desc">Event Description</label>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Upload Image</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
-      <div class="btn">
-        <span>Upload Image</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
+      
       <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>
