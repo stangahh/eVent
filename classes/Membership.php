@@ -109,10 +109,11 @@
 			
 			if ($id != 0) {
 				$modifier = "WHERE event_org_id = '". $id ."'";
+				$eventarray = get_event_information($id);
 			}
 			
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT event_id, event_name, event_org_name, event_location FROM events " . $modifier . " ORDER BY event_name ASC";
+			$query = "SELECT event_id, event_name, event_org_id, event_location FROM events " . $modifier . " ORDER BY event_name ASC";
 			
 			$response = mysqli_query($connection, $query);
 			
@@ -120,8 +121,7 @@
 				while($row = mysqli_fetch_array($response)){
 					array_push($events, "
 						" . $row['event_id'] . 
-						"<strong>" . $row['event_name'] .",</strong> "
-						. $row['event_org_name'] . ", "
+						"<strong>" . $row['event_name'] .",</strong>, "
 						. $row['event_location'] . " 
 					");	
 				}
@@ -135,6 +135,44 @@
 
 		}
 		
+		function get_event_information($eventid){
+			$event_info = array();
+			
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT event_name, event_org_id, event_location, event_latitude, event_longitude, event_postcode, 
+			event_amount_funded, event_amount_required, event_creator_user_id, event_date, event_desc, event_photo FROM events WHERE event_id = '" . $eventid . "' LIMIT 1";
+				
+			$response = mysqli_query($connection, $query);
+			
+			if($response){
+					while($row = mysqli_fetch_array($response)){
+						
+						//this should be done easier with a loop and switch
+						//it is like this for simplicity 
+						array_push($event_info, $row['event_name']);
+						array_push($event_info, $row['event_org_id']);
+						array_push($event_info, $row['event_location']);
+						array_push($event_info, $row['event_latitude']);
+						array_push($event_info, $row['event_longitude']);
+						array_push($event_info, $row['event_postcode']);
+						array_push($event_info, $row['event_amount_funded']);
+						array_push($event_info, $row['event_amount_required']);
+						array_push($event_info, $row['event_creator_user_id']);
+						array_push($event_info, $row['event_date']);
+						array_push($event_info, $row['event_desc']);
+						array_push($event_info, $row['event_photo']);
+						
+					}
+				} else {
+					echo "FAILURE: Unable to pull event information";
+				}
+			
+			mysqli_close($connection);
+				
+			return $event_info;
+		}
+
+
 		//method used to update a users details
 		function update_details($userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation){
 			
