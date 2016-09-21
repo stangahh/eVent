@@ -10,7 +10,7 @@
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 ?>
 <?php
-		$id = 46387;
+		$id = $_GET['eventid'];
 		$eventarray = $membership->get_event_information($id);
 		$event_name = $eventarray[0];
 		$org_id = $eventarray[1];
