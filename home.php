@@ -8,7 +8,7 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
-  
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
 <body>
   <!--Top nav bar -->
   <nav class="orange darken-2 lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- Items on the top nav bar in desktop mode -->
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
@@ -63,9 +63,11 @@
 		?>
     <card class="col s12 m6 l3">
     <div class="card medium hoverable">
+			<a href="event.php?eventid=<?php echo $id; ?>">
       <div class="card-image waves-effect waves-block waves-light">
-        <img href="event.php?eventid=<?php echo $id; ?>" src="http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg">
+        <img src="http://www.publicdomainpictures.net/pictures/130000/nahled/yellow-orange-background.jpg">
       </div>
+			</a>
       <div class="card-stacked">
         <div class="card-content">
           <li><p><?php echo $p; ?></p></li>
@@ -82,7 +84,15 @@
   </div>
 	</article>
 
-<?php include 'includes/footer.php';?>
+<!-- footer with team name -->
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container" href="tos.php">
+      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
+      </div>
+    </div>
+  </footer>
+
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
