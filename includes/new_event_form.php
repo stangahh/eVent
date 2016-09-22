@@ -30,7 +30,7 @@
 
   <div class="row">
     <div class="input-field col s4">
-      <input id="event_date" type="date" class="datepicker" class="validate">
+      <input id="event_date" type="date" class="datepicker" class="validate" onkeypress="reflect(event_date, event_date_preview)">
       <label for="event_date">Event Date</label>
     </div>
   </div>
