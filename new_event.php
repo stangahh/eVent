@@ -86,7 +86,7 @@
 //AUTOFILL: event_id, event_org_id, event_creator_user_id
 //NEED SOME WAY TO UPLOAD IMAGE
 
-  <?php include 'includes/footer.php' ?>
+  
 
 
   <!--  Scripts-->
@@ -96,4 +96,7 @@
 
 
   </body>
+
+  <?php include 'includes/footer.php' ?>
+  
 </html>
