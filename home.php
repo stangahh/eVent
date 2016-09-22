@@ -15,6 +15,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#db5945">
   <title>eVent - Home</title>
 
   <!-- CSS  -->
@@ -24,7 +25,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  
+
   <?php include 'includes/navigation.php' ?>
 
 <!-- home page content  -->
@@ -52,7 +53,7 @@
     <div class="card medium hoverable">
 			<a href="event.php?eventid=<?php echo $id; ?>">
       <div class="card-image waves-effect waves-block waves-light">
-        <img src="/eventimg/<?php echo $event_photo; ?>.jpg"> 
+        <img src="/eventimg/<?php echo $event_photo; ?>.jpg">
       </div>
 			</a>
       <div class="card-stacked">
@@ -75,9 +76,9 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  
+
   </body>
-  
+
   <?php include 'includes/footer.php' ?>
 
 </html>

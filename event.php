@@ -58,7 +58,7 @@
 					<!-- follow button -->
 						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
 						<!-- remove this!!!!! -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">turned_in_not</i></a>
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">thumb_down</i></a>
 
 				</div>
 			</div>
