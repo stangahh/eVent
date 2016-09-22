@@ -13,10 +13,9 @@
 		$catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
 	}
 
-  //user signed up
-  if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
-    $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']);
-    $membership->register_user_details($_POST['su_title'], $_POST['su_firstname'], $_POST['su_surname'], $_POST['su_username'], $_POST['su_phone'], $_POST['su_address'], $_POST['su_email'], $_POST['su_dob'], $_POST['su_sex'], $_POST['su_occupation']);
+ //user signed up 
+  if($_POST && !empty($_POST['email']) && !empty($_POST['organisationID'])){ 
+    $catch = $membership->register_user($_POST['username'], $_POST['pwd'], $_POST['email'], $_POST['organisationID']); 
   }
 
 ?>
@@ -78,7 +77,7 @@
     </div>
   </div>
   <p class="col s6">Don't have an account? <a class="modal-trigger" data-target="modal1">Sign up</a></p>
-  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit">Submit
+  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
   </button>
 </form>

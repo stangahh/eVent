@@ -15,16 +15,16 @@
 
 	//yes this is porly written but fuck it right
 	//also the php on this page should be moved to its own class so please do that i cbf
-	// $GLOBALS['title'] = "NULL";
-	// $GLOBALS['first_name'] = "NULL";
-	// $GLOBALS['username'] = "NULL";
-	// $GLOBALS['last_name'] = "NULL";
-	// $GLOBALS['phone'] = "NULL";
-	// $GLOBALS['address'] = "NULL";
-	// $GLOBALS['DOB'] = "NULL";
-	// $GLOBALS['sex'] = "NULL";
-	// $GLOBALS['email'] = "NULL";
-	// $GLOBALS['occupation'] = "NULL";
+	$GLOBALS['title'] = "NULL";
+	$GLOBALS['first_name'] = "NULL";
+	$GLOBALS['username'] = "NULL";
+	$GLOBALS['last_name'] = "NULL";
+	$GLOBALS['phone'] = "NULL";
+	$GLOBALS['address'] = "NULL";
+	$GLOBALS['DOB'] = "NULL";
+	$GLOBALS['sex'] = "NULL";
+	$GLOBALS['email'] = "NULL";
+	$GLOBALS['occupation'] = "NULL";
 
 	get_spec_info($userid);
 
@@ -33,7 +33,7 @@
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
-			ud_user_id = 67863 LIMIT 1";
+			ud_user_id = '". $userid . "' LIMIT 1"; 
 
 		$response = mysqli_query($connection, $query);
 
@@ -71,11 +71,11 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>eVent - Home</title>
+  <title>eVent - Account Settings</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -90,8 +90,8 @@
 				<h1><?php echo $membership->get_username(); ?><span> - Edit and View your Information Here</span></h1>
 			</header>
 
-		<!-- Page Content -->
-		<container>
+	<!-- Page Content -->
+	<container>
 		<div class="row">
 				<form class="center col l12" method="post" action="">
 				<!-- Title -->
@@ -142,7 +142,7 @@
 				<!-- DOB -->
 				<div class="row">
 				 <div class="input-field col s6">
-					<label for="dob" id="flabel">Date of Birth (Year-Month-Day)</label>
+					<label for="dob" id="flabel" class="datepicker">Date of Birth</label>
 					<input type="text" id="dob" name="dob" value="<?php echo $GLOBALS['DOB']; ?>">
 				</div>
 				</div>
@@ -177,22 +177,16 @@
 
 	</container>
 
-  		</body>
-				<!-- footer with team name -->
-				  <footer class="page-footer orange">
-				    <div class="footer-copyright">
-				      <div class="container" href="tos.php">
-				      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
-				      </div>
-				    </div>
-				  </footer>
+</body>
+
+<?php include 'includes/footer.php' ?>
 
 
-				  <!--  Scripts-->
-				  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-				  <script src="js/materialize.js"></script>
-				  <script src="js/init.js"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 
 
 
-				</html>
+</html>

@@ -72,7 +72,8 @@
 				<div class="card-content white-text">
 					<span class="card-title"><?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
-					<p class="card-title"><?php echo $event_date?></p>
+					<p><?php echo $event_date?></p>
+					<p><?php echo $event_description?></p>
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
@@ -139,3 +140,4 @@
   <?php include 'includes/footer.php' ?>
 
 </html>
+
