@@ -14,9 +14,10 @@
 	}
 
  //user signed up 
-  if($_POST && !empty($_POST['email']) && !empty($_POST['organisationID'])){ 
-    $catch = $membership->register_user($_POST['username'], $_POST['pwd'], $_POST['email'], $_POST['organisationID']); 
-  }
+  if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){ 
+    $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']); 
+    $membership->register_user_details($_POST['su_title'], $_POST['su_firstname'], $_POST['su_surname'], $_POST['su_username'], $_POST['su_phone'], $_POST['su_address'], $_POST['su_email'], $_POST['su_dob'], $_POST['su_sex'], $_POST['su_occupation']); 
+  } 
 
 ?>
 
@@ -116,7 +117,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="su_dob" name="su_dob" type="text" class="datepicker">
+          <input id="su_dob" name="su_dob" type="text">
           <label for="su_dob" data-error="wrong" data-success="right">Date of Birth</label>
         </div>
       </div>
