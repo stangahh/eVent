@@ -15,16 +15,16 @@
 
 	//yes this is porly written but fuck it right
 	//also the php on this page should be moved to its own class so please do that i cbf
-	// $GLOBALS['title'] = "NULL";
-	// $GLOBALS['first_name'] = "NULL";
-	// $GLOBALS['username'] = "NULL";
-	// $GLOBALS['last_name'] = "NULL";
-	// $GLOBALS['phone'] = "NULL";
-	// $GLOBALS['address'] = "NULL";
-	// $GLOBALS['DOB'] = "NULL";
-	// $GLOBALS['sex'] = "NULL";
-	// $GLOBALS['email'] = "NULL";
-	// $GLOBALS['occupation'] = "NULL";
+	$GLOBALS['title'] = "NULL";
+	$GLOBALS['first_name'] = "NULL";
+	$GLOBALS['username'] = "NULL";
+	$GLOBALS['last_name'] = "NULL";
+	$GLOBALS['phone'] = "NULL";
+	$GLOBALS['address'] = "NULL";
+	$GLOBALS['DOB'] = "NULL";
+	$GLOBALS['sex'] = "NULL";
+	$GLOBALS['email'] = "NULL";
+	$GLOBALS['occupation'] = "NULL";
 
 	get_spec_info($userid);
 
@@ -33,7 +33,7 @@
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
-			ud_user_id = 67863 LIMIT 1";
+			ud_user_id = '". $userid . "' LIMIT 1";
 
 		$response = mysqli_query($connection, $query);
 
@@ -42,7 +42,7 @@
 
 					$GLOBALS['title'] = $row['ud_title'];
 					$GLOBALS['first_name'] = $row['ud_fname'];
-					$GLOBALS['username'] = $row['ud_username'];
+					$GLOBALS['middle_name'] = $row['ud_username'];
 					$GLOBALS['last_name'] = $row['ud_lname'];
 					$GLOBALS['phone'] = $row['ud_phone'];
 					$GLOBALS['address'] = $row['ud_address'];
@@ -62,137 +62,135 @@
 	if($_POST){
 		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
 				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
-			echo "<SCRIPT>Materialize.toast('Failed to Update Details', 4000);</SCRIPT>";
+			echo "<SCRIPT>alert('Failed to Update Details');</SCRIPT>";
 		} else{
-			echo "<SCRIPT>Materialize.toast('Details Updated', 4000);</SCRIPT>";
+			echo "<SCRIPT>alert('Details Updated');</SCRIPT>";
 			header("location: accountsettings.php");
 		}
 	}
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>eVent - Home</title>
 
-  <!-- CSS  -->
-  <link rel="shortcut icon" href="media/favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <?php include 'includes/navigation.php' ?>
-  
-			<header class="center">
-				<h1><?php echo $membership->get_username(); ?><span> - Edit and View your Information Here</span></h1>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>eVent - Account Settings</title>
+
+		<meta name="description" content="IFB299 - Website" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="McLeod" />
+
+		<link rel="shortcut icon" href="media/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/placement2.css" />
+
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a class="gn-icon gn-icon-earth" href="home.php">Home</a></li>
+								<li><a class="gn-icon gn-icon-help" href="lsp.php">Location Services</a></li>
+								<li><a class="gn-icon gn-icon-article" href="tos.php">Terms of Service</a></li>
+								<li><a class="gn-icon gn-icon-cog" href="accountsettings.php">Settings</a></li>
+								<li><a class="gn-icon gn-icon-earth" href="login.php?status=logout">Logout</a></li>
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<!-- <li><a href="">Page Menu 1</a></li> -->
+				<!-- <li><a href="">Page Menu 2</a></li> -->
+				<!-- <li><a href="">Page Menu 3</a></li> -->
+				<li><a href="accountsettings.php"><span><?php echo $organisation_name . " - " . $username ?></span></a></li>
+				<li></li>
+			</ul>
+
+			<header>
+				<h1><?php echo $username; ?><span>Edit and View your Information Here</span></h1>
 			</header>
 
+		</div><!-- /container -->
+
 		<!-- Page Content -->
-		<container>
-		<div class="row">
-				<form class="center col l12" method="post" action="">
+
+		<div class="main-content">
+			<body>
+
+				<div id="ceditsettings">
+
+			<div id="formbody">
+				<form method="post" action="">
 				<!-- Title -->
-				 <div class="row">
-				 <div class="input-field col s6">
-					<select class="browser-default" id="title" name="title">
+					<label for="title" id="flabel">Title</label>
+					<select id="title" name="title">
+
 						<?php foreach ($titlearray as $t): ?>
 							<option value="<?php echo $t; ?>" <?php if($t == $GLOBALS['title']){echo 'selected="selected"';} ?>><?php echo $t; ?></option>
 						<?php endforeach; ?>
+
 					</select>
-					</div>
-				</div>
+
 				<!-- First Name -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="fname" id="flabel">First Name</label>
 					<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
-				</div>
-				</div>
-				<!-- Username Name -->
-				<div class="row">
-				 <div class="input-field col s6">
-					<label for="username" id="flabel">Username Name</label>
-					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['username']; ?>">
-				</div>
-				</div>
+				<!-- Middle Name -->
+					<label for="username" id="flabel">Middle Name</label>
+					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['middle_name']; ?>">
 				<!-- Last Name -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
-				</div>
-				</div>
 				<!-- Phone -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="phone" id="flabel">Phone</label>
 					<input type="text" id="phone" name="phone" value="<?php echo $GLOBALS['phone']; ?>">
-				</div>
-				</div>
 				<!-- Address -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="address" id="flabel">Address</label>
 					<input type="text" id="address" name="address" value="<?php echo $GLOBALS['address']; ?>">
-				</div>
-				</div>
 				<!-- DOB -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="dob" id="flabel">Date of Birth (Year-Month-Day)</label>
 					<input type="text" id="dob" name="dob" value="<?php echo $GLOBALS['DOB']; ?>">
-				</div>
-				</div>
 				<!-- Gender -->
-				<div class="row">
-				 <div class="input-field col s6">
-					<select class="browser-default" id="sex" name="sex">
+					<label for="sex" id="flabel">Gender</label>
+					<select id="sex" name="sex">
+
 						<?php foreach ($genderarray as $g): ?>
 							<option value="<?php echo $g; ?>" <?php if($g == $GLOBALS['sex']){echo 'selected="selected"';} ?>><?php echo $g; ?></option>
 						<?php endforeach; ?>
+
+
 					</select>
-				</div>
-				</div>
 				<!-- Email -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="email" id="flabel">Email Address</label>
 					<input type="text" id="email" name="email" value="<?php echo $GLOBALS['email']; ?>">
-				</div>
-				</div>
 				<!--Occipation -->
-				<div class="row">
-				 <div class="input-field col s6">
 					<label for="occupation" id="flabel">Occupation</label>
 					<input type="text" id="occupation" name="occupation" value="<?php echo $GLOBALS['occupation']; ?>">
-					</div>
-					</div>
+
 				<!-- Submit -->
-					<button type="submit" value="Update Details">
+					<input type="submit" value="Update Details">
 				</form>
 			</div>
 
-	</container>
 
-  		</body>
-				<!-- footer with team name -->
-				  <footer class="page-footer orange">
-				    <div class="footer-copyright">
-				      <div class="container" href="tos.php">
-				      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
-				      </div>
-				    </div>
-				  </footer>
+				</div>
 
+			</body>
+		</div>
 
-				  <!--  Scripts-->
-				  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-				  <script src="js/materialize.js"></script>
-				  <script src="js/init.js"></script>
-
-
-
-				</html>
+		<script src="js/classie.js"></script>
+		<script src="js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	</body>
+</html>

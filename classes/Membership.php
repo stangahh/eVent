@@ -121,7 +121,7 @@
 				while($row = mysqli_fetch_array($response)){
 					array_push($events, "
 						" . $row['event_id'] . 
-						"<strong>" . $row['event_name'] .",</strong>, "
+						"<strong>" . $row['event_name'] ."</strong> "
 						. $row['event_location'] . " 
 					");	
 				}
@@ -225,61 +225,85 @@
 			
 		}
 		
+		//create an event by inserting information into database, also uploads an image
+		function create_event($event_name, $org_id, $event_loc, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
+			$latest_img_num = $this ->lastestimgnumber();
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES 
+			(NULL, 
+			'". $event_name ."', 
+			'". $org_id ."', 
+			'". $event_loc ."', 
+			NULL, 
+			NULL, 
+			'". $event_postcode ."', 
+			NULL, 
+			'". $amount_required ."', 
+			'". $user_id ."', 
+			'". $desc ."', 
+			'". $latest_img_num ."', 
+			'". $date ."')";
+			
+			$stmt = mysqli_prepare($connection,$query);
+			
+			mysqli_stmt_execute($stmt);
 
-		//method used to create an account (hopefully)
-		function register_user($un, $pw, $org_id) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-
-			$query_users = "INSERT INTO users (users_username, users_password, users_org_id) 
-							VALUES ('" . $un . "','" . MD5($pw) . "','" . $org_id . "')";
-
-			$stmt_users = mysqli_prepare($connection, $query_users);
-
-			mysqli_stmt_execute($stmt_users);
-
-			$affected_rows = mysqli_stmt_affected_rows($stmt_users);
-				
-				if($affected_rows == 1){
-					mysqli_stmt_close($stmt_users);
-					mysqli_close($connection);
-					$_SESSION['status'] = 'authorised_' . $un;
-						header("location: home.php");
-					return true;
-					
-				} else {
-					echo mysqli_error($stmt_users);
-					mysqli_stmt_close($stmt_users);
-					mysqli_close($connection);
-					return false;
-				}
-		}
-
-		function register_user_details($title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-
-			$query_ud = "INSERT INTO user_details (ud_user_id, ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation) 
-							VALUES ('(SELECT users_id FROM users)'" . $title . "','" . $fn . "','" . $ln . "','" . $un . "','" . $ph . "','" . $add . "','" . $email . "','" . $dob . "','" . $sex . "','" . $occ . "')";
-
-			$stmt_ud = mysqli_prepare($connection, $query_ud);
-
-			mysqli_stmt_execute($stmt_ud);
-
-			$affected_rows = mysqli_stmt_affected_rows($stmt_ud);
-				
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+			
 			if($affected_rows == 1){
-				mysqli_stmt_close($stmt_ud);
+				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
-				$_SESSION['status'] = 'authorised_' . $un;
-					header("location: home.php");
 				return true;
 				
 			} else {
-				echo mysqli_error($stmt_ud);
-				mysqli_stmt_close($stmt_ud);
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
 			}
+			
+			mysqli_close($connection);
+			
+			//upload image
+			//$target = "eventimg/". $latest_img_num .".jpg";
+			//move_uploaded_file($image, $target);
+			
+			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
+			move_uploaded_file($image, $target);
 		}
+		
+		//returns next image number or default image
+		function lastestimgnumber(){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT event_photo FROM events ORDER BY event_photo DESC LIMIT 1";
+			
+			$img = 0;
+			
+			$response = mysqli_query($connection, $query);
+			
+			if($response){
+				
+				while($row = mysqli_fetch_array($response)){
+						
+					$img = $row['event_photo'];	
+						
+				}
+				
+			} else {
+				
+				echo "FAILURE: Unable to fetch image information";
+				
+			}
+			
+			mysqli_close($connection);
+			
+			if($img != 0){
+				$img++;
+			}
+			
+			return $img;
+		}
+		
 	}
 
 ?>

@@ -13,12 +13,10 @@
 		$catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
 	}
 
-  //user signed up
-  if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
-    $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']);
-    $membership->register_user_details($_POST['su_title'], $_POST['su_firstname'], $_POST['su_surname'], $_POST['su_username'], $_POST['su_phone'], $_POST['su_address'], $_POST['su_email'], $_POST['su_dob'], $_POST['su_sex'], $_POST['su_occupation']);
-  }
-
+	//user signed up
+	if($_POST && !empty($_POST['email']) && !empty($_POST['organisationID'])){
+		$catch = $membership->register_user($_POST['username'], $_POST['pwd'], $_POST['email'], $_POST['organisationID']);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -36,14 +34,12 @@
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-
-  <!--Login unique top nav -->
+  <!--Top nav bar -->
   <nav class="orange darken-2 lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- login page dosn't have links to site content -->
   </nav>
-
   <div class="parallax-container z-depth-2">
   <div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
   <div class="section no-pad-bot" id="index-banner">
@@ -62,6 +58,7 @@
   </div>
 </div>
 <br>
+
 <!-- Sign in form -->
 <div class="row">
 <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
@@ -78,12 +75,11 @@
     </div>
   </div>
   <p class="col s6">Don't have an account? <a class="modal-trigger" data-target="modal1">Sign up</a></p>
-  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit">Submit
+  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
   </button>
 </form>
 </div>
-
 
 <!-- Sign up form -->
 <div id="modal1" class="modal">
@@ -91,79 +87,28 @@
     <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
     <div class="row">
         <div class="input-field col s12">
-          <input id="su_username" name="su_username" type="text" class="validate">
-          <label for="su_username">Username</label>
+          <input id="first_name" name="username"type="text" class="validate">
+          <label for="first_name">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" name="pwd" type="password" length="18" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
       </div>
       <div class="input-field col s12">
-        <select class="browser-default" id="su_title" name="su_title">
-          <option value="" enabled selected>Title</option>
-          <option value="Mr">Mr</option>
-          <option value="Miss">Miss</option>
-          <option value="Mrs">Mrs</option>
-        </select>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_firstname" name="su_firstname" type="text" class="validate">
-          <label for="su_firstname" data-error="wrong" data-success="right">First Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_surname" name="su_surname" type="text" class="validate">
-          <label for="su_surname" data-error="wrong" data-success="right">Surname</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_dob" name="su_dob" type="text" class="datepicker">
-          <label for="su_dob" data-error="wrong" data-success="right">Date of Birth</label>
-        </div>
-      </div>
-      <div class="input-field col s12">
-        <select class="browser-default" id="su_sex" name="su_sex">
-          <option value="" enabled selected>Sex</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_pwd" name="su_pwd" type="password" length="18" class="validate">
-          <label for="su_pwd">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_email" name="su_email" type="email" class="validate">
-          <label for="su_email" data-error="wrong" data-success="right">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_phone" name="su_phone" type="text" class="validate">
-          <label for="su_phone" data-error="wrong" data-success="right">Phone</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_address" name="su_address" type="text" class="validate">
-          <label for="su_address" data-error="wrong" data-success="right">Address</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="su_occupation" name="su_occupation" type="text" class="validate">
-          <label for="su_occupation" data-error="wrong" data-success="right">Occupation</label>
-        </div>
-      </div>
-      <div class="input-field col s12">
-          <input id="su_org_id" name="su_org_id"type="text" class="validate">
-          <label for="su_org_id">Organisation ID</label>
+          <input id="org_id" name="organisationID"type="text" class="validate">
+          <label for="org_id">Organisation ID</label>
         </div>
       <p class="col s6">Already registered? <a href="#">Sign In</a></p>
-      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="signup">Submit
+      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -179,6 +124,15 @@
 <div class="row">
  <p class="flow-text center col s12 m6 offset-s0 offset-m3">Bacon ipsum dolor amet andouille cupim ground round voluptate bresaola consequat. Labore shankle chicken fatback pork ea ham hock id est short ribs short loin jerky veniam. Boudin velit sunt quis tongue tri-tip mollit picanha beef frankfurter prosciutto pork chop. Beef ribs eu pancetta spare ribs. Ham hock cow pariatur ribeye beef ribs jerky pig pork loin ham meatball kielbasa eu t-bone esse.</p>
 </div>
+<!-- footer with team name -->
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container" href="tos.php">
+      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
+      </div>
+    </div>
+  </footer>
+
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -186,7 +140,4 @@
   <script src="js/init.js"></script>
 
   </body>
-
-  <?php include 'includes/footer.php' ?>
-  
 </html>
