@@ -1,10 +1,11 @@
 <!--Top nav bar -->
   <nav class="orange darken-2 lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
     
       <!-- Items on the top nav bar in desktop mode -->
       <ul class="right hide-on-med-and-down">
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
+        <li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="asdf">New Event</a></li>
         <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
         <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
       </ul>
