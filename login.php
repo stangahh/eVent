@@ -14,8 +14,9 @@
 	}
 
   //user signed up
-  if($_POST && !empty($_POST['email']) && !empty($_POST['organisationID'])){
-    $catch = $membership->register_user($_POST['username'], $_POST['pwd'], $_POST['email'], $_POST['organisationID']);
+  if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
+    $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']);
+    //$membership->register_user_details($_POST['su_username'], $_POST['su_email']);
   }
 
 ?>
@@ -77,7 +78,7 @@
     </div>
   </div>
   <p class="col s6">Don't have an account? <a class="modal-trigger" data-target="modal1">Sign up</a></p>
-  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
+  <button name="Login" type="submit" value="Login" class="btn-large waves-effect waves-light waves-red light-blue darken-4 right tooltipped" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit">Submit
     <i class="material-icons right">send</i>
   </button>
 </form>
@@ -90,28 +91,28 @@
     <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
     <div class="row">
         <div class="input-field col s12">
-          <input id="first_name" name="username"type="text" class="validate">
-          <label for="first_name">Username</label>
+          <input id="su_username" name="su_username" type="text" class="validate">
+          <label for="su_username">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" name="pwd" type="password" length="18" class="validate">
-          <label for="password">Password</label>
+          <input id="su_pwd" name="su_pwd" type="password" length="18" class="validate">
+          <label for="su_pwd">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email" data-error="wrong" data-success="right">Email</label>
+          <input id="su_email" name="su_email" type="email" class="validate">
+          <label for="su_email" data-error="wrong" data-success="right">Email</label>
         </div>
       </div>
       <div class="input-field col s12">
-          <input id="org_id" name="organisationID"type="text" class="validate">
-          <label for="org_id">Organisation ID</label>
+          <input id="su_org_id" name="su_org_id"type="text" class="validate">
+          <label for="su_org_id">Organisation ID</label>
         </div>
       <p class="col s6">Already registered? <a href="#">Sign In</a></p>
-      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="action">Submit
+      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="signup">Submit
         <i class="material-icons right">send</i>
       </button>
     </form>

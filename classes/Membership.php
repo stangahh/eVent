@@ -225,41 +225,60 @@
 			
 		}
 		
-	}
 
-	//method used to create an account (hopefully)
-	function register_user($un, $pw, $email, $org_id) {
-		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+		//method used to create an account (hopefully)
+		function register_user($un, $pw, $org_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
-		$query_users = "INSERT INTO users (users_username, users_email, users_password, users_org_id) 
-						VALUES ('" . $un . "','" . $email . "','" . $pw . "','" . $org_id . "')";
+			$query_users = "INSERT INTO users (users_username, users_password, users_org_id) 
+							VALUES ('" . $un . "','" . MD5($pw) . "','" . $org_id . "')";
 
-		$query_ud = "INSERT INTO user_details (ud_username, ud_email) 
-						VALUES ('" . $un . "','" . $email . "')";
+			$stmt_users = mysqli_prepare($connection, $query_users);
 
-		$stmt_users = mysqli_prepare($connection, $query_users);
-		$stmt_ud = mysqli_prepare($connection, $query_ud);
+			mysqli_stmt_execute($stmt_users);
 
-		mysqli_stmt_execute($stmt_users);
-		mysqli_stmt_execute($stmt_ud);
-
-		$affected_rows = mysqli_stmt_affected_rows($stmt_users);
-		$affected_rows = mysqli_stmt_affected_rows($stmt_ud);
-			
-			if($affected_rows == 1){
-				mysqli_stmt_close($stmt_users);
-				mysqli_stmt_close($stmt_ud);
-				mysqli_close($connection);
-				return true;
+			$affected_rows = mysqli_stmt_affected_rows($stmt_users);
 				
-			} else {
-				echo mysqli_error($stmt_users);
-				mysqli_stmt_close($stmt_users);
-				echo mysqli_error($stmt_ud);
-				mysqli_stmt_close($stmt_ud);
-				mysqli_close($connection);
-				return false;
-			}
+				if($affected_rows == 1){
+					mysqli_stmt_close($stmt_users);
+					mysqli_close($connection);
+					return true;
+					
+				} else {
+					echo mysqli_error($stmt_users);
+					mysqli_stmt_close($stmt_users);
+					mysqli_close($connection);
+					return false;
+				}
+
+			$_SESSION['status'] = 'authorised_' . $un;
+				header("location: home.php");
+		}
+
+		// function register_user_details($un, $email) {
+		// 	$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+
+		// 	$query_ud = "INSERT INTO user_details (ud_username, ud_email) 
+		// 					VALUES ('" . $un . "','" . $email . "')";
+
+		// 	$stmt_ud = mysqli_prepare($connection, $query_ud);
+
+		// 	mysqli_stmt_execute($stmt_ud);
+
+		// 	$affected_rows = mysqli_stmt_affected_rows($stmt_ud);
+				
+		// 	if($affected_rows == 1){
+		// 		mysqli_stmt_close($stmt_ud);
+		// 		mysqli_close($connection);
+		// 		return true;
+				
+		// 	} else {
+		// 		echo mysqli_error($stmt_ud);
+		// 		mysqli_stmt_close($stmt_ud);
+		// 		mysqli_close($connection);
+		// 		return false;
+		// 	}
+		// }
 	}
 
 ?>
