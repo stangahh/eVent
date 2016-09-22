@@ -33,7 +33,7 @@
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
-			ud_user_id = '". $userid . "' LIMIT 1";
+			ud_user_id = 67863 LIMIT 1";
 
 		$response = mysqli_query($connection, $query);
 
@@ -87,7 +87,7 @@
   <?php include 'includes/navigation.php' ?>
   
 			<header class="center">
-				<h1><?php echo $username; ?><span> - Edit and View your Information Here</span></h1>
+				<h1><?php echo $membership->get_username(); ?><span> - Edit and View your Information Here</span></h1>
 			</header>
 
 		<!-- Page Content -->
@@ -102,7 +102,6 @@
 							<option value="<?php echo $t; ?>" <?php if($t == $GLOBALS['title']){echo 'selected="selected"';} ?>><?php echo $t; ?></option>
 						<?php endforeach; ?>
 					</select>
-					<label>Title</label>
 					</div>
 				</div>
 				<!-- First Name -->
@@ -150,13 +149,10 @@
 				<!-- Gender -->
 				<div class="row">
 				 <div class="input-field col s6">
-					<label for="sex" id="flabel">Gender</label>
-					<select id="sex" name="sex">
-
+					<select class="browser-default" id="sex" name="sex">
 						<?php foreach ($genderarray as $g): ?>
 							<option value="<?php echo $g; ?>" <?php if($g == $GLOBALS['sex']){echo 'selected="selected"';} ?>><?php echo $g; ?></option>
 						<?php endforeach; ?>
-
 					</select>
 				</div>
 				</div>

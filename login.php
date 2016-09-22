@@ -16,7 +16,7 @@
   //user signed up
   if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
     $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']);
-    //$membership->register_user_details($_POST['su_username'], $_POST['su_email']);
+    $membership->register_user_details($_POST['su_title'], $_POST['su_firstname'], $_POST['su_surname'], $_POST['su_username'], $_POST['su_phone'], $_POST['su_address'], $_POST['su_email'], $_POST['su_dob'], $_POST['su_sex'], $_POST['su_occupation']);
   }
 
 ?>
@@ -95,6 +95,39 @@
           <label for="su_username">Username</label>
         </div>
       </div>
+      <div class="input-field col s12">
+        <select class="browser-default" id="su_title" name="su_title">
+          <option value="" enabled selected>Title</option>
+          <option value="Mr">Mr</option>
+          <option value="Miss">Miss</option>
+          <option value="Mrs">Mrs</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_firstname" name="su_firstname" type="text" class="validate">
+          <label for="su_firstname" data-error="wrong" data-success="right">First Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_surname" name="su_surname" type="text" class="validate">
+          <label for="su_surname" data-error="wrong" data-success="right">Surname</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_dob" name="su_dob" type="text" class="validate">
+          <label for="su_dob" data-error="wrong" data-success="right">Date of Birth (YYYY-MM-DD)</label>
+        </div>
+      </div>
+      <div class="input-field col s12">
+        <select class="browser-default" id="su_sex" name="su_sex">
+          <option value="" enabled selected>Sex</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
       <div class="row">
         <div class="input-field col s12">
           <input id="su_pwd" name="su_pwd" type="password" length="18" class="validate">
@@ -105,6 +138,24 @@
         <div class="input-field col s12">
           <input id="su_email" name="su_email" type="email" class="validate">
           <label for="su_email" data-error="wrong" data-success="right">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_phone" name="su_phone" type="text" class="validate">
+          <label for="su_phone" data-error="wrong" data-success="right">Phone</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_address" name="su_address" type="text" class="validate">
+          <label for="su_address" data-error="wrong" data-success="right">Address</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="su_occupation" name="su_occupation" type="text" class="validate">
+          <label for="su_occupation" data-error="wrong" data-success="right">Occupation</label>
         </div>
       </div>
       <div class="input-field col s12">
