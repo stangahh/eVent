@@ -87,42 +87,69 @@
   <?php include 'includes/navigation.php' ?>
   
 			<header class="center">
-				<h1><?php echo $username; ?><span>Edit and View your Information Here</span></h1>
+				<h1><?php echo $username; ?><span> - Edit and View your Information Here</span></h1>
 			</header>
 
 		<!-- Page Content -->
 		<container>
 		<div class="row">
-				<form class="col l8" method="post" action="">
+				<form class="center col l12" method="post" action="">
 				<!-- Title -->
-					<label for="title" id="flabel">Title</label>
-					<select id="title" name="title">
-
+				 <div class="row">
+				 <div class="input-field col s6">
+					<select class="browser-default" id="title" name="title">
 						<?php foreach ($titlearray as $t): ?>
 							<option value="<?php echo $t; ?>" <?php if($t == $GLOBALS['title']){echo 'selected="selected"';} ?>><?php echo $t; ?></option>
 						<?php endforeach; ?>
-
 					</select>
-
+					<label>Title</label>
+					</div>
+				</div>
 				<!-- First Name -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="fname" id="flabel">First Name</label>
 					<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
+				</div>
+				</div>
 				<!-- Username Name -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="username" id="flabel">Username Name</label>
 					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['username']; ?>">
+				</div>
+				</div>
 				<!-- Last Name -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
+				</div>
+				</div>
 				<!-- Phone -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="phone" id="flabel">Phone</label>
 					<input type="text" id="phone" name="phone" value="<?php echo $GLOBALS['phone']; ?>">
+				</div>
+				</div>
 				<!-- Address -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="address" id="flabel">Address</label>
 					<input type="text" id="address" name="address" value="<?php echo $GLOBALS['address']; ?>">
+				</div>
+				</div>
 				<!-- DOB -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="dob" id="flabel">Date of Birth (Year-Month-Day)</label>
 					<input type="text" id="dob" name="dob" value="<?php echo $GLOBALS['DOB']; ?>">
+				</div>
+				</div>
 				<!-- Gender -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="sex" id="flabel">Gender</label>
 					<select id="sex" name="sex">
 
@@ -131,13 +158,22 @@
 						<?php endforeach; ?>
 
 					</select>
+				</div>
+				</div>
 				<!-- Email -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="email" id="flabel">Email Address</label>
 					<input type="text" id="email" name="email" value="<?php echo $GLOBALS['email']; ?>">
+				</div>
+				</div>
 				<!--Occipation -->
+				<div class="row">
+				 <div class="input-field col s6">
 					<label for="occupation" id="flabel">Occupation</label>
 					<input type="text" id="occupation" name="occupation" value="<?php echo $GLOBALS['occupation']; ?>">
-
+					</div>
+					</div>
 				<!-- Submit -->
 					<button type="submit" value="Update Details">
 				</form>
