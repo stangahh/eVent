@@ -30,7 +30,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="event_date" type="date" class="datepicker" class="validate">
+      <input id="event_date" type="date" name="event_date" class="datepicker" class="validate">
       <label for="event_date">Event Date</label>
     </div>
   </div>
@@ -49,14 +49,19 @@
     </div> 
   </div>
 
-  <div class="btn">
-      <span>Upload Image</span>
-      <input type="file" name="image">
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>File</span>
+      <input type="file">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
   </div>
-     
-  <div class="file-field input-field"></div>
 
-  <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Preview<i class="material-icons right">send</i>
+  <button class="btn-large waves-effect waves-light right tooltipped modal-trigger" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="submit" href="preview_event.php">Preview<i class="material-icons right">send</i>
   </button>
+
+
 
 </form>

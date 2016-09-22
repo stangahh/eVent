@@ -27,23 +27,20 @@
 
   <?php include 'includes/navigation.php' ?>
 
-<!-- New page content  -->
-<!-- First Third  -->
-<div class="row">
-  <h1 class="heading center">New event</h1>
-  <?php include 'includes/new_event_form.php' ?>
-</div>
-
+  <!-- New page content  -->
+  <div class="row">
+    <h1 class="heading center">New event</h1>
+    <?php include 'includes/new_event_form.php' ?>
+  </div>
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
-<script src="js/preview_js.js"></script>
 
 
 </body>
 
 <?php include 'includes/footer.php' ?>
-  
+
 </html>
