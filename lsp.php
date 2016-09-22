@@ -1,3 +1,16 @@
+<?php
+  //Author: Maxwell McLeod
+  require_once 'classes/Membership.php';
+
+  $membership = New Membership(); //simple new class call
+  $membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
+  $username = $membership->get_username(); //local variable of activer user username
+  $organisation_id = $membership->get_org_id($username); //get organisation id for user
+  $organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
+  $events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
