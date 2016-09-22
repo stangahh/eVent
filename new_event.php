@@ -1,6 +1,7 @@
 <?php
 	//Author: Maxwell McLeod
 	require_once 'classes/Membership.php';
+  require_once 'js/preview_js.js'
 
 	$membership = New Membership(); //simple new class call
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
@@ -29,36 +30,28 @@
 
 <!-- New page content  -->
 <!-- First Third  -->
-<div class="col s5 m8">
+<div class="row">
   <h1 class="heading">New event</h1>
-  <div class="row">
-    <?php include 'includes/new_event_form.php' ?>
+  <?php include 'includes/new_event_form.php' ?>
+  <!-- Second Third -->
+  <div class="card">
+    <card class="col s12 m6 l3">
+      <div class="card medium hoverable">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img src="">
+        </div>
+          <div class="card-content">
+            <p id="event_name_preview"></p>
+            <p id="event_date_preview"></p>
+            <p id="event_description_preview"></p>
+          </div>
+          <div class="card-action">
+            <a href="">Read more</a>
+          </div>
+      </div>
+    </card>
   </div>
 </div>
-
-  <!-- Second Third -->
-    <div class="card row col s4 center">
-      <card class="col s12 m6 l3">
-        <div class="card medium hoverable">
-          <div class="card-image waves-effect waves-block waves-light">
-            <img src=""> 
-          </div>
-          <div class="card-stacked">
-              <div class="card-content">
-                <p>
-                  <script>
-                    return document.getElementById('event_name').value;
-                  </script>                  
-                </p>
-
-              </div>
-              <div class="card-action">
-                <a href="">Read more</a>
-              </div>
-            </div>
-        </div>
-      </card>
-    </div>
 
 
 <!--  Scripts-->
