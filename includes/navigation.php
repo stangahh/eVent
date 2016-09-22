@@ -6,7 +6,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
         <li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="asdf">New Event</a></li>
-        <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
+        <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find Events</a></li>
         <li><a href="accountsettings.php"><span class="name"><?php echo "My Account - " . $username ?></span></a></li>
         <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
       </ul>
@@ -18,7 +18,8 @@
            <a href="accountsettings.php"><span class="name"><?php echo $organisation_name . " - " . $username ?></span></a>
        </li>
         <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
-        <li><a href="lsp.php">Find things nearby</a></li>
+        <li><a href="new_event.php">New Event</a></li>
+        <li><a href="lsp.php">Find Events</a></li>
         <li><div class="divider"></div></li>
         <li><i class="material-icons">lock_open</i><a href="login.php?status=loggout">Logout</a></li>
       </ul>
