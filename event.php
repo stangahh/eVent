@@ -62,7 +62,13 @@
 
 	<div class="row">
 
-		<?php $percent_there = $amount_needed / $amount_funded; ?>
+		<?php 
+			if ($amount_needed == 0) {
+				$percent_there = 100;
+			} else {
+				$percent_there = $amount_needed / $amount_funded; 
+			}
+		?>
 			<div class="progress col l8 s12">
 				 <div style="height:100px;" class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
