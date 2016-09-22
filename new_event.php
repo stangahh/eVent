@@ -57,23 +57,27 @@
           <label for="event_name">Event Name</label>
         </div>
       </div>
+			<div class="row">
         <div class="input-field col s12">
-          <input id="event_desc" name="description" class="materialize-textarea" type="text" class="validate">
+          <textarea id="event_desc" name="description" class="materialize-textarea"></textarea>
+
           <label for="event_desc">Event Description</label>
         </div>
+			</div>
+
         <div class="input-field col s12">
           <input id="event_location" name="location" type="text" class="validate">
           <label for="event_location">Address</label>
         </div>
       <div class="row">
         <div class="input-field col s4">
-          <input id="postcode" type="text" class="validate">
+          <input id="postcode" type="number" min="00000" max="99999" class="validate">
           <label for="postcode">Postcode</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="amt_required" type="text" class="validate">
+          <input id="amt_required" type="number" min="00000" max="99999" class="validate">
           <label for="amt_required">Amount Required</label>
         </div>
       </div>
@@ -92,7 +96,7 @@
           <input class="file-path validate" type="text">
         </div>
       </div>
-      
+
       <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>

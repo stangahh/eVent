@@ -85,29 +85,34 @@
 		 <div class="determinate" style="width: <?php echo $amount_funded?>%"></div>
  </div>
 		<div class="col s12 m6">
-			<div class="card blue-grey darken-1">
+			<div class="card light-blue darken-3">
 				<div class="card-content white-text">
 					<span class="card-title"><?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
 					<p class="card-title"><?php echo $event_date?></p>
 
-
 				</div>
 				<div class="card-action">
-					<a href="#">This is a link</a>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
 				</div>
+
 			</div>
 		</div>
-</ul>
-<ul class="center collapsible col s12 l6 " data-collapsible="accordion">
-	<li>
-		<div class="collapsible-header truncate hoverable"><?php echo $event_descrption?></div>
-		<div class="collapsible-body"><p><?php echo $event_descrption?></p></div>
-	</li>
-</ul>
+		<div class="col s12 m6">
+		<div data-target="modal1" class="modal-trigger truncate hoverable"><?php echo $event_descrption?></div>
+		<div id="modal1" class="modal"><p><?php echo $event_descrption?></p></div>
+	</div>
 </div>
-
+<div id="modal2" class="modal">
+	<div class="modal-content">
+		<h4>TODO</h4>
+		<p>A bunch of text</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+	</div>
+</div>
 
 <!-- footer with team name -->
   <footer class="page-footer orange">

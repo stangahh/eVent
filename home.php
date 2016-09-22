@@ -29,8 +29,9 @@
     <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- Items on the top nav bar in desktop mode -->
-        <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
-        <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
+        <li class="active"><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
+				<li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="Make and event with us">New!</a></li>
+				<li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
         <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
       </ul>
       <!-- Code for the sidenav -->
@@ -39,7 +40,7 @@
            <img class="background" src="media/event_img.png">
            <a href="accountsettings.php"><span class="name"><?php echo $organisation_name . " - " . $username ?></span></a>
        </li>
-        <li><a href="home.php"><i class="material-icons">home</i>Home</a></li>
+        <li class="active"><a href="home.php"><i class="material-icons">home</i>Home</a></li>
         <li><a href="lsp.php">Find things nearby</a></li>
         <li><div class="divider"></div></li>
         <li><i class="material-icons">lock_open</i><a href="login.php?status=loggout">Logout</a></li>
@@ -51,7 +52,12 @@
 <h1 class="center heading">eVents</h1>
 	<article>
     <div class="row center">
-		<input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials...">
+			<div class="input-field col l6 s12 offset-s0  offset-l3">
+					<input id="searchBar" onkeyup="searchList()" type="search" placeholder="Search for Event name, Location, Detials..." required>
+					<label for="searchBar"><i class="material-icons">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+		<!-- <input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials..."> -->
   </div>
   <div class="row center">
     <ul id="listOfEvents">
