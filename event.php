@@ -56,24 +56,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-	
-	<br>
 
+  <div class="container">
 	<div class="row">
 
-		<?php 
+		<?php
 			if ($amount_needed == 0) {
 				$percent_there = 100;
 			} else {
-				$percent_there = $amount_needed / $amount_funded; 
+				$percent_there = $amount_needed / $amount_funded;
 			}
 		?>
 			<div class="progress col l8 s12">
-				 <div style="height:100px;" class="determinate" style="width: <?php echo $percent_there?>%"></div>
+				 <div style="height:100px;" class="determinate" value="<?php echo $percent_there?>%"></div>
 		 	</div>
 
-		<div class="col s12 m6 ce">
+		<div class="col s12 m6">
 			<div class="card light-blue darken-3">
 				<div class="card-content white-text">
 					<span class="card-title"><?php echo $location_address?></span>
@@ -87,18 +85,16 @@
 				</div>
 			</div>
 		</div>
-		
-		
+
+
 	<!-- end of contents -->
 	</div>
-
-
 	</div>
 
 	<div id="modal2" class="modal modal-fixed-footer">
 		<div class="modal-content">
 			<h4>Donate</h4>
-			
+
 			<!-- mock card fields -->
 			<div class="row">
 				<div class="input-field col s6">
@@ -132,7 +128,7 @@
 		<div class="modal-footer">
 			<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
 				<i class="material-icons right">send</i>
-			</button>	
+			</button>
 		</div>
 	</div>
 
@@ -142,8 +138,7 @@
   <script src="js/init.js"></script>
 
 </body>
-  
+
   <?php include 'includes/footer.php' ?>
 
 </html>
-
