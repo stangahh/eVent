@@ -238,26 +238,26 @@
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt_users);
 				
-				if($affected_rows == 1){
-					mysqli_stmt_close($stmt_users);
-					mysqli_close($connection);
-					$_SESSION['status'] = 'authorised_' . $un;
-						header("location: home.php");
-					return true;
-					
-				} else {
-					echo mysqli_error($stmt_users);
-					mysqli_stmt_close($stmt_users);
-					mysqli_close($connection);
-					return false;
-				}
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt_users);
+				mysqli_close($connection);
+				$_SESSION['status'] = 'authorised_' . $un;
+					header("location: home.php");
+				return true;
+				
+			} else {
+				echo mysqli_error($stmt_users);
+				mysqli_stmt_close($stmt_users);
+				mysqli_close($connection);
+				return false;
+			}
 		}
 
 		function register_user_details($title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
-			$query_ud = "INSERT INTO user_details (ud_user_id, ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation) 
-							VALUES ('(SELECT users_id FROM users)'" . $title . "','" . $fn . "','" . $ln . "','" . $un . "','" . $ph . "','" . $add . "','" . $email . "','" . $dob . "','" . $sex . "','" . $occ . "')";
+			$query_ud = "INSERT INTO user_details (ud_title, ud_user_id, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation) 
+							VALUES ('" . $title . "', (SELECT users.users_id FROM users WHERE users_username = '" . $un . "'),'" . $fn . "','" . $ln . "','" . $un . "','" . $ph . "','" . $add . "','" . $email . "','" . $dob . "','" . $sex . "','" . $occ . "')";
 
 			$stmt_ud = mysqli_prepare($connection, $query_ud);
 
