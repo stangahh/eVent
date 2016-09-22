@@ -17,7 +17,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>eVent - Home</title>
+	<meta name="theme-color" content="#db5945">
+  <title>eVent - Map</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -51,7 +52,7 @@
             lat: -34.397,
             lng: 150.644
           },
-          zoom: 6,
+          zoom: 7,
           styles: [{
             "featureType": "administrative",
             "elementType": "labels.text.fill",
@@ -141,6 +142,26 @@
         var infoWindow = new google.maps.InfoWindow({
           map: map
         });
+				var image = 'https://www.livefiregear.com/media/gmapstrlocator/marker/default/map-marker-20x32-v2.png';
+				<?php foreach( $events as &$p ):
+					$id = substr($p, 0, 5);
+					$eventarray = $membership->get_event_information($id); ?>
+				var marker = new google.maps.Marker({
+          position: {
+            lat: <?php echo $eventarray[3]; ?>,
+            lng: <?php echo $eventarray[4]; ?>
+          },
+					url: 'http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>',
+          map: map,
+					icon: image,
+					animation: google.maps.Animation.DROP,
+          title: '<?php echo $eventarray[0]; ?>'
+        });
+				<?php endforeach; ?>
+				marker.addListener('click', toggleBounce);
+				google.maps.event.addListener(marker, 'click', function() {
+      		window.location.href = marker.url;
+    		});
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -161,7 +182,13 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-
+			function toggleBounce() {
+				if (marker.getAnimation() !== null) {
+					marker.setAnimation(null);
+				} else {
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+				}
+			}
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?

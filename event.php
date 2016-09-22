@@ -46,14 +46,20 @@
 
 	<?php include 'includes/navigation.php' ?>
 	<!-- event page content  -->
+	<h2 class="center"><?php echo $event_name?></h2>
 	<div class="parallax-container z-depth-2">
 		<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
 						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
+						<!-- remove this!!!!! -->
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">thumb_down</i></a>
+						<a href=<?php echo "home.php?delete=".$id.""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">turned_in_not</i></a>
+
 				</div>
 			</div>
 		</div>
@@ -66,10 +72,10 @@
 			if ($amount_needed == 0) {
 				$percent_there = 100;
 			} else {
-				$percent_there = (($amount_funded / $amount_needed) * 10);
+				$percent_there = ($amount_funded / $amount_needed) * 100;
 			}
 		?>
-		<h3> We have been funded $<?php echo $amount_funded?> out of our goal of $<?php echo $amount_needed?></h3>
+		<h4 class="heading"> We have been funded $<?php echo $amount_funded?> out of our goal of $<?php echo $amount_needed?></h3>
 			<div class="progress col l12 s12">
 				 <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
@@ -77,18 +83,21 @@
 		<div class="col s12 m6">
 			<div class="card light-blue darken-3">
 				<div class="card-content white-text">
-					<span class="card-title"><?php echo $location_address?></span>
+					<span class="flow-text card-title">Address: <?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
-					<p><?php echo $event_date?></p>
-					<p><?php echo $event_description?></p>
-					<p><?php echo $event_org_name?></p>
-
+					<p class="flow-text">Date: <?php echo $event_date?></p>
+					<p class="flow-text">An event by: <?php echo $event_org_name?></p>
+					<p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
 				</div>
 			</div>
+			<h4>INFO</h4>
+			<blockquote>
+			<p class="flow-text"><?php echo $event_description?></p>
+		</blockquote>
 		</div>
 		<div class="col s12 m6">
 			<style>
