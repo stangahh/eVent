@@ -15,16 +15,16 @@
 
 	//yes this is porly written but fuck it right
 	//also the php on this page should be moved to its own class so please do that i cbf
-	$GLOBALS['title'] = "NULL";
-	$GLOBALS['first_name'] = "NULL";
-	$GLOBALS['username'] = "NULL";
-	$GLOBALS['last_name'] = "NULL";
-	$GLOBALS['phone'] = "NULL";
-	$GLOBALS['address'] = "NULL";
-	$GLOBALS['DOB'] = "NULL";
-	$GLOBALS['sex'] = "NULL";
-	$GLOBALS['email'] = "NULL";
-	$GLOBALS['occupation'] = "NULL";
+	// $GLOBALS['title'] = "NULL";
+	// $GLOBALS['first_name'] = "NULL";
+	// $GLOBALS['username'] = "NULL";
+	// $GLOBALS['last_name'] = "NULL";
+	// $GLOBALS['phone'] = "NULL";
+	// $GLOBALS['address'] = "NULL";
+	// $GLOBALS['DOB'] = "NULL";
+	// $GLOBALS['sex'] = "NULL";
+	// $GLOBALS['email'] = "NULL";
+	// $GLOBALS['occupation'] = "NULL";
 
 	get_spec_info($userid);
 
@@ -62,75 +62,61 @@
 	if($_POST){
 		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
 				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
-			echo "<SCRIPT>alert('Failed to Update Details');</SCRIPT>";
+			echo "<SCRIPT>Materialize.toast('Failed to Update Details', 4000);</SCRIPT>";
 		} else{
-			echo "<SCRIPT>alert('Details Updated');</SCRIPT>";
+			echo "<SCRIPT>Materialize.toast('Details Updated', 4000);</SCRIPT>";
 			header("location: accountsettings.php");
 		}
 	}
 
 ?>
-
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>eVent - Home</title>
 
-		<title>eVent - Account Settings</title>
-
-		<meta name="description" content="IFB299 - Website" />
-		<meta name="keywords" content="" />
-		<meta name="author" content="McLeod" />
-
-		<link rel="shortcut icon" href="media/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<link rel="stylesheet" type="text/css" href="css/placement2.css" />
-
-		<script src="js/modernizr.custom.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<ul id="gn-menu" class="gn-menu-main">
-				<li class="gn-trigger">
-					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
-					<nav class="gn-menu-wrapper">
-						<div class="gn-scroller">
-							<ul class="gn-menu">
-								<li><a class="gn-icon gn-icon-earth" href="home.php">Home</a></li>
-								<li><a class="gn-icon gn-icon-help" href="lsp.php">Location Services</a></li>
-								<li><a class="gn-icon gn-icon-article" href="tos.php">Terms of Service</a></li>
-								<li><a class="gn-icon gn-icon-cog" href="accountsettings.php">Settings</a></li>
-								<li><a class="gn-icon gn-icon-earth" href="login.php?status=logout">Logout</a></li>
-							</ul>
-						</div><!-- /gn-scroller -->
-					</nav>
-				</li>
-				<!-- <li><a href="">Page Menu 1</a></li> -->
-				<!-- <li><a href="">Page Menu 2</a></li> -->
-				<!-- <li><a href="">Page Menu 3</a></li> -->
-				<li><a href="accountsettings.php"><span><?php echo $organisation_name . " - " . $username ?></span></a></li>
-				<li></li>
-			</ul>
-
-			<header>
+  <!-- CSS  -->
+  <link rel="shortcut icon" href="media/favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <!--Top nav bar -->
+  <nav class="orange darken-2 lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
+      <ul class="right hide-on-med-and-down">
+        <!-- Items on the top nav bar in desktop mode -->
+        <li class="active"><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
+				<li><a href="accountsettings.php" class="active tooltipped" data-position="bottom" data-tooltip="Update your account">Account</a></li>
+				<li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="Make and event with us">New!</a></li>
+				<li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
+        <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
+      </ul>
+      <!-- Code for the sidenav -->
+        <ul id="nav-mobile" class="side-nav">
+        <li>
+           <img class="background" src="media/event_img.png">
+           <a href="accountsettings.php"><span class="name"><?php echo $organisation_name . " - " . $username ?></span></a>
+       </li>
+        <li class="active"><a href="home.php"><i class="material-icons">home</i>Home</a></li>
+        <li><a href="lsp.php">Find things nearby</a></li>
+        <li><div class="divider"></div></li>
+        <li><i class="material-icons">lock_open</i><a href="login.php?status=loggout">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+			<header class="center">
 				<h1><?php echo $username; ?><span>Edit and View your Information Here</span></h1>
 			</header>
 
-		</div><!-- /container -->
-
 		<!-- Page Content -->
-
-		<div class="main-content">
-			<body>
-
-				<div id="ceditsettings">
-
-			<div id="formbody">
-				<form method="post" action="">
+		<container>
+		<div class="row">
+				<form class="col l8" method="post" action="">
 				<!-- Title -->
 					<label for="title" id="flabel">Title</label>
 					<select id="title" name="title">
@@ -144,9 +130,7 @@
 				<!-- First Name -->
 					<label for="fname" id="flabel">First Name</label>
 					<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
-				<!-- Middle Name -->
-					<label for="username" id="flabel">Middle Name</label>
-					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['middle_name']; ?>">
+
 				<!-- Last Name -->
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
@@ -167,7 +151,6 @@
 							<option value="<?php echo $g; ?>" <?php if($g == $GLOBALS['sex']){echo 'selected="selected"';} ?>><?php echo $g; ?></option>
 						<?php endforeach; ?>
 
-
 					</select>
 				<!-- Email -->
 					<label for="email" id="flabel">Email Address</label>
@@ -177,20 +160,28 @@
 					<input type="text" id="occupation" name="occupation" value="<?php echo $GLOBALS['occupation']; ?>">
 
 				<!-- Submit -->
-					<input type="submit" value="Update Details">
+					<button type="submit" value="Update Details">
 				</form>
 			</div>
 
+	</container>
 
-				</div>
+  		</body>
+				<!-- footer with team name -->
+				  <footer class="page-footer orange">
+				    <div class="footer-copyright">
+				      <div class="container" href="tos.php">
+				      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
+				      </div>
+				    </div>
+				  </footer>
 
-			</body>
-		</div>
 
-		<script src="js/classie.js"></script>
-		<script src="js/gnmenu.js"></script>
-		<script>
-			new gnMenu( document.getElementById( 'gn-menu' ) );
-		</script>
-	</body>
-</html>
+				  <!--  Scripts-->
+				  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+				  <script src="js/materialize.js"></script>
+				  <script src="js/init.js"></script>
+
+
+
+				</html>

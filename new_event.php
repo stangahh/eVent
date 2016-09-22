@@ -26,7 +26,7 @@
 <body>
   <!--Top nav bar -->
   <nav class="orange darken-2 lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="http://ozbot.com.au/home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- Items on the top nav bar in desktop mode -->
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>

@@ -30,6 +30,7 @@
       <ul class="right hide-on-med-and-down">
         <!-- Items on the top nav bar in desktop mode -->
         <li class="active"><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
+				<li><a href="accountsettings.php" class="active tooltipped" data-position="bottom" data-tooltip="Update your account">Account</a></li>
 				<li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="Make and event with us">New!</a></li>
 				<li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
         <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
@@ -91,7 +92,7 @@
 		</ul>
   </div>
 	</article>
-
+</body>
 <!-- footer with team name -->
   <footer class="page-footer orange">
     <div class="footer-copyright">
@@ -108,5 +109,5 @@
   <script src="js/init.js"></script>
 
 
-  </body>
+
 </html>
