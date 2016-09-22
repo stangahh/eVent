@@ -15,7 +15,7 @@
     });
     $('#event_desc').val('');
     $('#event_desc').trigger('autoresize');
-      
+
   }); // end of document ready
 })(jQuery); // end of jQuery name spac
 

@@ -85,7 +85,15 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="col s12 m6">
+			<style>
+				#map {
+					height: 400px;
+					width: 100%;
+				}
+			</style>
+			<div id="map"></div>
+		</div>
 
 	<!-- end of contents -->
 	</div>
@@ -131,8 +139,111 @@
 			</button>
 		</div>
 	</div>
-
+	<!-- map code -->
+	<script>
+	function initMap() {
+		var myLatLng = {lat: <?php echo $latitude ?>, lng: <?php echo $longitude ?>};
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    center: myLatLng,
+	    zoom: 8,
+	    styles: [{
+	      "featureType": "administrative",
+	      "elementType": "labels.text.fill",
+	      "stylers": [{
+	        "color": "#444444"
+	      }]
+	    }, {
+	      "featureType": "landscape",
+	      "elementType": "all",
+	      "stylers": [{
+	        "color": "#f2f2f2"
+	      }]
+	    }, {
+	      "featureType": "poi",
+	      "elementType": "all",
+	      "stylers": [{
+	        "visibility": "off"
+	      }]
+	    }, {
+	      "featureType": "road",
+	      "elementType": "all",
+	      "stylers": [{
+	        "saturation": -100
+	      }, {
+	        "lightness": 45
+	      }]
+	    }, {
+	      "featureType": "road.highway",
+	      "elementType": "all",
+	      "stylers": [{
+	        "visibility": "simplified"
+	      }]
+	    }, {
+	      "featureType": "road.highway",
+	      "elementType": "geometry.fill",
+	      "stylers": [{
+	        "color": "#edc200"
+	      }]
+	    }, {
+	      "featureType": "road.highway",
+	      "elementType": "labels.text.fill",
+	      "stylers": [{
+	        "color": "#000000"
+	      }]
+	    }, {
+	      "featureType": "road.highway",
+	      "elementType": "labels.text.stroke",
+	      "stylers": [{
+	        "color": "#ffffff"
+	      }, {
+	        "visibility": "simplified"
+	      }]
+	    }, {
+	      "featureType": "road.arterial",
+	      "elementType": "labels.icon",
+	      "stylers": [{
+	        "visibility": "off"
+	      }]
+	    }, {
+	      "featureType": "transit",
+	      "elementType": "all",
+	      "stylers": [{
+	        "visibility": "off"
+	      }]
+	    }, {
+	      "featureType": "water",
+	      "elementType": "all",
+	      "stylers": [{
+	        "color": "#f5a301"
+	      }, {
+	        "visibility": "on"
+	      }]
+	    }, {
+	      "featureType": "water",
+	      "elementType": "labels.text.fill",
+	      "stylers": [{
+	        "color": "#000000"
+	      }]
+	    }, {
+	      "featureType": "water",
+	      "elementType": "labels.text.stroke",
+	      "stylers": [{
+	        "visibility": "off"
+	      }]
+	    }]
+	  });
+	  var infoWindow = new google.maps.InfoWindow({
+	    map: map
+	  });
+		var marker = new google.maps.Marker({
+			position: myLatLng,
+			map: map,
+			title: 'Hello World!'
+		});
+	}
+</script>
   <!--  Scripts-->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD96Lw0LXZoGQTthyvcOkvsIa3FEiOmeCI&callback=initMap"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>

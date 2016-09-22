@@ -30,10 +30,10 @@
     body {
       height: 100%;
     }
-    
+
     #map {
       height: 400px;
-      width: 600px;
+      width: 100%;
     }
   </style>
 </head>
