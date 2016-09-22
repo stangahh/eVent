@@ -35,12 +35,14 @@
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-  <!--Top nav bar -->
+
+  <!--Login unique top nav -->
   <nav class="orange darken-2 lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- login page dosn't have links to site content -->
   </nav>
+
   <div class="parallax-container z-depth-2">
   <div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
   <div class="section no-pad-bot" id="index-banner">
