@@ -62,7 +62,13 @@
 
 	<div class="row">
 
-		<?php $percent_there = $amount_needed / $amount_funded; ?>
+		<?php 
+			if ($amount_needed == 0) {
+				$percent_there = 100;
+			} else {
+				$percent_there = $amount_needed / $amount_funded; 
+			}
+		?>
 			<div class="progress col l8 s12">
 				 <div style="height:100px;" class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
@@ -72,7 +78,8 @@
 				<div class="card-content white-text">
 					<span class="card-title"><?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
-					<p class="card-title"><?php echo $event_date?></p>
+					<p><?php echo $event_date?></p>
+					<p><?php echo $event_description?></p>
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
@@ -139,3 +146,4 @@
   <?php include 'includes/footer.php' ?>
 
 </html>
+
