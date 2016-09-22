@@ -39,7 +39,7 @@
 
 <div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB62udX6drscmtSIrU8hGB8W6UGjP10lEY&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB62udX6drscmtSIrU8hGB8W6UGjP10lEY&"></script>
 <script>
 		// When the window has finished loading create our google map below
 		google.maps.event.addDomListener(window, 'load', init);
@@ -63,12 +63,12 @@
 				var mapElement = document.getElementById('map');
 
 				// Create the Google Map using our element and options defined above
-				var map = new google.maps.Map(mapElement, mapOptions);
+				var myMap = new google.maps.Map(mapElement, mapOptions);
 
 				// Let's also add a marker while we're at it
 				var marker = new google.maps.Marker({
 						position: new google.maps.LatLng(40.6700, -73.9400),
-						map: map,
+						map: myMap,
 						title: 'Snazzy!'
 				});
 
@@ -80,34 +80,34 @@
 				lng: position.coords.longitude
 			};
 
-			mapElement.setPosition(pos);
-			mapElement.setContent('Location found.');
+			myMap.setPosition(pos);
+			myMap.setContent('Location found.');
 			map.setCenter(pos);
 			}, function() {
-			handleLocationError(true, mapElement, map.getCenter());
+			handleLocationError(true, myMap, map.getCenter());
 			});
 		} else {
 			// Browser doesn't support Geolocation
-			handleLocationError(false, mapElement, map.getCenter());
+			handleLocationError(false, myMap, map.getCenter());
 		}
-		}
+	}
 
-		function handleLocationError(browserHasGeolocation, mapElement, pos) {
-		mapElement.setPosition(pos);
-		mapElement.setContent(browserHasGeolocation ?
+		function handleLocationError(browserHasGeolocation, myMap, pos) {
+		myMap.setPosition(pos);
+		myMap.setContent(browserHasGeolocation ?
 								'Error: The Geolocation service failed.' :
 								'Error: Your browser doesn\'t support geolocation.');
 		}
 	</script>
 
-  
+
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
   </body>
-  
+
   <?php include 'includes/footer.php' ?>
 
 </html>
