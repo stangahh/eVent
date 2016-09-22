@@ -51,8 +51,11 @@
 		<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
-				<!-- sign up button -->
+				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
+					<!-- follow button -->
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -64,11 +67,12 @@
 			if ($amount_needed == 0) {
 				$percent_there = 100;
 			} else {
-				$percent_there = $amount_needed / $amount_funded;
+				$percent_there = (($amount_funded / $amount_needed) * 10);
 			}
 		?>
-			<div class="progress col l8 s12">
-				 <div style="height:100px;" class="determinate" value="<?php echo $percent_there?>%"></div>
+		<h3> We have been funded $<?php echo $amount_funded?> out of our goal of $<?php echo $amount_needed?></h3>
+			<div class="progress col l12 s12">
+				 <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
 
 		<div class="col s12 m6">
@@ -78,6 +82,8 @@
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
 					<p><?php echo $event_date?></p>
 					<p><?php echo $event_description?></p>
+					<p><?php echo $event_org_name?></p>
+
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
