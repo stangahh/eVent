@@ -46,28 +46,26 @@
 <body>
 
 	<?php include 'includes/navigation.php' ?>
-
 	<!-- event page content  -->
 	<div class="parallax-container z-depth-2">
 		<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
-			<div class="valign-wrapper">
+			<div class="center">
 				<!-- sign up button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
 			</div>
 		</div>
 	</div>
+	<div class="container">
 	
 	<br>
 
 	<div class="row">
 
-		<div class="card light-blue darken-3">
-			<div class="progress col l12 s12">
-				<?php $percent_there = $amount_needed / $amount_funded; ?>
-				 <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
+		<?php $percent_there = $amount_needed / $amount_funded; ?>
+			<div class="progress col l8 s12">
+				 <div style="height:100px;" class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
-		</div>
 
 		<div class="col s12 m6 ce">
 			<div class="card light-blue darken-3">
@@ -75,20 +73,18 @@
 					<span class="card-title"><?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
 					<p class="card-title"><?php echo $event_date?></p>
-
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
 				</div>
-
 			</div>
 		</div>
+		
+		
+	<!-- end of contents -->
+	</div>
 
-		<div class="col s12 m6">
-			<div data-target="modal1" class="modal-trigger truncate hoverable"><?php echo $event_description?></div>
-			<div id="modal1" class="modal"><p><?php echo $event_description?></p></div>
-		</div>
 
 	</div>
 
