@@ -35,12 +35,14 @@
   <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-  <!--Top nav bar -->
+
+  <!--Login unique top nav -->
   <nav class="orange darken-2 lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- login page dosn't have links to site content -->
   </nav>
+
   <div class="parallax-container z-depth-2">
   <div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
   <div class="section no-pad-bot" id="index-banner">
@@ -125,14 +127,8 @@
 <div class="row">
  <p class="flow-text center col s12 m6 offset-s0 offset-m3">Bacon ipsum dolor amet andouille cupim ground round voluptate bresaola consequat. Labore shankle chicken fatback pork ea ham hock id est short ribs short loin jerky veniam. Boudin velit sunt quis tongue tri-tip mollit picanha beef frankfurter prosciutto pork chop. Beef ribs eu pancetta spare ribs. Ham hock cow pariatur ribeye beef ribs jerky pig pork loin ham meatball kielbasa eu t-bone esse.</p>
 </div>
-<!-- footer with team name -->
-  <footer class="page-footer orange">
-    <div class="footer-copyright">
-      <div class="container" href="tos.php">
-      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
-      </div>
-    </div>
-  </footer>
+
+  <?php include 'includes/footer.php' ?>
 
 
   <!--  Scripts-->

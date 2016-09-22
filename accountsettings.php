@@ -42,7 +42,7 @@
 
 					$GLOBALS['title'] = $row['ud_title'];
 					$GLOBALS['first_name'] = $row['ud_fname'];
-					$GLOBALS['middle_name'] = $row['ud_username'];
+					$GLOBALS['username'] = $row['ud_username'];
 					$GLOBALS['last_name'] = $row['ud_lname'];
 					$GLOBALS['phone'] = $row['ud_phone'];
 					$GLOBALS['address'] = $row['ud_address'];
@@ -130,7 +130,9 @@
 				<!-- First Name -->
 					<label for="fname" id="flabel">First Name</label>
 					<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
-
+				<!-- Username Name -->
+					<label for="username" id="flabel">Username Name</label>
+					<input type="text" id="username" name="username" value="<?php echo $GLOBALS['username']; ?>">
 				<!-- Last Name -->
 					<label for="lname" id="flabel">Last Name</label>
 					<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
