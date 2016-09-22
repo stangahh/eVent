@@ -7,6 +7,7 @@
         <li><a href="home.php" class="active tooltipped" data-position="bottom" data-tooltip="What's trending">Home</a></li>
         <li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="asdf">New Event</a></li>
         <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Lots of stuff is on">Find events</a></li>
+        <li><a href="accountsettings.php"><span class="name"><?php echo "My Account - " . $username ?></span></a></li>
         <li><a href="login.php?status=logout" class="tooltipped" data-position="bottom" data-tooltip="Cya later"><?php echo "Logout - " . $username ?></a></li>
       </ul>
 
