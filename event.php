@@ -127,7 +127,7 @@
 		</div>
 
 		<div class="modal-footer">
-			<button class="modal-action modal-close btn-flat waves-effect waves-red center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
+			<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
 				<i class="material-icons right">send</i>
 			</button>	
 		</div>
