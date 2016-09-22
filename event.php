@@ -57,6 +57,9 @@
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
 						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
+						<!-- remove this!!!!! -->
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
+
 				</div>
 			</div>
 		</div>
@@ -92,7 +95,9 @@
 				</div>
 			</div>
 			<h4>INFO</h4>
+			<blockquote>
 			<p class="flow-text"><?php echo $event_description?></p>
+		</blockquote>
 		</div>
 		<div class="col s12 m6">
 			<style>
