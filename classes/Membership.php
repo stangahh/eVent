@@ -359,6 +359,30 @@
 			return $img;
 		}
 
+		function delete_event($event_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+				
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+				
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
 	}
 
 ?>
