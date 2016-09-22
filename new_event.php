@@ -30,26 +30,8 @@
 <!-- New page content  -->
 <!-- First Third  -->
 <div class="row">
-  <h1 class="heading">New event</h1>
+  <h1 class="heading center">New event</h1>
   <?php include 'includes/new_event_form.php' ?>
-  <!-- Second Third -->
-  <div class="card">
-    <card class="col s12 m6 l3">
-      <div class="card medium hoverable">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img src="">
-        </div>
-          <div class="card-content">
-            <p id="event_name_preview"></p>
-            <p id="event_date_preview"></p>
-            <p id="event_desc_preview"></p>
-          </div>
-          <div class="card-action">
-            <a href="">Read more</a>
-          </div>
-      </div>
-    </card>
-  </div>
 </div>
 
 

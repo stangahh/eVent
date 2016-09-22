@@ -1,49 +1,49 @@
-<form class="col s12 m8" enctype="multipart/form-data" type="file" method="post" action=""> 
+<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action=""> 
   <div class="row">
-    <div class="input-field col s4">
-      <input id="event_name" name="event_name" type="text" class="validate" onkeypress="reflect_field(event_name, event_name_preview)"> 
+    <div class="input-field col s12">
+      <input id="event_name" name="event_name" type="text" class="validate"> 
       <label for="event_name">Event Name</label>
     </div>
   </div>
   
 	<div class="row">
-    <div class="input-field col s4">
-      <textarea id="event_desc" name="event_desc" class="materialize-textarea" onkeypress="reflect_field(event_desc, event_desc_preview)"></textarea> 
+    <div class="input-field col s12">
+      <textarea id="event_desc" name="event_desc" class="materialize-textarea"></textarea> 
 
       <label for="event_desc">Event Description</label>
     </div>
 	</div>
 
   <div class="row">
-    <div class="input-field col s4">
+    <div class="input-field col s12">
       <input id="event_location" name="location" type="text" class="validate">
       <label for="event_location">Address</label>
     </div>
   </div>  
 
   <div class="row">
-    <div class="input-field col s4"> 
+    <div class="input-field col s12"> 
       <input id="amt_required" type="number" min="00000" max="99999" class="validate" name="amt_required"> 
       <label for="amt_required">Funding Required (AUD$) </label> 
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field col s4">
-      <input id="event_date" type="date" class="datepicker" class="validate" onkeypress="reflect_field(event_date, event_date_preview)">
+    <div class="input-field col s12">
+      <input id="event_date" type="date" class="datepicker" class="validate">
       <label for="event_date">Event Date</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field col s4"> 
+    <div class="input-field col s12"> 
       <input id="event_location" name="event_location" type="text" class="validate"> 
       <label for="event_location">Event Area (e.g. Brisbane, Melbourne, Chermside)</label> 
     </div> 
   </div>
 
   <div class="row"> 
-    <div class="input-field col s4"> 
+    <div class="input-field col s12"> 
       <input id="postcode" type="text" class="validate" name="postcode"> 
       <label for="postcode">Postcode</label> 
     </div> 
@@ -56,7 +56,7 @@
      
   <div class="file-field input-field"></div>
 
-  <button class="btn-large waves-effect waves-light left tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit<i class="material-icons right">send</i>
+  <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Preview<i class="material-icons right">send</i>
   </button>
 
 </form>
