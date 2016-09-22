@@ -15,7 +15,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>eVent - New</title>
+  <title>eVent - New Event</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -31,7 +31,7 @@
 <h1 class="center heading">New event</h1>
   <div class="row">
     <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action=""> 
-    <div class="row">
+      <div class="row">
         <div class="input-field col s12">
           <input id="event_name" name="event_name" type="text" class="validate"> 
           <label for="event_name">Event Name</label>
@@ -53,6 +53,7 @@
         <div class="input-field col s12"> 
           <input id="amt_required" type="number" min="00000" max="99999" class="validate" name="amt_required"> 
           <label for="amt_required">Funding Required (AUD$) </label> 
+        </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
@@ -61,9 +62,9 @@
         </div>
       </div>
       <div class="input-field col s12"> 
-          <input id="event_location" name="event_location" type="text" class="validate"> 
-          <label for="event_location">Event Area (e.g. Brisbane, Melbourne, Chermside)</label> 
-        </div> 
+        <input id="event_location" name="event_location" type="text" class="validate"> 
+        <label for="event_location">Event Area (e.g. Brisbane, Melbourne, Chermside)</label> 
+      </div> 
       <div class="row"> 
         <div class="input-field col s4"> 
           <input id="postcode" type="text" class="validate" name="postcode"> 
@@ -72,32 +73,27 @@
       </div>
       <div class="btn">
           <span>Upload Image</span>
-          <input type="file">
           <input type="file" name="image">
       </div>
      
-    <div class="file-field input-field">
+    <div class="file-field input-field"></div>
 
-      <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
+    <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit<i class="material-icons right">send</i>
+    </button>
+
     </form>
   </div>
-    <br>
-//AUTOFILL: event_id, event_org_id, event_creator_user_id
-//NEED SOME WAY TO UPLOAD IMAGE
 
-  
+  <br>
 
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 
 
-  </body>
+</body>
 
-  <?php include 'includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>
   
 </html>
