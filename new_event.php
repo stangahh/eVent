@@ -1,7 +1,6 @@
 <?php
 	//Author: Maxwell McLeod
 	require_once 'classes/Membership.php';
-  require_once 'js/preview_js.js'
 
 	$membership = New Membership(); //simple new class call
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
@@ -43,7 +42,7 @@
           <div class="card-content">
             <p id="event_name_preview"></p>
             <p id="event_date_preview"></p>
-            <p id="event_description_preview"></p>
+            <p id="event_desc_preview"></p>
           </div>
           <div class="card-action">
             <a href="">Read more</a>
@@ -58,6 +57,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
+<script src="js/preview_js.js"></script>
 
 
 </body>

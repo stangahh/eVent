@@ -1,14 +1,14 @@
 <form class="col s12 m8" enctype="multipart/form-data" type="file" method="post" action=""> 
   <div class="row">
     <div class="input-field col s4">
-      <input id="event_name" name="event_name" type="text" class="validate"> 
+      <input id="event_name" name="event_name" type="text" class="validate" onkeypress="reflect_field(event_name, event_name_preview)"> 
       <label for="event_name">Event Name</label>
     </div>
   </div>
   
 	<div class="row">
     <div class="input-field col s4">
-      <textarea id="event_desc" name="event_desc" class="materialize-textarea"></textarea> 
+      <textarea id="event_desc" name="event_desc" class="materialize-textarea" onkeypress="reflect_field(event_desc, event_desc_preview)"></textarea> 
 
       <label for="event_desc">Event Description</label>
     </div>
@@ -30,7 +30,7 @@
 
   <div class="row">
     <div class="input-field col s4">
-      <input id="event_date" type="date" class="datepicker" class="validate" onkeypress="reflect(event_date, event_date_preview)">
+      <input id="event_date" type="date" class="datepicker" class="validate" onkeypress="reflect_field(event_date, event_date_preview)">
       <label for="event_date">Event Date</label>
     </div>
   </div>
