@@ -117,7 +117,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="su_dob" name="su_dob" type="text">
+          <input id="su_dob" name="su_dob" type="text" class="datepicker">
           <label for="su_dob" data-error="wrong" data-success="right">Date of Birth</label>
         </div>
       </div>

@@ -32,7 +32,7 @@
     }
 
     #map {
-      height: 400px;
+      height: 70%;
       width: 100%;
     }
   </style>
