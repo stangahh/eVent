@@ -125,14 +125,8 @@
 <div class="row">
  <p class="flow-text center col s12 m6 offset-s0 offset-m3">Bacon ipsum dolor amet andouille cupim ground round voluptate bresaola consequat. Labore shankle chicken fatback pork ea ham hock id est short ribs short loin jerky veniam. Boudin velit sunt quis tongue tri-tip mollit picanha beef frankfurter prosciutto pork chop. Beef ribs eu pancetta spare ribs. Ham hock cow pariatur ribeye beef ribs jerky pig pork loin ham meatball kielbasa eu t-bone esse.</p>
 </div>
-<!-- footer with team name -->
-  <footer class="page-footer orange">
-    <div class="footer-copyright">
-      <div class="container" href="tos.php">
-      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
-      </div>
-    </div>
-  </footer>
+
+  <?php include 'includes/footer.php' ?>
 
 
   <!--  Scripts-->

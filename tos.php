@@ -76,7 +76,7 @@
 				<p>Andouille doner shank ham hock. Ball tip filet mignon capicola turkey bacon boudin. Swine fatback t-bone pastrami meatloaf. Tri-tip pig andouille shank boudin pork loin, sirloin biltong filet mignon bacon. Swine capicola andouille ground round pork chop tail kevin t-bone frankfurter drumstick bresaola pastrami strip steak cupim. Chicken kevin tail, short ribs turkey tri-tip pork chop sirloin jerky. Jerky picanha jowl, sausage meatloaf capicola swine drumstick cow andouille shankle tri-tip cupim sirloin pork loin.</p>			
 			</body>
 		</div>
-		
+
 		<script src="js/classie.js"></script>
 		<script src="js/gnmenu.js"></script>
 		<script>

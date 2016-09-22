@@ -106,14 +106,7 @@
 //AUTOFILL: event_id, event_org_id, event_creator_user_id
 //NEED SOME WAY TO UPLOAD IMAGE
 
-<!-- footer with team name -->
-  <footer class="page-footer orange">
-    <div class="footer-copyright">
-      <div class="container" href="tos.php">
-      Made by <a class="orange-text text-lighten-3" href="tos.php">NoneOfTheAbove</a>
-      </div>
-    </div>
-  </footer>
+  <?php include 'includes/footer.php' ?>
 
 
   <!--  Scripts-->
