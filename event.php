@@ -49,21 +49,20 @@
 <div class="parallax-container z-depth-2">
 <div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
 <div class="section no-pad-bot" id="index-banner">
-	<div class="container">
-		<!-- title on image -->
-		<h1 class="header center orange-text"><?php echo $event_name; ?></h1>
+	<div class="valign-wrapper">
 		<!-- sign up button -->
-		<div class="row center">
 			<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-4 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
-		</div>
 	</div>
 </div>
 </div>
 <br>
 <div class="row">
+<div class="card light-blue darken-3">
 	<div class="progress col l12 s12">
-		 <div class="determinate" style="width: <?php echo $amount_funded?>%"></div>
+		<?php $percent_there = $amount_needed / $amount_funded; ?>
+		 <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
  </div>
+</div>
 		<div class="col s12 m6">
 			<div class="card light-blue darken-3">
 				<div class="card-content white-text">
@@ -86,21 +85,48 @@
 </div>
 <div id="modal2" class="modal">
 	<div class="modal-content">
-		<h4>TODO</h4>
-		<p>A bunch of text</p>
+		<h4>Donate</h4>
+		<!-- mock card feilds -->
+		<div class="row">
+		<div class="input-field col s6">
+			<i class="material-icons prefix">credit_card</i>
+			<input id="icon_prefix" type="text" class="validate">
+			<label for="icon_prefix">Bank details</label>
+		</div>
+		<div class="input-field col s4">
+			<input id="Expiry" type="date" class="datepicker">
+			<label for="Expiry">Expiry</label>
+		</div>
+		<div class="input-field col s2">
+			<input id="SVC" type="number">
+			<label for="SVC">SCV</label>
+		</div>
+		</div>
+		<p>Please help us make this happen</p>
+		<!-- donation form -->
+		<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
+			<div class="row">
+				<div class="input-field col s3">
+					<input id="amt_required" type="number" min="00000" max="99999" class="validate">
+					<label for="amt_required">Donation amount</label>
+				</div>
+			</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+		<button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
+			<i class="material-icons right">send</i>
+		</button>
+		</form>
 	</div>
 </div>
-
-  <?php include 'includes/footer.php' ?>
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
-
   </body>
+  
+  <?php include 'includes/footer.php' ?>
+
 </html>

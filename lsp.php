@@ -32,7 +32,7 @@
 <style type="text/css">
 		/* Set a size for our map container, the Google Map will take up 100% of this container */
 		#map {
-				width: 100%;
+				
 				height: 500px;
 		}
 </style>
@@ -100,14 +100,14 @@
 		}
 	</script>
 
-  <?php include 'includes/footer.php' ?>
-
-
+  
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
-
   </body>
+  
+  <?php include 'includes/footer.php' ?>
+
 </html>
