@@ -8,21 +8,26 @@
 require_once 'includes/constants.php';
 
  class Mysql{
-	 
+
 	 private $conn;
-	 
+
+   //@input NULL
+   //@output void 'true'
 	 function __construct(){
 		 $this->conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) or die ('Problem Connecting to the Database');
 	 }
-	 
+
+   //Verify username and password by checking database
+   //@input username, password
+   //@output void 'true'
 	 function verify_Username_and_Pass($un, $pwd) {
-		 
+
 		 $query = "SELECT * FROM users WHERE users_username = ? AND users_password = ? LIMIT 1";
-		 
+
 		 if($stmt = $this->conn->prepare($query)){
 			 $stmt->bind_param('ss', $un, $pwd);
 			 $stmt->execute();
-			 
+
 			 if($stmt->fetch()){
 				 $stmt->close();
 				 return true;
