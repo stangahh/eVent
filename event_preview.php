@@ -14,6 +14,12 @@
     $_SESSION['event_desc'] = $_POST['event_desc'];
     $_SESSION['event_location'] = $_POST['event_location'];
     $_SESSION['event_goal'] = $_POST['amt_required'];
+    
+    $filename    = $_FILES["event_img"]["tmp_name"];
+    $destination = "eventimg/" . $_FILES["event_img"]["name"]; 
+    move_uploaded_file($filename, $destination); //save uploaded event_img in your directory
+
+    $_SESSION['event_img'] = $destination;
   }
 ?>
   
@@ -41,7 +47,7 @@
     <div class="card medium hoverable">
       <a href="">
         <div class="card-image waves-effect waves-block waves-light">
-        <img src="">
+          <img src="<?php echo $_SESSION['event_img']; ?>" alt="picture"/>
         </div>
       </a>
       <div class="card-stacked">
@@ -63,7 +69,7 @@
 <!-- event page content  -->
   <h2 class="center"><?php echo $_POST['event_name'] ?></h2>
   <div class="parallax-container z-depth-2">
-    <div class="parallax"><img alt="image" src=""></div>
+    <div class="parallax"><img alt="image" src="<?php echo $_SESSION['event_img']; ?>" alt="picture"/></div>
     <div class="section no-pad-bot" id="index-banner">
       <div class="center">
         <br><br><br><br><br>
