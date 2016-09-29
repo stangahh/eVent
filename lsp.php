@@ -142,26 +142,33 @@
         var infoWindow = new google.maps.InfoWindow({
           map: map
         });
-				var image = 'https://www.livefiregear.com/media/gmapstrlocator/marker/default/map-marker-20x32-v2.png';
-				<?php foreach( $events as &$p ):
-					$id = substr($p, 0, 5);
-					$eventarray = $membership->get_event_information($id); ?>
+        var image = 'https://www.livefiregear.com/media/gmapstrlocator/marker/default/map-marker-20x32-v2.png';
+				// <?php foreach( $events as &$p ):
+				// 	$id = substr($p, 0, 5);
+				// 	$eventarray = $membership->get_event_information($id);
+        //   $latitude = $eventarray[3];
+        //   $longitude = $eventarray[4];
+        //   ?>
+        //   <?php endforeach; ?>
 				var marker = new google.maps.Marker({
+          // position: {
+          //   lat: "<?php echo $latitude; ?>",
+          //   lng: "<?php echo $longitude; ?>"
+          // },
           position: {
-            lat: <?php echo $eventarray[3]; ?>,
-            lng: <?php echo $eventarray[4]; ?>
+            lat: "2",
+            lng: "1"
           },
-					url: 'http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>',
+					//url: 'http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>',
           map: map,
 					icon: image,
 					animation: google.maps.Animation.DROP,
-          title: '<?php echo $eventarray[0]; ?>'
+          title: 'TODO;'
         });
-				<?php endforeach; ?>
 				marker.addListener('click', toggleBounce);
-				google.maps.event.addListener(marker, 'click', function() {
-      		window.location.href = marker.url;
-    		});
+				// google.maps.event.addListener(marker, 'click', function() {
+      	// 	window.location.href = marker.url;
+    		// });
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
