@@ -168,24 +168,25 @@
              	$eventarray = $membership->get_event_information($id);
               $latitude = $eventarray[3];
               $longitude = $eventarray[4];
+              //$id = trim($id);
             ?>
-
+            //load
             var marker = new google.maps.Marker({
                position: {
                   lat: <?php echo $latitude; ?>,
                   lng: <?php echo $longitude; ?>
                },
-                  url: 'http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>',
                   map: map,
+                  url: "http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>",
                   icon: image,
-                  animation: google.maps.Animation.DROP,
-                  title: 'TODO;'
+                  title: <?php echo $id; ?>,
+                  animation: google.maps.Animation.DROP
               });
-              <?php endforeach; ?>
-            marker.addListener('click', toggleBounce);
+            //marker.addListener('click', toggleBounce);
             google.maps.event.addListener(marker, 'click', function() {
-              window.location.href = marker.url;
+              window.location.href = this.url;
             });
+            <?php endforeach; ?>
       }
 			function toggleBounce() {
 				if (marker.getAnimation() !== null) {
