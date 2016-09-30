@@ -13,7 +13,7 @@
 	<!-- First Name -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="fname">First Name</label>
+			<label for="fname" class="active">First Name</label>
 			<input type="text" id="fname" name="fname" value="<?php echo $GLOBALS['first_name']; ?>">
 		</div>
 	</div>
@@ -21,15 +21,15 @@
 	<!-- Last Name -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="lname">Last Name</label>
+			<label for="lname" class="active">Last Name</label>
 			<input type="text" id="lname" name="lname" value="<?php echo $GLOBALS['last_name']; ?>">
 		</div>
 	</div>
 
-	<!-- Username Name -->
+	<!-- Username -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="username">Username</label>
+			<label for="username" class="active">Username</label>
 			<input type="text" id="username" name="username" value="<?php echo $GLOBALS['username']; ?>">
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 	<!-- Phone -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="phone">Phone</label>
+			<label for="phone" class="active">Phone</label>
 			<input type="text" id="phone" name="phone" value="<?php echo $GLOBALS['phone']; ?>">
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 	<!-- Address -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="address">Address</label>
+			<label for="address" class="active">Address</label>
 			<input type="text" id="address" name="address" value="<?php echo $GLOBALS['address']; ?>">
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 	<!-- DOB -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="dob" class="datepicker">Date of Birth</label>
+			<label for="dob" class="datepicker active">Date of Birth</label>
 			<input type="text" id="dob" name="dob" value="<?php echo $GLOBALS['DOB']; ?>">
 		</div>
 	</div>
@@ -72,7 +72,7 @@
 	<!-- Email -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="email">Email Address</label>
+			<label for="email" class="active">Email Address</label>
 			<input type="text" id="email" name="email" value="<?php echo $GLOBALS['email']; ?>">
 		</div>
 	</div>
@@ -80,7 +80,7 @@
 	<!--Occupation -->
 	<div class="row">
 		<div class="input-field col s12">
-			<label for="occupation">Occupation</label>
+			<label for="occupation" class="active">Occupation</label>
 			<input type="text" id="occupation" name="occupation" value="<?php echo $GLOBALS['occupation']; ?>">
 		</div>
 	</div>
