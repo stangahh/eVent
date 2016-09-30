@@ -318,7 +318,6 @@
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
 		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
-			$this ->debug_to_console( "error1" );
 			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
@@ -337,34 +336,28 @@
 			'". $latest_img_num ."',
 			'". $date ."'
 			)";
-			$this ->debug_to_console( ". $query ." );
 			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
-			$this ->debug_to_console( "error3" );
 			if($affected_rows == 1){
-				$this ->debug_to_console( "error4" );
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
 
 			} else {
-				$this ->debug_to_console( "error4b" );
 				//echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
 			}
-			$this ->debug_to_console( "error5" );
+
 			mysqli_close($connection);
 
 			//upload image
-			$this ->debug_to_console( "error6" );
 			$uploaddir = '../eventimg/'. $latest_img_num .'.jpg';
 			move_uploaded_file($image, $uploaddir);
-			$this ->debug_to_console( "error7" );
 		}
 
 		//returns next image number or default image
