@@ -317,7 +317,7 @@
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date){
+		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
 			$this ->debug_to_console( "error1" );
 			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = '0';
@@ -362,8 +362,6 @@
 			mysqli_close($connection);
 
 			//upload image
-			// $target = "eventimg/". $latest_img_num .".jpg";
-			// move_uploaded_file($image, $target);
 			$this ->debug_to_console( "error6" );
 			$uploaddir = '../eventimg/'. $latest_img_num .'.jpg';
 			move_uploaded_file($image, $uploaddir);
