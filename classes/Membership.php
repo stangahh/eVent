@@ -337,7 +337,7 @@
 			//move_uploaded_file($image, $target);
 
 			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
-			move_uploaded_file($image, $target);
+			move_uploaded_file($image, $uploaddir);
 		}
 
 		//returns next image number or default image

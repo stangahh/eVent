@@ -83,11 +83,10 @@
 
   <div class="container">
     <div class="row">
-    <?php $percent_there = 0; ?>
 
     <h4 class="heading"> We have been funded $0 out of our goal of $<?php echo $_SESSION['event_goal']?></h4>
     <div class="progress col l12 s12">
-      <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
+      <div class="determinate" style="width:0"></div>
       </div>
 
     <div class="col s12 m6">
@@ -95,8 +94,8 @@
         <div class="card-content white-text">
           <span class="flow-text card-title">Address: <?php echo $_SESSION['event_location']?></span>
           <p class="flow-text">Date: <?php echo $_SESSION['event_date']?></p>
-          <p class="flow-text">An event by: <?php echo "TODO" ?></p>
-          <p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
+          <p class="flow-text">An event by: <?php echo $username ?></p>
+          <p class="flow-text">Percent funded: 0%</p>
         </dv>
         <div class="card-action">
           <a>Share with facebook</a>
