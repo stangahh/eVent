@@ -5,22 +5,14 @@
   $membership = New Membership(); //simple new class call
   $membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
   $username = $membership->get_username(); //local variable of activer user username
+  $user_id = $membership->get_id($username);
   $organisation_id = $membership->get_org_id($username); //get organisation id for user
   $organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
   $events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 
-  if (isset($_POST['submit'])) {
-    $_SESSION['event_name'] = $_POST['event_name'];
-    $_SESSION['event_desc'] = $_POST['event_desc'];
-    $_SESSION['event_date'] = $_POST['event_date'];
-    $_SESSION['event_location'] = $_POST['location'];
-    $_SESSION['event_goal'] = $_POST['amt_required'];
-    
-    $filename    = $_FILES["event_img"]["tmp_name"];
-    $destination = "eventimg/" . $_FILES["event_img"]["name"]; 
-    move_uploaded_file($filename, $destination);
-
-    $_SESSION['event_img'] = $destination;
+  if($_POST && !empty($_POST['event_name']) && !empty($_POST['lat']) && !empty($_POST['lng'])){
+    $membership->debug_to_console( "Test" );
+    $membership->create_event($_POST['event_name'], $organisation_id, $_POST['location'], $_POST['lat'], $_POST['lng'], $_POST['postal_code'], $_POST['amt_required'], $user_id, $_POST['event_desc'], $_POST['event_date'], $_POST['event_img']);
   }
 ?>
   
@@ -45,7 +37,7 @@
 
 
     <div class="row center">
-    	<button class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Press to upload your event!" type="submit" name="submit">Trash and Restart<i class="material-icons right">delete</i>
+    	<button class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Scrap this event and start again" type="submit" name="submit">Trash and Restart<i class="material-icons right">delete</i>
 		</button>
 
 		<button class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="left" data-delay="50" data-tooltip="Press to upload your event!" type="submit" name="submit">Submit<i class="material-icons right">send</i>

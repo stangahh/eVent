@@ -348,7 +348,6 @@
 				$this ->debug_to_console( "error4" );
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
-				header("location: home.php");
 				return true;
 
 			} else {
