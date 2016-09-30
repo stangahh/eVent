@@ -12,12 +12,13 @@
   if (isset($_POST['submit'])) {
     $_SESSION['event_name'] = $_POST['event_name'];
     $_SESSION['event_desc'] = $_POST['event_desc'];
-    $_SESSION['event_location'] = $_POST['event_location'];
+    $_SESSION['event_date'] = $_POST['event_date'];
+    $_SESSION['event_location'] = $_POST['location'];
     $_SESSION['event_goal'] = $_POST['amt_required'];
     
     $filename    = $_FILES["event_img"]["tmp_name"];
     $destination = "eventimg/" . $_FILES["event_img"]["name"]; 
-    move_uploaded_file($filename, $destination); //save uploaded event_img in your directory
+    move_uploaded_file($filename, $destination);
 
     $_SESSION['event_img'] = $destination;
   }
@@ -43,18 +44,16 @@
 
   <div class="row center">
   <card class="col s12 m8 l3">
-  <h2 class="center">_</h2>
+  <h2 class="center"><?php echo $_SESSION['event_name'] ?></h2>
     <div class="card medium hoverable">
-      <a href="">
         <div class="card-image waves-effect waves-block waves-light">
-          <img src="<?php echo $_SESSION['event_img']; ?>" alt="picture"/>
+          <img src="<?php echo $_SESSION['event_img']; ?>" alt="image"/>
         </div>
-      </a>
       <div class="card-stacked">
         <div class="card-content">
-          <p><?php echo $_POST['event_name'] ?>, 
-          <?php echo $_POST['event_location'] ?></p>
-          <p><?php echo $_POST['event_desc'] ?></p>
+          <p><?php echo $_SESSION['event_name'] ?>,
+          <?php echo $_SESSION['event_location'] ?></p>
+          <p><?php echo $_SESSION['event_desc'] ?></p>
         </div>
         <div class="card-action">
           <a>Read More</a>
@@ -67,9 +66,9 @@
 
 
 <!-- event page content  -->
-  <h2 class="center"><?php echo $_POST['event_name'] ?></h2>
+  <h2 class="center"><?php echo $_SESSION['event_name'] ?></h2>
   <div class="parallax-container z-depth-2">
-    <div class="parallax"><img alt="image" src="<?php echo $_SESSION['event_img']; ?>" alt="picture"/></div>
+    <div class="parallax"><img alt="image" src="<?php echo $_SESSION['event_img']; ?>" alt="image"/></div>
     <div class="section no-pad-bot" id="index-banner">
       <div class="center">
         <br><br><br><br><br>
@@ -86,7 +85,7 @@
     <div class="row">
     <?php $percent_there = 0; ?>
 
-    <h4 class="heading"> We have been funded $0 out of our goal of $<?php echo $_POST['amt_required']?></h4>
+    <h4 class="heading"> We have been funded $0 out of our goal of $<?php echo $_SESSION['event_goal']?></h4>
     <div class="progress col l12 s12">
       <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
       </div>
@@ -94,9 +93,8 @@
     <div class="col s12 m6">
       <div class="card light-blue darken-3">
         <div class="card-content white-text">
-          <span class="flow-text card-title">Address: <?php echo $_POST['event_location']?></span>
-          <!-- <p class="card-title"><?php echo $event_time?></p> -->
-          <p class="flow-text">Date: <?php echo $_POST['event_date']?></p>
+          <span class="flow-text card-title">Address: <?php echo $_SESSION['event_location']?></span>
+          <p class="flow-text">Date: <?php echo $_SESSION['event_date']?></p>
           <p class="flow-text">An event by: <?php echo "TODO" ?></p>
           <p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
         </dv>
@@ -108,7 +106,7 @@
       </div>
       <h4>INFO</h4>
       <blockquote>
-      <p class="flow-text"><?php echo $_POST['event_desc'] ?></p>
+      <p class="flow-text"><?php echo $_SESSION['event_desc'] ?></p>
       </blockquote>
       </div>
     <div class="col s12 m6">
