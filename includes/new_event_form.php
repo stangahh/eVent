@@ -1,4 +1,4 @@
-<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="">
+<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="event_preview.php">
   <div class="row">
     <div class="input-field col s12">
       <input id="event_name" name="event_name" type="text" class="validate">
