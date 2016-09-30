@@ -8,9 +8,14 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
-?>
-<?php
+
 	$event_id = $_GET['eventid'];
+
+	if ($_POST && !empty($_POST['amt_required'])) {
+		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+	}
+
 	$eventarray = $membership->get_event_information($event_id);
 	$event_name = $eventarray[0];
 	$org_id = $eventarray[1];
@@ -26,7 +31,6 @@
 	//$event_time = $eventarray[1];
 	$event_description = $eventarray[10];
 	$event_photo = $eventarray[11];
-
 ?>
 
 <!DOCTYPE html>
@@ -45,24 +49,24 @@
 <body>
 
 	<?php include 'includes/navigation.php' ?>
-	
+
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
 	<div class="parallax-container z-depth-2">
-		<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
+		<div class="parallax"><img alt="image" src=eventimg/<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" 
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center"
 						data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event"
 						onclick="add_user_going(<?php echo $org_id . ", " . $username ?>)">
 							<!-- TODO: if this user is going; change text to "I'm Going"-->
 							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
-						<!-- TODO: if this user created the event; show delete button-->
+						<!-- TODO: if this org created the event; show delete button-->
 						<a href=<?php echo "home.php?delete=" . $event_id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
 						<i class="material-icons right">delete</i>
 						</a>
@@ -127,15 +131,15 @@
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">credit_card</i>
-					<input id="icon_prefix" type="text" class="validate">
+					<input id="icon_prefix" name="icon_prefix" type="text" class="validate">
 					<label for="icon_prefix">Bank details</label>
 				</div>
 				<div class="input-field col s4">
-					<input id="Expiry" type="date" class="datepicker">
-					<label for="Expiry">Expiry</label>
+					<input id="expiry" name="expiry" type="date" class="datepicker">
+					<label for="expiry">Expiry</label>
 				</div>
 				<div class="input-field col s2">
-					<input id="SVC" type="number">
+					<input id="SVC" name="SVC" type="number">
 					<label for="SVC">SVC</label>
 				</div>
 			</div>
@@ -143,29 +147,32 @@
 			<p>Please help us make this happen</p>
 
 			<!-- donation form -->
-			<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
-				<div class="row">
-					<div class="input-field col s3">
-						<input id="amt_required" type="number" min="00000" max="99999" class="validate">
-						<label for="amt_required">Donation amount</label>
+			<form  method="post" action="">
+				<div class="col s12 m8 l6 offset-l3 offset-m2 offset-s0">
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="amt_required" name="amt_required" type="number" min="00000" max="99999" class="validate">
+							<label for="amt_required">Donation amount</label>
+						</div>
 					</div>
 				</div>
+			
+				<div class="modal-footer">
+					<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
 			</form>
-		</div>
-
-		<div class="modal-footer">
-			<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
-				<i class="material-icons right">send</i>
-			</button>
 		</div>
 	</div>
 	<!-- map code -->
 	<script>
 	function initMap() {
+		var image = 'https://www.livefiregear.com/media/gmapstrlocator/marker/default/map-marker-20x32-v2.png';
 		var myLatLng = {lat: <?php echo $latitude ?>, lng: <?php echo $longitude ?>};
 	  var map = new google.maps.Map(document.getElementById('map'), {
 	    center: myLatLng,
-	    zoom: 8,
+	    zoom: 15,
 	    styles: [{
 	      "featureType": "administrative",
 	      "elementType": "labels.text.fill",
@@ -257,6 +264,7 @@
 	  });
 		var marker = new google.maps.Marker({
 			position: myLatLng,
+			icon: image,
 			map: map,
 			title: 'Hello World!'
 		});
