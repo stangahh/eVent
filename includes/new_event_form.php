@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="autocomplete" name="location" onFocus="geolocate()" type="text" class="validate">
+      <input id="autocomplete" placeholder="" name="location" onFocus="geolocate()" type="text" class="validate">
       <label for="autocomplete">Address</label>
     </div>
   </div>
@@ -34,29 +34,25 @@
       <label for="event_date">Event Date</label>
     </div>
   </div>
-<!-- why do we even have this???  -->
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="locality" name="Event_Area" type="text" class="validate">
-      <label for="locality">Event Area (e.g. Brisbane, Melbourne, Chermside)</label>
+<!-- autofilled feilds -->
+    <div class="input-field col s8 m8 l5">
+      <input disabled id="locality" placeholder="" name="Event_Area" type="text" class="validate">
+      <label for="locality">Event Area </label>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="location" name="Event_Area" type="text" class="validate">
-      <label for="location">Location</label>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
-      <input disabled id="postal_code" type="text" class="validate" name="postcode">
+    <div class="input-field col s4 m4 l2">
+      <input disabled placeholder="" id="postal_code" type="text" class="validate" name="postcode">
       <label for="postal_code">Postcode</label>
     </div>
-  </div>
-
-  <div class="file-field input-field">
+    <div class="input-field col s6 m6 l2">
+      <input id="lat" placeholder="" name="lat" type="text" class="validate" disabled>
+      <label for="lat">Latitude</label>
+    </div>
+    <div class="input-field col s6 m6 l2">
+      <input id="lng" placeholder="" name="lng" type="text" class="validate" disabled>
+      <label for="lng">Longitude</label>
+    </div>
+<div class="row">
+  <div class="file-field input-field col s12 l12">
     <div class="btn">
       <span>File</span>
       <input type="file" name="event_img" id="event_img">
@@ -65,7 +61,7 @@
       <input class="file-path validate" type="text">
     </div>
   </div>
-
+</div>
   <button class="btn-large waves-effect waves-light right tooltipped" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="submit" href="event_preview.php">Preview<i class="material-icons right">send</i>
   </button>
 </form>
@@ -74,7 +70,6 @@
   var placeSearch, autocomplete;
   var componentForm = {
     locality: 'long_name',
-    location: 'short_name',
     postal_code: 'short_name'
  };
   function initAutocomplete() {
@@ -101,9 +96,11 @@
       document.getElementById(addressType).value = val;
     }
   }
-      var lat = place.geometry.location;
-      var lng = place.geometry.location[0];
-      document.getElementById("location").value = lng;
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
+      Materialize.toast("Location found", 5000);
+      document.getElementById("lat").value = lat;
+      document.getElementById("lng").value = lng;
 
 }
   // Bias the autocomplete object to the user's geographical location,
