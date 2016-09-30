@@ -14,18 +14,6 @@
 	$titlearray = array("Mr", "Mrs", "Ms", "Miss", "Mx", "Master", "Maid" ,"Madam", "Other");
 	$genderarray = array("Male", "Female", "Other", "Not Applicable");
 
-	//yes this is porly written but fuck it right
-	//also the php on this page should be moved to its own class so please do that i cbf
-	$GLOBALS['title'] = "";
-	$GLOBALS['first_name'] = "";
-	$GLOBALS['last_name'] = "";
-	$GLOBALS['phone'] = "";
-	$GLOBALS['address'] = "";
-	$GLOBALS['DOB'] = "";
-	$GLOBALS['sex'] = "";
-	$GLOBALS['email'] = "";
-	$GLOBALS['occupation'] = "";
-
 	get_spec_info($userid);
 
 	//fetches info from database and assigns it to the globals
@@ -62,9 +50,9 @@
 	if($_POST){
 		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
 				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
-			echo "<SCRIPT>Materialize.toast('Failed to Update Details', 4000);</SCRIPT>";
+			echo "<script>Materialize.toast('Failed to Update Details', 4000);</script>";
 		} else{
-			echo "<SCRIPT>Materialize.toast('Details Updated', 4000);</SCRIPT>";
+			echo "<script>Materialize.toast('Details Updated', 4000);</script>";
 			header("location: accountsettings.php");
 		}
 	}
