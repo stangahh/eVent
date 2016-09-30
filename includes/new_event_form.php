@@ -4,32 +4,24 @@
       <input id="event_name" name="event_name" type="text" class="validate">
       <label for="event_name">Event Name</label>
     </div>
-  </div>
 
-	<div class="row">
     <div class="input-field col s12">
       <textarea id="event_desc" name="event_desc" class="materialize-textarea"></textarea>
-
       <label for="event_desc">Event Description</label>
     </div>
-	</div>
-
-  <div class="row">
+    
     <div class="input-field col s12">
       <input id="autocomplete" placeholder="" name="location" onFocus="geolocate()" type="text" class="validate">
       <label for="autocomplete">Address</label>
     </div>
-  </div>
 
   <div class="row">
-    <div class="input-field col s12">
+    <div class="input-field col l6 s12">
       <input id="amt_required" type="number" min="00000" max="99999" class="validate" name="amt_required">
       <label for="amt_required">Funding Required (AUD$) </label>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s12">
+    <div class="input-field col l6 s12">
       <input id="event_date" type="date" name="event_date" class="datepicker" class="validate">
       <label for="event_date">Event Date</label>
     </div>
@@ -44,11 +36,11 @@
       <label for="postal_code">Postcode</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lat" placeholder="" name="lat" type="text" class="validate" disabled>
+      <input id="lat" placeholder="" name="lat" type="text" class="validate" required disabled>
       <label for="lat">Latitude</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lng" placeholder="" name="lng" type="text" class="validate" disabled>
+      <input id="lng" placeholder="" name="lng" type="text" class="validate" required disabled>
       <label for="lng">Longitude</label>
     </div>
 <div class="row">
@@ -64,6 +56,7 @@
 </div>
   <button class="btn-large waves-effect waves-light right tooltipped" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="submit" href="event_preview.php">Preview<i class="material-icons right">send</i>
   </button>
+</div>
 </form>
 
 <script>
