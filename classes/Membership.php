@@ -313,7 +313,7 @@
 			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = 0;
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
+			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_date`, `event_photo`) VALUES
 			(NULL,
 			'". $event_name ."',
 			'". $org_id ."',
