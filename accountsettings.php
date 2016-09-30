@@ -21,7 +21,7 @@
 
 		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
-			ud_user_id = '". $userid . "' LIMIT 1"; 
+			ud_user_id = '". $userid . "' LIMIT 1";
 
 		$response = mysqli_query($connection, $query);
 
