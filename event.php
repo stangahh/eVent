@@ -96,7 +96,7 @@
 					<p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
 				</div>
 				<div class="card-action">
-					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $id ?>" target="_blank">Share with facebook</a>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $event_id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
 				</div>
 			</div>
