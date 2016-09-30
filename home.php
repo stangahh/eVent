@@ -57,7 +57,7 @@
     <div class="card medium hoverable">
 			<a href="event.php?eventid=<?php echo $id; ?>">
       <div class="card-image waves-effect waves-block waves-light">
-        <img src="/eventimg/<?php echo $event_photo; ?>.jpg">
+        <img src="eventimg/<?php echo $event_photo; ?>.jpg">
       </div>
 			</a>
       <div class="card-stacked">
