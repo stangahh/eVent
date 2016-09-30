@@ -317,26 +317,27 @@
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $image, $date){
+		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date){
 			$this ->debug_to_console( "error1" );
 			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_date`, `event_photo`) VALUES
+			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
 			(NULL,
 			'". $event_name ."',
 			'". $org_id ."',
 			'". $event_loc ."',
 			'". $event_lat ."',
 			'". $event_lng ."',
+			'". $event_postcode ."',
 			'". $starting_funds ."',
 			'". $amount_required ."',
 			'". $user_id ."',
 			'". $desc ."',
-			'". $latest_img_num ."',
 			'". $date ."',
-			'". NULL ."')";
-			$this ->debug_to_console( "error2" );
+			'". $latest_img_num ."'
+			)";
+			$this ->debug_to_console( ". $query ." );
 			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
