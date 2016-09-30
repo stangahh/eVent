@@ -130,12 +130,12 @@
 
 			<!-- mock card fields -->
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="input-field col s12 l6">
 					<i class="material-icons prefix">credit_card</i>
 					<input id="icon_prefix" name="icon_prefix" type="text" class="validate">
 					<label for="icon_prefix">Bank details</label>
 				</div>
-				<div class="input-field col s4">
+				<div class="input-field col s4 m4 l4 offset-s1 offset-m1 offset-l0">
 					<input id="expiry" name="expiry" type="date" class="datepicker">
 					<label for="expiry">Expiry</label>
 				</div>
