@@ -322,8 +322,8 @@
 			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
-			(NULL,
+			$query = "INSERT INTO `events` (`event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
+			(
 			'". $event_name ."',
 			'". $org_id ."',
 			'". $event_loc ."',
@@ -334,8 +334,8 @@
 			'". $amount_required ."',
 			'". $user_id ."',
 			'". $desc ."',
-			'". $date ."',
-			'". $latest_img_num ."'
+			'". $latest_img_num ."',
+			'". $date ."'
 			)";
 			$this ->debug_to_console( ". $query ." );
 			$stmt = mysqli_prepare($connection,$query);
@@ -353,7 +353,7 @@
 
 			} else {
 				$this ->debug_to_console( "error4b" );
-				echo mysqli_error($stmt);
+				//echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
