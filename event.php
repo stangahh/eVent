@@ -45,6 +45,7 @@
 <body>
 
 	<?php include 'includes/navigation.php' ?>
+	
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
 	<div class="parallax-container z-depth-2">
@@ -53,13 +54,14 @@
 			<div class="center">
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<!-- donate button -->
-					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this happen">Donate <i class="material-icons right">thumb_up</i></a>
+					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
 						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
-						<!-- remove this!!!!! -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">thumb_down</i></a>
-						<a href=<?php echo "home.php?delete=".$id.""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Remove <i class="material-icons right">turned_in_not</i></a>
-
+					<!-- Event Remove Button -->
+						<!-- TODO: if this user created the event; show delete button-->
+						<a href=<?php echo "home.php?delete=" . $id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
+						<i class="material-icons right">delete</i>
+						</a>
 				</div>
 			</div>
 		</div>

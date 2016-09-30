@@ -204,29 +204,15 @@
 		//method used to update a users details
 		//@input $userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function update_details($userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation){
+		function update_details($userid, $title, $fname, $lname, $username, $phone, $address, $dob, $sex, $email, $occupation){
 
-			//i created these to try and find the issue
-			$userid = "67863";
-			$title = "Mr";
-			$fname = "Aden";
-			$username = "username";
-			$lname = "Max";
-			$phone = "0412345678";
-			$address = "27 Smith Lane, Greater Brisbane, 4311, Australia";
-			$dob = "1994-09-07";
-			$sex = "Male";
-			$email = "adenjames@corpmail.com";
-			$occupation = "Office Administrator";
-
-			//I found the issue. SQL returns an error if you try to update a field with the exact same information. I will fix this later.
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
 			$query = "UPDATE user_details
 			SET ud_title = '" . $title . "',
 			ud_fname = '" . $fname . "',
-			ud_username = '" . $username . "',
 			ud_lname = '" . $lname . "',
+			ud_username = '" . $username . "',
 			ud_phone = '" . $phone . "',
 			ud_address = '" . $address . "',
 			ud_email = '" . $email . "',
@@ -245,14 +231,13 @@
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
-
 			} else {
-				echo mysqli_error($stmt);
+				//TODO: fix this maybe
+				//echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
 			}
-
 		}
 
 		//method used to create an account
@@ -360,8 +345,8 @@
 			$target = "eventimg/". $latest_img_num .".jpg";
 			move_uploaded_file($image, $target);
 
-			// $uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
-			// move_uploaded_file($image, $target);
+			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
+			move_uploaded_file($image, $uploaddir);
 		}
 
 		//returns next image number or default image
