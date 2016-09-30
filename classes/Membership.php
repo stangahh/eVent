@@ -455,6 +455,54 @@
 			}
 		}
 
+		function add_donation($amt, $user, $id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO donations (don_user_id, don_amount_donated, don_event_id)
+					VALUES ('" . $user ."','" . $amt . "','" . $id ."')";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+		}
+
+		function update_donations($amt, $user, $id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
+			
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
 	}
 
 ?>
