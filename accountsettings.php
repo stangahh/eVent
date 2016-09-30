@@ -9,6 +9,7 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$userid = $membership->get_id($username); //local variable of activer user id
+	
 
 	$titlearray = array("Mr", "Mrs", "Ms", "Miss", "Mx", "Master", "Maid" ,"Madam", "Other");
 	$genderarray = array("Male", "Female", "Other", "Not Applicable");
@@ -93,7 +94,9 @@
 		
 		<div class="row">
 			<?php include 'includes/edit_user_details_form.php' ?>
-			<!-- <?php //include 'includes/edit_user_events.php' ?> -->
+		</div>
+		<div class="row">
+			<?php include 'includes/edit_user_events.php' ?>
 		</div>
 	</container>
 
