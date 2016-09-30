@@ -1,28 +1,28 @@
-<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="event_preview.php">
+<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post">
   <div class="row">
     <div class="input-field col s12">
-      <input id="event_name" name="event_name" type="text" class="validate">
+      <input id="event_name" name="event_name" type="text" class="validate" required>
       <label for="event_name">Event Name</label>
     </div>
 
     <div class="input-field col s12">
-      <textarea id="event_desc" name="event_desc" class="materialize-textarea"></textarea>
+      <textarea id="event_desc" name="event_desc" class="materialize-textarea" required></textarea>
       <label for="event_desc">Event Description</label>
     </div>
 
     <div class="input-field col s12">
-      <input id="autocomplete" placeholder="" name="location" onFocus="geolocate()" type="text" class="validate">
+      <input id="autocomplete" placeholder="" name="location" required onFocus="geolocate()" type="text" class="validate">
       <label for="autocomplete">Address</label>
     </div>
 
   <div class="row">
     <div class="input-field col l6 s12">
-      <input id="amt_required" type="number" min="00000" max="99999" class="validate" name="amt_required">
+      <input id="amt_required" type="number" min="00000" required max="99999" class="validate" name="amt_required">
       <label for="amt_required">Funding Required (AUD$) </label>
     </div>
 
     <div class="input-field col l6 s12">
-      <input id="event_date" type="date" name="event_date" class="datepicker" class="validate">
+      <input id="event_date" type="date" name="event_date" required class="datepicker" class="validate">
       <label for="event_date">Event Date</label>
     </div>
   </div>
