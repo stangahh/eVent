@@ -147,7 +147,7 @@
 				while($row = mysqli_fetch_array($response)){
 					array_push($events, "
 						" . $row['event_id'] .
-						"<strong>" . $row['event_name'] .",</strong>, "
+						"<strong>" . $row['event_name'] ."</strong>, "
 						. $row['event_location'] . "
 					");
 				}
