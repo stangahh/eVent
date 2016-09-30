@@ -182,7 +182,6 @@
                   title: <?php echo $id; ?>,
                   animation: google.maps.Animation.DROP
               });
-            //marker.addListener('click', toggleBounce);
             google.maps.event.addListener(marker, 'click', function() {
               window.location.href = this.url;
             });

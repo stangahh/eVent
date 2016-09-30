@@ -34,18 +34,25 @@
       <label for="event_date">Event Date</label>
     </div>
   </div>
-
+<!-- why do we even have this???  -->
   <div class="row">
     <div class="input-field col s12">
-      <input id="event_location" name="event_location" type="text" class="validate">
-      <label for="event_location">Event Area (e.g. Brisbane, Melbourne, Chermside)</label>
+      <input id="locality" name="Event_Area" type="text" class="validate">
+      <label for="locality">Event Area (e.g. Brisbane, Melbourne, Chermside)</label>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="postcode" type="text" class="validate" name="postcode">
-      <label for="postcode">Postcode</label>
+      <input id="location" name="Event_Area" type="text" class="validate">
+      <label for="location">Location</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input disabled id="postal_code" type="text" class="validate" name="postcode">
+      <label for="postal_code">Postcode</label>
     </div>
   </div>
 
@@ -65,12 +72,40 @@
 
 <script>
   var placeSearch, autocomplete;
-
+  var componentForm = {
+    locality: 'long_name',
+    location: 'short_name',
+    postal_code: 'short_name'
+ };
   function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
         /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
         {types: ['geocode']});
+    autocomplete.addListener('place_changed', fillInAddress);
   }
+  function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    //document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+      var lat = place.geometry.location;
+      var lng = place.geometry.location[0];
+      document.getElementById("location").value = lng;
+
+}
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
   function geolocate() {
