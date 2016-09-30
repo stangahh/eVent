@@ -54,7 +54,7 @@
     </div>
   </div>
 </div>
-  <button class="btn-large waves-effect waves-light right tooltipped" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="submit" href="event_preview.php">Preview<i class="material-icons right">send</i>
+  <button class="btn-large waves-effect waves-light right tooltipped" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="submit">Preview<i class="material-icons right">send</i>
   </button>
 </div>
 </form>

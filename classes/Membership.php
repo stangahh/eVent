@@ -366,7 +366,7 @@
 			// move_uploaded_file($image, $target);
 			$this ->debug_to_console( "error6" );
 			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
-			move_uploaded_file($image, $target);
+			move_uploaded_file($image, $uploaddir);
 			$this ->debug_to_console( "error7" );
 		}
 
