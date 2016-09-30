@@ -1,4 +1,4 @@
-<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="event_preview.php">
+<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="">
   <div class="row">
     <div class="input-field col s12">
       <input id="event_name" name="event_name" type="text" class="validate">
@@ -9,7 +9,7 @@
       <textarea id="event_desc" name="event_desc" class="materialize-textarea"></textarea>
       <label for="event_desc">Event Description</label>
     </div>
-    
+
     <div class="input-field col s12">
       <input id="autocomplete" placeholder="" name="location" onFocus="geolocate()" type="text" class="validate">
       <label for="autocomplete">Address</label>
