@@ -10,7 +10,15 @@
 	require_once 'includes/constants.php';
 
 	class Membership{
+		//function for debuging to javascript console
+		function debug_to_console( $data ) {
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
 
+    echo $output;
+		}
 		//used in login page, forwards a user to home.php if they are a
 		//valid user in the database
 		//@input username, passsword
@@ -196,15 +204,29 @@
 		//method used to update a users details
 		//@input $userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function update_details($userid, $title, $fname, $lname, $username, $phone, $address, $dob, $sex, $email, $occupation){
+		function update_details($userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation){
 
+			//i created these to try and find the issue
+			$userid = "67863";
+			$title = "Mr";
+			$fname = "Aden";
+			$username = "username";
+			$lname = "Max";
+			$phone = "0412345678";
+			$address = "27 Smith Lane, Greater Brisbane, 4311, Australia";
+			$dob = "1994-09-07";
+			$sex = "Male";
+			$email = "adenjames@corpmail.com";
+			$occupation = "Office Administrator";
+
+			//I found the issue. SQL returns an error if you try to update a field with the exact same information. I will fix this later.
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
 			$query = "UPDATE user_details
 			SET ud_title = '" . $title . "',
 			ud_fname = '" . $fname . "',
-			ud_lname = '" . $lname . "',
 			ud_username = '" . $username . "',
+			ud_lname = '" . $lname . "',
 			ud_phone = '" . $phone . "',
 			ud_address = '" . $address . "',
 			ud_email = '" . $email . "',
@@ -223,13 +245,14 @@
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
+
 			} else {
-				//TODO: fix this maybe
-				//echo mysqli_error($stmt);
+				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
 			}
+
 		}
 
 		//method used to create an account
@@ -295,8 +318,9 @@
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
 		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $image, $date){
+			$this ->debug_to_console( "error1" );
 			$latest_img_num = $this ->lastestimgnumber();
-			$starting_funds = 0;
+			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
 			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_date`, `event_photo`) VALUES
 			(NULL,
@@ -310,34 +334,39 @@
 			'". $user_id ."',
 			'". $desc ."',
 			'". $latest_img_num ."',
-			'". $date ."')";
-
+			'". $date ."',
+			'". NULL ."')";
+			$this ->debug_to_console( "error2" );
 			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
-
+			$this ->debug_to_console( "error3" );
 			if($affected_rows == 1){
+				$this ->debug_to_console( "error4" );
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
+				header("location: home.php");
 				return true;
 
 			} else {
+				$this ->debug_to_console( "error4b" );
 				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
 			}
-
+			$this ->debug_to_console( "error5" );
 			mysqli_close($connection);
 
 			//upload image
-			//$target = "eventimg/". $latest_img_num .".jpg";
-			//move_uploaded_file($image, $target);
-
+			// $target = "eventimg/". $latest_img_num .".jpg";
+			// move_uploaded_file($image, $target);
+			$this ->debug_to_console( "error6" );
 			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
-			move_uploaded_file($image, $uploaddir);
+			move_uploaded_file($image, $target);
+			$this ->debug_to_console( "error7" );
 		}
 
 		//returns next image number or default image
