@@ -39,8 +39,7 @@
   Strip steak in ham hock ullamco veniam. Do venison magna, filet mignon elit cupim sunt meatball. Consectetur biltong hamburger incididunt pork. Porchetta ad alcatra ipsum ball tip quis laborum dolor ribeye. Commodo consectetur aute tri-tip nulla esse meatball ex, qui bacon adipisicing sausage biltong. Pork chicken meatloaf, t-bone consequat chuck elit laborum biltong voluptate pig dolor. Dolor alcatra aliqua bacon boudin jowl et enim doner fatback. Biltong swine shank tail sirloin fugiat, consequat officia brisket nisi beef ribs. Pariatur ut cow alcatra quis.
   <br><br>
   Fugiat spare ribs qui boudin. Flank occaecat chicken, excepteur strip steak nulla meatball andouille drumstick velit elit exercitation culpa alcatra magna. Minim dolore in pork belly. Enim meatball prosciutto jowl pig aliqua. Doner meatloaf dolore tenderloin, landjaeger short ribs t-bone magna laboris occaecat brisket reprehenderit. Short ribs ad incididunt ullamco sed sausage filet mignon. Quis rump laboris, labore ullamco anim sunt nostrud ribeye short ribs. Ut beef ribs aliqua flank leberkas est. Biltong brisket duis in, magna officia dolore.</p>
-  
-  <?php include 'includes/footer.php' ?>  
+  <br><br>
 </body>
 
 <?php include 'includes/footer.php' ?>
