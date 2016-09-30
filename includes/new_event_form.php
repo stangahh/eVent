@@ -17,12 +17,12 @@
 
   <div class="row">
     <div class="input-field col l6 s12">
-      <input id="amt_required" type="number" min="00000" required max="99999" class="validate" name="amt_required">
+      <input id="amt_required" type="number" min="00000" required max="99999" class="validate" required name="amt_required">
       <label for="amt_required">Funding Required (AUD$) </label>
     </div>
 
     <div class="input-field col l6 s12">
-      <input id="event_date" type="date" name="event_date" required class="datepicker" class="validate">
+      <input id="event_date" type="date" name="event_date" class="datepicker" validate required>
       <label for="event_date">Event Date</label>
     </div>
   </div>
@@ -32,7 +32,7 @@
       <label for="locality">Event Area </label>
     </div>
     <div class="input-field col s4 m4 l2">
-      <input placeholder="" id="postal_code" type="text" class="validate" name="postcode">
+      <input placeholder="" id="postal_code" type="text" class="validate" name="postal_code">
       <label for="postal_code">Postcode</label>
     </div>
     <div class="input-field col s6 m6 l2">
