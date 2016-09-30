@@ -401,6 +401,7 @@
 			}
 			return $img;
 		}
+
 		//method that deletes and event using it's ID
 		//@input $event_id;
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -426,6 +427,34 @@
 				return false;
 			}
 
+		}
+
+		//method that inserts users going status into the database
+		//@input $event_id, $user_id, $username
+		//@output void 'true', @(mysqli_query), @(mysqli_error);
+		function add_user_going($event_id, $username) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO 'going' ('going_event_id', 'going_user_id', 'going_username')
+					VALUES ('" . $event_id . "','" . get_id($username) . "','" . $username . "')";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				header("location: event.php?eventid=$event_id.php");
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
 		}
 
 	}

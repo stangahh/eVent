@@ -78,6 +78,7 @@
 		<header class="center">
 			<h1><?php echo $membership->get_username(); ?></h1>
 			<h3>Edit and View your Information Here</h3>
+			<h3>User ID: <?php echo $userid; ?></h3>
 		</header>
 		
 		<div class="row">

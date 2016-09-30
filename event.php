@@ -10,8 +10,8 @@
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 ?>
 <?php
-	$id = $_GET['eventid'];
-	$eventarray = $membership->get_event_information($id);
+	$event_id = $_GET['eventid'];
+	$eventarray = $membership->get_event_information($event_id);
 	$event_name = $eventarray[0];
 	$org_id = $eventarray[1];
 	$event_org_name = $membership->get_org_name($org_id);
@@ -56,10 +56,14 @@
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event">Follow <i class="material-icons right">turned_in_not</i></a>
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" 
+						data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event"
+						onclick="add_user_going(<?php echo $org_id . ", " . $username ?>)">
+							<!-- TODO: if this user is going; change text to "I'm Going"-->
+							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
 						<!-- TODO: if this user created the event; show delete button-->
-						<a href=<?php echo "home.php?delete=" . $id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
+						<a href=<?php echo "home.php?delete=" . $event_id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
 						<i class="material-icons right">delete</i>
 						</a>
 				</div>
