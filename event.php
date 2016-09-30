@@ -10,6 +10,12 @@
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 
 	$event_id = $_GET['eventid'];
+
+	if ($_POST && !empty($_POST['amt_required'])) {
+		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+	}
+
 	$eventarray = $membership->get_event_information($event_id);
 	$event_name = $eventarray[0];
 	$org_id = $eventarray[1];
@@ -25,12 +31,6 @@
 	//$event_time = $eventarray[1];
 	$event_description = $eventarray[10];
 	$event_photo = $eventarray[11];
-
-	if ($_POST && !empty($_POST['amt_required'])) {
-		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
-		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
-	}
-
 ?>
 
 <!DOCTYPE html>
