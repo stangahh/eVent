@@ -45,24 +45,24 @@
 <body>
 
 	<?php include 'includes/navigation.php' ?>
-	
+
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
 	<div class="parallax-container z-depth-2">
-		<div class="parallax"><img alt="image" src=<?php echo $event_photo?>></div>
+		<div class="parallax"><img alt="image" src=eventimg/<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" 
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center"
 						data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event"
 						onclick="add_user_going(<?php echo $org_id . ", " . $username ?>)">
 							<!-- TODO: if this user is going; change text to "I'm Going"-->
 							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
-						<!-- TODO: if this user created the event; show delete button-->
+						<!-- TODO: if this org created the event; show delete button-->
 						<a href=<?php echo "home.php?delete=" . $event_id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
 						<i class="material-icons right">delete</i>
 						</a>
@@ -162,10 +162,11 @@
 	<!-- map code -->
 	<script>
 	function initMap() {
+		var image = 'https://www.livefiregear.com/media/gmapstrlocator/marker/default/map-marker-20x32-v2.png';
 		var myLatLng = {lat: <?php echo $latitude ?>, lng: <?php echo $longitude ?>};
 	  var map = new google.maps.Map(document.getElementById('map'), {
 	    center: myLatLng,
-	    zoom: 8,
+	    zoom: 15,
 	    styles: [{
 	      "featureType": "administrative",
 	      "elementType": "labels.text.fill",
@@ -257,6 +258,7 @@
 	  });
 		var marker = new google.maps.Marker({
 			position: myLatLng,
+			icon: image,
 			map: map,
 			title: 'Hello World!'
 		});
