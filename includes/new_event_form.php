@@ -1,4 +1,4 @@
-<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="">
+<form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post">
   <div class="row">
     <div class="input-field col s12">
       <input id="event_name" name="event_name" type="text" class="validate">
@@ -28,19 +28,19 @@
   </div>
 <!-- autofilled feilds -->
     <div class="input-field col s8 m8 l5">
-      <input disabled id="locality" placeholder="" name="Event_Area" type="text" class="validate">
+      <input id="locality" placeholder="" name="Event_Area" type="text" class="validate">
       <label for="locality">Event Area </label>
     </div>
     <div class="input-field col s4 m4 l2">
-      <input disabled placeholder="" id="postal_code" type="text" class="validate" name="postcode">
+      <input placeholder="" id="postal_code" type="text" class="validate" name="postcode">
       <label for="postal_code">Postcode</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lat" placeholder="" name="lat" type="text" class="validate" required disabled>
+      <input id="lat" placeholder="" name="lat" type="text" class="validate" required>
       <label for="lat">Latitude</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lng" placeholder="" name="lng" type="text" class="validate" required disabled>
+      <input id="lng" placeholder="" name="lng" type="text" class="validate" required>
       <label for="lng">Longitude</label>
     </div>
 <div class="row">

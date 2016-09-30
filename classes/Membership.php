@@ -10,7 +10,15 @@
 	require_once 'includes/constants.php';
 
 	class Membership{
+		//function for debuging to javascript console
+		function debug_to_console( $data ) {
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
 
+    echo $output;
+		}
 		//used in login page, forwards a user to home.php if they are a
 		//valid user in the database
 		//@input username, passsword
@@ -309,11 +317,12 @@
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $image, $date){
+		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date){
+			debug_to_console( "error1" );
 			$latest_img_num = $this ->lastestimgnumber();
-			$starting_funds = 0;
+			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_date`, `event_photo`) VALUES
+			$query = "INSERT INTO `events` (`event_id`, `event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_date`) VALUES
 			(NULL,
 			'". $event_name ."',
 			'". $org_id ."',
@@ -326,7 +335,7 @@
 			'". $desc ."',
 			'". $latest_img_num ."',
 			'". $date ."')";
-
+			debug_to_console( "error4" );
 			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
@@ -348,11 +357,11 @@
 			mysqli_close($connection);
 
 			//upload image
-			//$target = "eventimg/". $latest_img_num .".jpg";
-			//move_uploaded_file($image, $target);
-
-			$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
+			$target = "eventimg/". $latest_img_num .".jpg";
 			move_uploaded_file($image, $target);
+
+			// $uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
+			// move_uploaded_file($image, $target);
 		}
 
 		//returns next image number or default image
