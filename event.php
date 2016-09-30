@@ -102,6 +102,7 @@
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $event_id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
+					<a href="mailto:example@example.com">Contact</a>
 				</div>
 			</div>
 			<h4>INFO</h4>
