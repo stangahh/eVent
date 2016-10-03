@@ -496,6 +496,71 @@
 
 		}
 
+		//May or may not work as of yet - not tested with events included on the site
+		function find_going($eventid) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT COUNT(going_user_id) FROM going WHERE going_event_id = '". $eventid . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_num_rows($stmt);
+
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+			return $affected_rows;
+		}
+
+		// If the event is created by the current user, return true
+		function get_created_event_user($eventid, $userid) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT * FROM events WHERE event_org_id = '" . $eventid . "' AND event_creator_user_id = '" . $userid . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_num_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
+
+		// Removes all the rows with the same event id (not checked, not added into the html stuff)
+		function remove_going($event_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+		}
+
 	}
 
 ?>
