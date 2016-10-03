@@ -67,8 +67,12 @@
 							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
 						<!-- TODO: if this org created the event; show delete button-->
-						<a href=<?php echo "home.php?delete=" . $event_id . ""?> class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Permanently Delete This Event">Remove
-						<i class="material-icons right">delete</i>
+						<?php 
+							if ($membership->get_created_event_user($event_id, $username)) {
+								echo "<a href=<?php echo 'home.php?delete=" . $event_id . "'?> class='btn-large waves-effect waves-red light-blue darken-3 tooltipped center' data-position='bottom' data-delay='50' data-tooltip='Permanently Delete This Event'>Remove
+									<i class='material-icons right'>delete</i>"
+							}
+						?>
 						</a>
 				</div>
 			</div>
@@ -98,10 +102,20 @@
 					<p class="flow-text">Date: <?php echo $event_date?></p>
 					<p class="flow-text">An event by: <?php echo $event_org_name?></p>
 					<p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
+					<!-- NUMBER OF PEOPLE ATTENDING THE EVENT -->
+					<p class="flow-text">People going: <?php echo $membership->find_going($event_id)?></p>
+					<!-- FOUND AT http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript -->
+					<button id="copy_url" onclick="copyToClipboard(document.getElementById('copy_url').innerHTML)">Copy URL</button>
+					<script>
+					  function copyToClipboard(text) {
+					    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+					  }
+					</script>
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $event_id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
+					<a href="mailto:example@example.com">Contact</a>
 				</div>
 			</div>
 			<h4>INFO</h4>

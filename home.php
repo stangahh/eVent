@@ -10,6 +10,7 @@
 
   if (isset($_GET['delete'])) {
     $membership->delete_event($_GET['delete']);
+    $membership->remove_going($_GET['delete']);
   }
 
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
