@@ -313,6 +313,41 @@
 				return false;
 			}
 		}
+    
+    // Send the user a password reset e-mail and use it to reset their password
+    // Author: Tom Deakin
+    function reset_password($email) {
+      // Connect to the database
+      $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+      
+      // Check to see if the email actually exists
+      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();    
+      
+      // Get the username associated with the given email address
+      $query = mysqli_query($connection, "SELECT ud_username FROM user_details WHERE ud_email = '$email'") OR die();
+      $r = mysqli_fetch_object($query);            
+      
+      // Create a new, random password
+      $password = substr(md5(uniqid(rand(), 1)), 3, 10);
+      
+      // Encrypt the new password for database entry
+      $encrypted_password = md5($password);
+      
+      // Send e-mail to the user
+      $to = "$email";
+      $subject = "Ozbot.com.au Account Recovery";
+      $body = "Hi $r->username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $r->username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
+      $additionalheaders = "From: <admin@ozbot.com.au>rn";
+      $additionalheaders .= "Reply-To: noprely@ozbot.com.au";
+      mail($to, $subject, $body, $additionalheaders);
+      
+      // Update the database
+      // TODO: Unsure how to proceed here, I suck at SQL and the user emails are in "user_details" not "users".
+      //$sql = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE email = '$email'") OR die (mysql_error());
+      
+      // Close database connection
+      mysqli_close($connection);
+    }
 
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ

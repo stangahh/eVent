@@ -8,15 +8,20 @@
 		$membership->log_user_out();
 	}
 
-	//user enter password and username
+  //user enter password and username
 	if($_POST && !empty($_POST['username']) && !empty($_POST['pwd'])){
 		$catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
 	}
 
- //user signed up
+  //user signed up
   if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
     $membership->register_user($_POST['su_username'], $_POST['su_pwd'], $_POST['su_org_id']);
     $membership->register_user_details($_POST['su_title'], $_POST['su_firstname'], $_POST['su_surname'], $_POST['su_username'], $_POST['su_phone'], $_POST['su_address'], $_POST['su_email'], $_POST['su_dob'], $_POST['su_sex'], $_POST['su_occupation']);
+  }
+
+  // User forgot password
+  if ($_POST && !empty($_POST['pw_email'])) {
+    $membership->reset_password($_POST['pw_email']);
   }
 
 ?>
@@ -180,12 +185,13 @@
       <form class="col s12 m10 l8 offset-l2 offset-m1 offset-s0" method="post" action="">
         <div class="row">
           <div class="input-field col s12">
-            <input id="su_email" name="su_email" type="email" class="validate">
-            <label for="su_email" data-error="wrong" data-success="right">Email</label>
+            <input id="pw_email" name="pw_email" type="email" class="validate">
+            <label for="pw_email" data-error="wrong" data-success="right">Email</label>
           </div>
         </div>
-         <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="signup">Submit
-        <i class="material-icons right">send</i>
+        <p class="col s6">Please enter the e-mail address used to create your account. An e-mail with instructions on how to reset your password will be sent to this account, usually within the next 15 minutes. If you do not receive this e-mail, check your junk/spam folder.</p>
+        <button class="btn-large waves-effect waves-light right" type="submit" type="submit" name="reset">Reset password
+          <i class="material-icons right">send</i>
         </button>
       </form>
       <br>
@@ -200,7 +206,7 @@
     <p class="flow-text center col s12 m6 offset-s0 offset-m3">Bacon ipsum dolor amet andouille cupim ground round voluptate bresaola consequat. Labore shankle chicken fatback pork ea ham hock id est short ribs short loin jerky veniam. Boudin velit sunt quis tongue tri-tip mollit picanha beef frankfurter prosciutto pork chop. Beef ribs eu pancetta spare ribs. Ham hock cow pariatur ribeye beef ribs jerky pig pork loin ham meatball kielbasa eu t-bone esse.</p>
   </div>
 
-  <!--  Scripts-->
+  <!-- Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
