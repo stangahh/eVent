@@ -67,10 +67,10 @@
 							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
 						<!-- TODO: if this org created the event; show delete button-->
-						<?php 
+						<?php
 							if ($membership->get_created_event_user($event_id, $username)) {
-								echo "<a href=<?php echo 'home.php?delete=" . $event_id . "'?> class='btn-large waves-effect waves-red light-blue darken-3 tooltipped center' data-position='bottom' data-delay='50' data-tooltip='Permanently Delete This Event'>Remove
-									<i class='material-icons right'>delete</i>"
+								echo "<a href=home.php?delete=" . $event_id . " class='btn-large waves-effect waves-red light-blue darken-3 tooltipped center' data-position='bottom' data-delay='50' data-tooltip='Permanently Delete This Event'>Remove
+									<i class='material-icons right'>delete</i>";
 							}
 						?>
 						</a>
@@ -132,7 +132,21 @@
 			</style>
 			<div id="map"></div>
 		</div>
-
+		<!-- random code needed for facebook comments api-->
+		<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) return;
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/fb_LT/sdk.js#xfbml=1&version=v2.7&appId=310465119303548";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				</script>
+		<div class="col s12 m6">
+			<!-- this is the facebook comments part -->
+			<br>
+			<div class="fb-comments" data-href="http://ozbot.com.au/event.php?eventid=<?php echo $event_id ?>" data-width="100%" data-numposts="4"></div>
+		</div>
 	<!-- end of contents -->
 	</div>
 	</div>
@@ -170,7 +184,7 @@
 						</div>
 					</div>
 				</div>
-			
+
 				<div class="modal-footer">
 					<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
 						<i class="material-icons right">send</i>
