@@ -152,7 +152,7 @@
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('You are here! ');
+            infoWindow.setContent('You are round about here');
             map.setCenter(pos);
           }, function () {
             handleLocationError(true, infoWindow, map.getCenter());

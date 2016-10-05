@@ -39,7 +39,6 @@
     <div class="row center">
 			<div class="input-field col l6 s12 offset-s0  offset-l3">
 					<input id="searchBar" onkeyup="searchList()" type="search" placeholder="Search for Event name, Location, Detials..." required>
-					<label for="searchBar"><i class="material-icons">search</i></label>
 					<i class="material-icons">close</i>
 				</div>
 		<!-- <input class="col l6 s12 offset-s0  offset-l3"  type="text" id="searchBar" onkeyup="searchList()" placeholder="Search for Event name, Location, Detials..."> -->
@@ -75,6 +74,17 @@
 
 		</ul>
   </div>
+	<p class="center">
+		No more events found
+		<br>
+		<a href="lsp.php" >Try using the map</a>
+	</p>
+
+	<!-- floating button to add event  -->
+	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+		<a href="new_event.php" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+	</div>
+
 	</article>
 
   <!--  Scripts-->
