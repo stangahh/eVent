@@ -23,16 +23,16 @@
       <!-- Code for the sidenav -->
       <ul id="nav-mobile" class="side-nav">
         <li><img class="background" src="media/event_img.png"></li>
-        <li><a href="home.php"></i>Home</a></li>
-        <li><a href="new_event.php">New Event</a></li>
-        <li><a href="lsp.php">Find Events</a></li>
+
+        <li><a href="home.php" class="tooltipped" data-position="right" data-tooltip="All Events">Home</a></li>
+        <li><a href="new_event.php" class="tooltipped" data-position="right" data-tooltip="Create a New Event here">New Event</a></li>
+        <li><a href="lsp.php" class="tooltipped" data-position="right" data-tooltip="Find all the nearest events to you">Find Events</a></li>
+        <li><a href="my_events.php" class="tooltipped" data-position="right" data-tooltip="Cheak the events you are instrested in">My Events</a></li>
         <li><div class="divider"></div></li>
-        <li>
-          <a href="accountsettings.php"><span class="name">My Account - <?php echo $username ?></span></a>
-        </li>
-        <li>
-          <a href="login.php?status=loggout">Logout</a>
-        </li>
+        <li><a href="organisation.php" class="tooltipped" data-position="right" data-tooltip="View events connected to my organisation"><?php echo "Organisation - " . $organisation_name ?></a></li>
+        <li><a href="accountsettings.php" class="tooltipped" data-position="right" data-tooltip="Change your account details"><span class="name">My Account</span></a></li>
+        <li class="divider"></li>
+        <li><a href="login.php?status=logout" class="tooltipped" data-position="right" data-tooltip="Goodbye!"><?php echo "Logout - " . $username ?></a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
