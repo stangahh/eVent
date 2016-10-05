@@ -32,7 +32,6 @@
 <body>
 
   <?php include 'includes/navigation.php' ?>
-
 <!-- home page content  -->
 <h1 class="center heading">eVents</h1>
 	<article>
@@ -95,5 +94,4 @@
   </body>
 
   <?php include 'includes/footer.php' ?>
-
 </html>
