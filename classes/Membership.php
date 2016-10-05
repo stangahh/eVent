@@ -135,7 +135,7 @@
 
 			if ($id != 0) {
 				$modifier = "WHERE event_org_id = '". $id ."'";
-				$eventarray = get_event_information($id);
+				//$eventarray = get_event_information($id);
 			}
 
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -247,7 +247,7 @@
 				return true;
 
 			} else {
-				echo mysqli_error($stmt);
+				//echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
@@ -324,8 +324,8 @@
       $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();    
       
       // Get the username associated with the given email address
-      $query = mysqli_query($connection, "SELECT ud_username FROM user_details WHERE ud_email = '$email'") OR die();
-      $r = mysqli_fetch_object($query);            
+      $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
+      $user = mysqli_fetch_object($get_id);            
       
       // Create a new, random password
       $password = substr(md5(uniqid(rand(), 1)), 3, 10);
@@ -336,17 +336,30 @@
       // Send e-mail to the user
       $to = "$email";
       $subject = "Ozbot.com.au Account Recovery";
-      $body = "Hi $r->username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $r->username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
+      $body = "Hi $user->ud_username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $user->ud_username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
       $additionalheaders = "From: <admin@ozbot.com.au>rn";
-      $additionalheaders .= "Reply-To: noprely@ozbot.com.au";
       mail($to, $subject, $body, $additionalheaders);
       
       // Update the database
-      // TODO: Unsure how to proceed here, I suck at SQL and the user emails are in "user_details" not "users".
-      //$sql = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE email = '$email'") OR die (mysql_error());
-      
-      // Close database connection
-      mysqli_close($connection);
+      $update_password = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE users_id = $user->ud_user_id") OR die();
+      $stmt = mysqli_prepare($connection, $update_password);
+			mysqli_stmt_execute($stmt);
+
+      // Check that the user's password was updated correctly
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+      // Close database connection if it's still open
+			mysqli_close($connection);
     }
 
 				//create an event by inserting information into database, also uploads an image
