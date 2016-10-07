@@ -284,38 +284,6 @@
 				return false;
 			}
 		}
-<<<<<<< HEAD
-    //method used to create an account detials for user
-    //@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
-    //@output void 'true', @(mysqli_query), @(mysqli_error);
-    function register_user_details($title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-
-        $query_ud = "INSERT INTO user_details (ud_title, ud_user_id, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation)
-                        VALUES ('" . $title . "', (SELECT users.users_id FROM users WHERE users_username = '" . $un . "'),'" . $fn . "','" . $ln . "','" . $un . "','" . $ph . "','" . $add . "','" . $email . "','" . $dob . "','" . $sex . "','" . $occ . "')";
-
-        $stmt_ud = mysqli_prepare($connection, $query_ud);
-
-        mysqli_stmt_execute($stmt_ud);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt_ud);
-
-        if($affected_rows == 1){
-            mysqli_stmt_close($stmt_ud);
-            mysqli_close($connection);
-            $_SESSION['status'] = 'authorised_' . $un;
-                header("location: home.php");
-            return true;
-
-        } else {
-            echo mysqli_error($stmt_ud);
-            mysqli_stmt_close($stmt_ud);
-            mysqli_close($connection);
-            return false;
-        }
-    }
-    
-=======
 		//method used to create an account detials for user
 		//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -345,99 +313,84 @@
 				return false;
 			}
 		}
-
->>>>>>> master
+    
     // Send the user a password reset e-mail and use it to reset their password
     // Author: Tom Deakin
     function reset_password($email) {
       // Connect to the database
       $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-
+      
       // Check to see if the email actually exists
-<<<<<<< HEAD
-      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_details WHERE ud_email = '$email'") OR die();    
+      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();    
       
-      // Get the username associated with the given email address
-      $get_id = mysqli_query($connection, "SELECT ud_user_id,ud_username FROM user_details WHERE ud_email = '$email'") OR die();
-      $user = mysqli_fetch_object($get_id);            
-      
-=======
-      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();
-
       // Get the username associated with the given email address
       $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
-      $user = mysqli_fetch_object($get_id);
-
->>>>>>> master
+      $user = mysqli_fetch_object($get_id);            
+      
       // Create a new, random password
       $password = substr(md5(uniqid(rand(), 1)), 3, 10);
-
+      
       // Encrypt the new password for database entry
       $encrypted_password = md5($password);
-
+      
       // Send e-mail to the user
       $to = "$email";
-      $subject = "Ozbot.com.au Account Recovery";
+      $subject = "eVent Account Recovery";
       $body = "Hi $user->ud_username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $user->ud_username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
-      $additionalheaders = "From: <admin@ozbot.com.au>rn";
-<<<<<<< HEAD
-//      mail($to, $subject, $body, $additionalheaders);
+      $headers  = 'From: ifb299event@gmail.com' . "\r\n" .
+                  'MIME-Version: 1.0' . "\r\n" .
+                  'Content-type: text/html; charset=utf-8';
+      if (mail($to, $subject, $body, $headers)) {
+        echo "Email sent";
+      } else { 
+        echo "Email sending failed";
+      }
       
-=======
-      mail($to, $subject, $body, $additionalheaders);
-
->>>>>>> master
       // Update the database
-      echo $encrypted_password . " ";
-      echo $user->ud_user_id . " ";
-      echo $user->ud_username . " ";
-      
-      $id = $user->ud_user_id;
-      $update_query = "UPDATE users SET users_password =$encrypted_password WHERE users_id=$id";
-      $update_password = mysqli_query($connection, $update_query) OR die(mysqli_error($connection));
+      $update_password = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE users_id = $user->ud_user_id") OR die();
       $stmt = mysqli_prepare($connection, $update_password);
-      mysqli_stmt_execute($stmt);
+			mysqli_stmt_execute($stmt);
 
       // Check that the user's password was updated correctly
-      $affected_rows = mysqli_stmt_affected_rows($stmt);
-      if ($affected_rows == 1) {
-        mysqli_stmt_close($stmt);
-        mysqli_close($connection);
-        return true;
-      } else {
-        echo mysqli_error($stmt);
-        mysqli_stmt_close($stmt);
-        mysqli_close($connection);
-        return false;
-      }
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
 
       // Close database connection if it's still open
-      mysqli_close($connection);
+			mysqli_close($connection);
     }
 
-    //create an event by inserting information into database, also uploads an image
-    //@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
-    //@output void 'true', @(mysqli_query), @(mysqli_error);
-    function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
-        $latest_img_num = $this ->lastestimgnumber();
-        $starting_funds = '0';
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-        $query = "INSERT INTO `events` (`event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
-        (
-        '". $event_name ."',
-        '". $org_id ."',
-        '". $event_loc ."',
-        '". $event_lat ."',
-        '". $event_lng ."',
-        '". $event_postcode ."',
-        '". $starting_funds ."',
-        '". $amount_required ."',
-        '". $user_id ."',
-        '". $desc ."',
-        '". $latest_img_num ."',
-        '". $date ."'
-        )";
-        $stmt = mysqli_prepare($connection,$query);
+				//create an event by inserting information into database, also uploads an image
+				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
+				//@output void 'true', @(mysqli_query), @(mysqli_error);
+		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
+			$latest_img_num = $this ->lastestimgnumber();
+			$starting_funds = '0';
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO `events` (`event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
+			(
+			'". $event_name ."',
+			'". $org_id ."',
+			'". $event_loc ."',
+			'". $event_lat ."',
+			'". $event_lng ."',
+			'". $event_postcode ."',
+			'". $starting_funds ."',
+			'". $amount_required ."',
+			'". $user_id ."',
+			'". $desc ."',
+			'". $latest_img_num ."',
+			'". $date ."'
+			)";
+			$stmt = mysqli_prepare($connection,$query);
 
 		    //upload image 
       		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg'; 
@@ -449,255 +402,222 @@
 
 			mysqli_stmt_execute($stmt);
 
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-        if($affected_rows == 1){
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
 
-        } else {
-            //echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
+			} else {
+				//echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
 
+			mysqli_close($connection);
+		}
 
-        mysqli_close($connection);
-    }
+		//returns next image number or default image
+		//@input null;
+		//@output image.jpg, @(mysqli_query), @(mysqli_error);
+		function lastestimgnumber(){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT event_photo FROM events ORDER BY event_photo DESC LIMIT 1";
 
-    //returns next image number or default image
-    //@input null;
-    //@output image.jpg, @(mysqli_query), @(mysqli_error);
-    function lastestimgnumber(){
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-        $query = "SELECT event_photo FROM events ORDER BY event_photo DESC LIMIT 1";
-
-        $img = 0;
-
-        $response = mysqli_query($connection, $query);
-
-        if($response){
-
-            while($row = mysqli_fetch_array($response)){
-
-                $img = $row['event_photo'];
-
-            }
-
-        } else {
-
-            echo "FAILURE: Unable to fetch image information";
-
-        }
-
-        mysqli_close($connection);
-
-        if($img != 0){
-            $img++;
-        }
-        return $img;
-    }
-
-    //method that deletes and event using it's ID
-    //@input $event_id;
-    //@output void 'true', @(mysqli_query), @(mysqli_error);
-    function delete_event($event_id) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-        if($affected_rows == 1){
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
-
-        } else {
-            echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
-
-    }
-
-    //method that inserts users going status into the database
-    //@input $event_id, $user_id, $username
-    //@output void 'true', @(mysqli_query), @(mysqli_error);
-    function add_user_going($event_id, $username) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "INSERT INTO 'going' ('going_event_id', 'going_user_id', 'going_username')
-                VALUES ('" . $event_id . "','" . get_id($username) . "','" . $username . "')";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-        if ($affected_rows == 1) {
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            header("location: event.php?eventid=$event_id.php");
-            return true;
-
-        } else {
-            echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
-    }
-
-    function add_donation($amt, $user, $id) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "INSERT INTO donations (don_user_id, don_amount_donated, don_event_id)
-                VALUES ('" . $user ."','" . $amt . "','" . $id ."')";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-        if ($affected_rows == 1) {
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
-
-<<<<<<< HEAD
-        } else {
-            echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
-    }
-=======
-		function update_donations($amt, $user, $id) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
-
-			$stmt = mysqli_prepare($connection, $query);
->>>>>>> master
-
-    function update_donations($amt, $user, $id) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
-
-        if ($affected_rows == 1) {
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
-
-<<<<<<< HEAD
-        } else {
-            echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
-
-    }
-
-    //May or may not work as of yet - not tested with events included on the site
-    function find_going($eventid) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "SELECT COUNT(going_user_id) FROM going WHERE going_event_id = '". $eventid . "'";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_num_rows($stmt);
-
-        mysqli_stmt_close($stmt);
-        mysqli_close($connection);
-        return $affected_rows;
-    }
-
-    // If the event is created by the current user, return true
-    function get_created_event_user($eventid, $userid) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "SELECT * FROM events WHERE event_org_id = '" . $eventid . "' AND event_creator_user_id = '" . $userid . "'";
-
-        $stmt = mysqli_prepare($connection, $query);
-
-        mysqli_stmt_execute($stmt);
-
-        $affected_rows = mysqli_num_rows($stmt);
-=======
-		//May or may not work as of yet - not tested with events included on the site
-		function find_going($eventid) {
-			$number_going = array();
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT `don_id`, COUNT(`don_user_id`), SUM(`don_amount_donated`), `don_event_id` FROM `donations` WHERE `don_event_id` = '" . $eventid . "'";
+			$img = 0;
 
 			$response = mysqli_query($connection, $query);
 
 			if($response){
-					while($row = mysqli_fetch_array($response)){
-						$count = $row['COUNT(`don_user_id`)'];
-					}
+
+				while($row = mysqli_fetch_array($response)){
+
+					$img = $row['event_photo'];
+
 				}
 
+			} else {
 
-			// mysqli_fetch_object($query);
-			// mysqli_stmt_execute($response);
+				echo "FAILURE: Unable to fetch image information";
 
-			return $count;
-			mysqli_stmt_close($response);
+			}
+
 			mysqli_close($connection);
->>>>>>> master
 
-        if ($affected_rows == 1) {
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
+			if($img != 0){
+				$img++;
+			}
+			return $img;
+		}
 
-        } else {
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
+		//method that deletes and event using it's ID
+		//@input $event_id;
+		//@output void 'true', @(mysqli_query), @(mysqli_error);
+		function delete_event($event_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
 
-    }
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
+		//method that inserts users going status into the database
+		//@input $event_id, $user_id, $username
+		//@output void 'true', @(mysqli_query), @(mysqli_error);
+		function add_user_going($event_id, $username) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO 'going' ('going_event_id', 'going_user_id', 'going_username')
+					VALUES ('" . $event_id . "','" . get_id($username) . "','" . $username . "')";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				header("location: event.php?eventid=$event_id.php");
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+		}
+
+		function add_donation($amt, $user, $id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "INSERT INTO donations (don_user_id, don_amount_donated, don_event_id)
+					VALUES ('" . $user ."','" . $amt . "','" . $id ."')";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+		}
+
+		function update_donations($amt, $user, $id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
+			
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
+		//May or may not work as of yet - not tested with events included on the site
+		function find_going($eventid) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT COUNT(going_user_id) FROM going WHERE going_event_id = '". $eventid . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_num_rows($stmt);
+
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+			return $affected_rows;
+		}
+
+		// If the event is created by the current user, return true
+		function get_created_event_user($eventid, $userid) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT * FROM events WHERE event_org_id = '" . $eventid . "' AND event_creator_user_id = '" . $userid . "'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_num_rows($stmt);
+
+			if ($affected_rows == 1) {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
 
 
-    // Removes all the rows with the same event id (not checked, not added into the html stuff)
-    function remove_going($event_id) {
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
+		// Removes all the rows with the same event id (not checked, not added into the html stuff)
+		function remove_going($event_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
 
-        $stmt = mysqli_prepare($connection, $query);
+			$stmt = mysqli_prepare($connection, $query);
 
-        mysqli_stmt_execute($stmt);
+			mysqli_stmt_execute($stmt);
 
-        $affected_rows = mysqli_stmt_affected_rows($stmt);
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
 
-        if($affected_rows == 1){
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return true;
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
 
-        } else {
-            echo mysqli_error($stmt);
-            mysqli_stmt_close($stmt);
-            mysqli_close($connection);
-            return false;
-        }
-    }
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+		}
 
 	}
 
