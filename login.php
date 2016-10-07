@@ -23,7 +23,7 @@
   if ($_POST && !empty($_POST['pw_email'])) {
     $membership->reset_password($_POST['pw_email']);
   }
-
+$membership->debug_to_console("hey");
 ?>
 
 <!DOCTYPE html>
@@ -74,13 +74,13 @@
     <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" method="post" action="">
       <div class="row">
         <div class="input-field col s12">
-          <input id="first_name" type="text" name="username" class="validate">
+          <input id="first_name" type="text" name="username" class="validate" required>
           <label for="first_name">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" name="pwd" type="password" class="validate">
+          <input id="password" name="pwd" type="password" class="validate" required>
           <label for="password">Password</label>
         </div>
       </div>
@@ -99,7 +99,7 @@
       <form class="col s12 m10 l8 offset-l2 offset-m1 offset-s0" method="post" action="">
         <div class="row">
           <div class="input-field col s12">
-            <input id="su_username" name="su_username" type="text" class="validate">
+            <input id="su_username" name="su_username" type="text" class="validate" required>
             <label for="su_username">Username</label>
           </div>
         </div>
@@ -138,13 +138,13 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="su_pwd" name="su_pwd" type="password" length="18" class="validate">
+            <input id="su_pwd" name="su_pwd" type="password" length="18" class="validate" required>
             <label for="su_pwd">Password</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="su_email" name="su_email" type="email" class="validate">
+            <input id="su_email" name="su_email" type="email" class="validate" required>
             <label for="su_email" data-error="wrong" data-success="right">Email</label>
           </div>
         </div>
@@ -167,7 +167,7 @@
           </div>
         </div>
         <div class="input-field col s12">
-          <input id="su_org_id" name="su_org_id" type="text" class="validate">
+          <input id="su_org_id" name="su_org_id" type="text" class="validate" required>
           <label for="su_org_id">Organisation ID</label>
         </div>
         <p class="col s6">Already registered? <a href="#">Sign In</a></p>
@@ -190,14 +190,14 @@
           </div>
         </div>
         <p class="col s6">Please enter the e-mail address used to create your account. An e-mail with instructions on how to reset your password will be sent to this account, usually within the next 15 minutes. If you do not receive this e-mail, check your junk/spam folder.</p>
-        <button class="btn-large waves-effect waves-light right" type="submit" type="submit" name="reset">Reset password
+        <button class="btn-large waves-effect waves-light right" type="submit">Reset password
           <i class="material-icons right">send</i>
         </button>
       </form>
       <br>
     </div>
   </div>
-    
+
   <!-- second image -->
   <div class="parallax-container z-depth-2">
 <div class="parallax"><img alt="image" src="http://www.americanspiritcentre.com/wp-content/uploads/2015/06/concert.jpeg"></div>

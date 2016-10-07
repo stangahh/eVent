@@ -70,7 +70,7 @@
 						<?php
 							if ($membership->get_created_event_user($event_id, $username)) {
 								echo "<a href=home.php?delete=" . $event_id . " class='btn-large waves-effect waves-red light-blue darken-3 tooltipped center' data-position='bottom' data-delay='50' data-tooltip='Permanently Delete This Event'>Remove
-									<i class='material-icons right'>delete</i>";
+									<i class='material-icons right'>delete</i></a>";
 							}
 						?>
 						</a>
