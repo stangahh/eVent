@@ -313,33 +313,33 @@
 				return false;
 			}
 		}
-    
+
     // Send the user a password reset e-mail and use it to reset their password
     // Author: Tom Deakin
     function reset_password($email) {
       // Connect to the database
       $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-      
+
       // Check to see if the email actually exists
-      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();    
-      
+      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();
+
       // Get the username associated with the given email address
       $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
-      $user = mysqli_fetch_object($get_id);            
-      
+      $user = mysqli_fetch_object($get_id);
+
       // Create a new, random password
       $password = substr(md5(uniqid(rand(), 1)), 3, 10);
-      
+
       // Encrypt the new password for database entry
       $encrypted_password = md5($password);
-      
+
       // Send e-mail to the user
       $to = "$email";
       $subject = "Ozbot.com.au Account Recovery";
       $body = "Hi $user->ud_username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $user->ud_username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
       $additionalheaders = "From: <admin@ozbot.com.au>rn";
       mail($to, $subject, $body, $additionalheaders);
-      
+
       // Update the database
       $update_password = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE users_id = $user->ud_user_id") OR die();
       $stmt = mysqli_prepare($connection, $update_password);
@@ -527,7 +527,7 @@
 		function update_donations($amt, $user, $id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
-			
+
 			$stmt = mysqli_prepare($connection, $query);
 
 			mysqli_stmt_execute($stmt);
@@ -550,41 +550,25 @@
 
 		//May or may not work as of yet - not tested with events included on the site
 		function find_going($eventid) {
+			$number_going = array();
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT COUNT(going_user_id) FROM going WHERE going_event_id = '". $eventid . "'";
+			$query = "SELECT `don_id`, COUNT(`don_user_id`), SUM(`don_amount_donated`), `don_event_id` FROM `donations` WHERE `don_event_id` = '" . $eventid . "'";
 
-			$stmt = mysqli_prepare($connection, $query);
+			$response = mysqli_query($connection, $query);
 
-			mysqli_stmt_execute($stmt);
+			if($response){
+					while($row = mysqli_fetch_array($response)){
+						$count = $row['COUNT(`don_user_id`)'];
+					}
+				}
 
-			$affected_rows = mysqli_num_rows($stmt);
 
-			mysqli_stmt_close($stmt);
+			// mysqli_fetch_object($query);
+			// mysqli_stmt_execute($response);
+
+			return $count;
+			mysqli_stmt_close($response);
 			mysqli_close($connection);
-			return $affected_rows;
-		}
-
-		// If the event is created by the current user, return true
-		function get_created_event_user($eventid, $userid) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT * FROM events WHERE event_org_id = '" . $eventid . "' AND event_creator_user_id = '" . $userid . "'";
-
-			$stmt = mysqli_prepare($connection, $query);
-
-			mysqli_stmt_execute($stmt);
-
-			$affected_rows = mysqli_num_rows($stmt);
-
-			if ($affected_rows == 1) {
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return true;
-
-			} else {
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return false;
-			}
 
 		}
 
