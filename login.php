@@ -1,17 +1,17 @@
 <?php
-	session_start();
-	require_once 'classes/Membership.php';
-	$membership = new Membership();
+  session_start();
+  require_once 'classes/Membership.php';
+  $membership = new Membership();
 
-	//when status is pushed via 'loggout'
-	if(isset($_GET['status']) && $_GET['status'] == 'logout'){
-		$membership->log_user_out();
-	}
+  //when status is pushed via 'loggout'
+  if(isset($_GET['status']) && $_GET['status'] == 'logout'){
+      $membership->log_user_out();
+  }
 
   //user enter password and username
-	if($_POST && !empty($_POST['username']) && !empty($_POST['pwd'])){
-		$catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
-	}
+  if($_POST && !empty($_POST['username']) && !empty($_POST['pwd'])){
+      $catch = $membership->validate_user($_POST['username'], $_POST['pwd']);
+  }
 
   //user signed up
   if($_POST && !empty($_POST['su_username']) && !empty($_POST['su_pwd']) && !empty($_POST['su_email']) && !empty($_POST['su_org_id'])){
@@ -21,9 +21,9 @@
 
   // User forgot password
   if ($_POST && !empty($_POST['pw_email'])) {
-    $membership->reset_password($_POST['pw_email']);
+    $membership->debug_to_console($_POST['pw_email']); 
+    $membership->reset_password(trim($_POST['pw_email']));  
   }
-$membership->debug_to_console("hey");
 ?>
 
 <!DOCTYPE html>
@@ -185,12 +185,12 @@ $membership->debug_to_console("hey");
       <form class="col s12 m10 l8 offset-l2 offset-m1 offset-s0" method="post" action="">
         <div class="row">
           <div class="input-field col s12">
-            <input id="pw_email" name="pw_email" type="email" class="validate">
-            <label for="pw_email" data-error="wrong" data-success="right">Email</label>
+            <input id="test" name="pw_email" type="email" class="validate">
+            <label for="test" data-error="wrong" data-success="right">Email</label>
           </div>
         </div>
         <p class="col s6">Please enter the e-mail address used to create your account. An e-mail with instructions on how to reset your password will be sent to this account, usually within the next 15 minutes. If you do not receive this e-mail, check your junk/spam folder.</p>
-        <button class="btn-large waves-effect waves-light right" type="submit">Reset password
+        <button class="btn-large waves-effect waves-light right" type="submit" name="reset">Reset password
           <i class="material-icons right">send</i>
         </button>
       </form>
