@@ -56,7 +56,7 @@
 		<div class="parallax"><img alt="image" src=eventimg/<?php echo $event_photo?>></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
@@ -66,9 +66,8 @@
 							<!-- TODO: if this user is going; change text to "I'm Going"-->
 							Going? <i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
-						<!-- TODO: if this org created the event; show delete button-->
 						<?php
-							if ($membership->get_created_event_user($event_id, $username)) {
+							if ($org_id == $organisation_id) {
 								echo "<a href=home.php?delete=" . $event_id . " class='btn-large waves-effect waves-red light-blue darken-3 tooltipped center' data-position='bottom' data-delay='50' data-tooltip='Permanently Delete This Event'>Remove
 									<i class='material-icons right'>delete</i></a>";
 							}

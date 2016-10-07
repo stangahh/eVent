@@ -284,6 +284,7 @@
 				return false;
 			}
 		}
+<<<<<<< HEAD
     //method used to create an account detials for user
     //@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
     //@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -314,32 +315,78 @@
         }
     }
     
+=======
+		//method used to create an account detials for user
+		//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
+		//@output void 'true', @(mysqli_query), @(mysqli_error);
+		function register_user_details($title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+
+			$query_ud = "INSERT INTO user_details (ud_title, ud_user_id, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation)
+							VALUES ('" . $title . "', (SELECT users.users_id FROM users WHERE users_username = '" . $un . "'),'" . $fn . "','" . $ln . "','" . $un . "','" . $ph . "','" . $add . "','" . $email . "','" . $dob . "','" . $sex . "','" . $occ . "')";
+
+			$stmt_ud = mysqli_prepare($connection, $query_ud);
+
+			mysqli_stmt_execute($stmt_ud);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt_ud);
+
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt_ud);
+				mysqli_close($connection);
+				$_SESSION['status'] = 'authorised_' . $un;
+					header("location: home.php");
+				return true;
+
+			} else {
+				echo mysqli_error($stmt_ud);
+				mysqli_stmt_close($stmt_ud);
+				mysqli_close($connection);
+				return false;
+			}
+		}
+
+>>>>>>> master
     // Send the user a password reset e-mail and use it to reset their password
     // Author: Tom Deakin
     function reset_password($email) {
       // Connect to the database
       $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-      
+
       // Check to see if the email actually exists
+<<<<<<< HEAD
       $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_details WHERE ud_email = '$email'") OR die();    
       
       // Get the username associated with the given email address
       $get_id = mysqli_query($connection, "SELECT ud_user_id,ud_username FROM user_details WHERE ud_email = '$email'") OR die();
       $user = mysqli_fetch_object($get_id);            
       
+=======
+      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();
+
+      // Get the username associated with the given email address
+      $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
+      $user = mysqli_fetch_object($get_id);
+
+>>>>>>> master
       // Create a new, random password
       $password = substr(md5(uniqid(rand(), 1)), 3, 10);
-      
+
       // Encrypt the new password for database entry
       $encrypted_password = md5($password);
-      
+
       // Send e-mail to the user
       $to = "$email";
       $subject = "Ozbot.com.au Account Recovery";
       $body = "Hi $user->ud_username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $user->ud_username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
       $additionalheaders = "From: <admin@ozbot.com.au>rn";
+<<<<<<< HEAD
 //      mail($to, $subject, $body, $additionalheaders);
       
+=======
+      mail($to, $subject, $body, $additionalheaders);
+
+>>>>>>> master
       // Update the database
       echo $encrypted_password . " ";
       echo $user->ud_user_id . " ";
@@ -523,6 +570,7 @@
             mysqli_close($connection);
             return true;
 
+<<<<<<< HEAD
         } else {
             echo mysqli_error($stmt);
             mysqli_stmt_close($stmt);
@@ -530,6 +578,13 @@
             return false;
         }
     }
+=======
+		function update_donations($amt, $user, $id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
+
+			$stmt = mysqli_prepare($connection, $query);
+>>>>>>> master
 
     function update_donations($amt, $user, $id) {
         $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -546,6 +601,7 @@
             mysqli_close($connection);
             return true;
 
+<<<<<<< HEAD
         } else {
             echo mysqli_error($stmt);
             mysqli_stmt_close($stmt);
@@ -581,6 +637,29 @@
         mysqli_stmt_execute($stmt);
 
         $affected_rows = mysqli_num_rows($stmt);
+=======
+		//May or may not work as of yet - not tested with events included on the site
+		function find_going($eventid) {
+			$number_going = array();
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT `don_id`, COUNT(`don_user_id`), SUM(`don_amount_donated`), `don_event_id` FROM `donations` WHERE `don_event_id` = '" . $eventid . "'";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+					while($row = mysqli_fetch_array($response)){
+						$count = $row['COUNT(`don_user_id`)'];
+					}
+				}
+
+
+			// mysqli_fetch_object($query);
+			// mysqli_stmt_execute($response);
+
+			return $count;
+			mysqli_stmt_close($response);
+			mysqli_close($connection);
+>>>>>>> master
 
         if ($affected_rows == 1) {
             mysqli_stmt_close($stmt);
