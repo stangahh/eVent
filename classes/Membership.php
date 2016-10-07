@@ -392,7 +392,15 @@
         )";
         $stmt = mysqli_prepare($connection,$query);
 
-        mysqli_stmt_execute($stmt);
+		    //upload image 
+      		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg'; 
+      		if (move_uploaded_file($image['tmp_name'], $uploaddir)) {
+        		echo 'success';
+      		} else {
+        		echo 'fail';
+      		}
+
+			mysqli_stmt_execute($stmt);
 
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         if($affected_rows == 1){
@@ -407,11 +415,8 @@
             return false;
         }
 
-        mysqli_close($connection);
 
-        //upload image
-        $uploaddir = '../eventimg/'. $latest_img_num .'.jpg';
-        move_uploaded_file($image, $uploaddir);
+        mysqli_close($connection);
     }
 
     //returns next image number or default image
