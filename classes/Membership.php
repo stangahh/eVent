@@ -336,7 +336,7 @@
       // Send e-mail to the user
       $to = "$email";
       $subject = "eVent Account Recovery";
-      $body = "Hi $user->ud_username, nnYou, or someone pretending to be you, have requested a password reset. nnYour username is $user->ud_username. nnYour new password is $password. nnPlease login and change your password to something more memorable as soon as possible. nnRegards, nnOzbot.com.au Admin";
+      $body = nl2br("Hi Test, \n\nYou have requested a password reset. \n\nUsername: Test. \nNew password: $password. \n\nPlease login and change your password to something more memorable as soon as possible. If you did not request this reset, then your email is probably compromised too, in which case, you're fucked. Try not using qwerty as your password next time. \n\nRegards, \n\neVent Admin");
       $headers  = 'From: ifb299event@gmail.com' . "\r\n" .
                   'MIME-Version: 1.0' . "\r\n" .
                   'Content-type: text/html; charset=utf-8';
