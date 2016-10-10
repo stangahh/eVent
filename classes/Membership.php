@@ -505,7 +505,8 @@
 				return false;
 			}
 		}
-
+		
+		//inserts a donation amount into the database specifying the userid and their amount
 		function add_donation($amt, $user, $id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "INSERT INTO donations (don_user_id, don_amount_donated, don_event_id)
@@ -528,46 +529,6 @@
 				mysqli_close($connection);
 				return false;
 			}
-		}
-
-		function update_donations($amt, $user, $id) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "UPDATE events SET event_amount_funded = event_amount_funded + '" . $amt . "' WHERE event_id = '" . $id ."'";
-			
-			$stmt = mysqli_prepare($connection, $query);
-
-			mysqli_stmt_execute($stmt);
-
-			$affected_rows = mysqli_stmt_affected_rows($stmt);
-
-			if ($affected_rows == 1) {
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return true;
-
-			} else {
-				echo mysqli_error($stmt);
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return false;
-			}
-
-		}
-
-		//May or may not work as of yet - not tested with events included on the site
-		function find_going($eventid) {
-			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT COUNT(going_user_id) FROM going WHERE going_event_id = '". $eventid . "'";
-
-			$stmt = mysqli_prepare($connection, $query);
-
-			mysqli_stmt_execute($stmt);
-
-			$affected_rows = mysqli_num_rows($stmt);
-
-			mysqli_stmt_close($stmt);
-			mysqli_close($connection);
-			return $affected_rows;
 		}
 
 		// If the event is created by the current user, return true
@@ -594,8 +555,7 @@
 
 		}
 
-
-		// Removes all the rows with the same event id (not checked, not added into the html stuff)
+		//Removes all the rows with the same event id (not checked, not added into the html stuff)
 		function remove_going($event_id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
@@ -618,7 +578,66 @@
 				return false;
 			}
 		}
+		
+		//Returns Number of People going to an event
+		function find_going($eventid) {
+			
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT SUM(going_user_amount) FROM going WHERE going_event_id = '". $eventid . "' LIMIT 1";
 
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					$going = $row['SUM(going_user_amount)'];
+					
+					if ($going != NULL){
+						return $going;
+					} else {
+						return 0;
+					}
+					
+				};
+			} else {
+				return 'ERROR';
+			}
+			
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+		}
+		
+		//returns true of user is going to event
+		function is_user_going($user_id, $event_id){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT COUNT(going_event_id) FROM going WHERE going_user_id = '" . $user_id . "' AND going_event_id = '" . $event_id . "' LIMIT 1";
+
+			$response = mysqli_query($connection, $query);
+			
+			//wont return response if user isnt in table
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					
+					$count = $row['COUNT(going_event_id)'];
+					
+					if ($count == 0){
+						return false;
+					} else if ($count == NULL){
+						return false;
+					} else {
+						return true;
+					}
+					
+				};
+			} else {
+				return false;
+			}
+			
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+		}
+		
+		
+		
 	}
 
 ?>

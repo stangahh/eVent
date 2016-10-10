@@ -10,10 +10,20 @@
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 
 	$event_id = $_GET['eventid'];
-
+	
 	if ($_POST && !empty($_POST['amt_required'])) {
 		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
 		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+	}
+	
+	//check if current user is already going
+	$check_going = $membership->is_user_going($membership->get_id($username), $event_id); //true if user is going
+	
+	$going_button_text = 'GOING?';
+	
+	//change button text f user is going to the event
+	if ($check_going) { 
+		$going_button_text = 'ALREADY GOING - CANCEL?';
 	}
 
 	$eventarray = $membership->get_event_information($event_id);
@@ -53,7 +63,7 @@
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
 	<div class="parallax-container z-depth-2">
-		<div class="parallax"><img alt="image" src=eventimg/<?php echo $event_photo?>></div>
+		<div class="parallax"><img alt="image" src="eventimg/<?php echo $event_photo?>.jpg"></div>
 		<div class="section no-pad-bot" id="index-banner">
 			<div class="center">
 				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -64,7 +74,7 @@
 						data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event"
 						onclick="add_user_going(<?php echo $org_id . ", " . $username ?>)">
 							<!-- TODO: if this user is going; change text to "I'm Going"-->
-							Going? <i class="material-icons right">turned_in_not</i></a>
+							<?php echo $going_button_text ?><i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
 						<?php
 							if ($org_id == $organisation_id) {
@@ -88,7 +98,7 @@
 				$percent_there = ($amount_funded / $amount_needed) * 100;
 			}
 		?>
-		<h4 class="heading"> We have been funded $<?php echo $amount_funded?> out of our goal of $<?php echo $amount_needed?></h3>
+		<h4 class="heading"> We have been funded $<?php echo $amount_funded ?> out of our goal of $<?php echo $amount_needed?></h3>
 			<div class="progress col l12 s12">
 				 <div class="determinate" style="width: <?php echo $percent_there?>%"></div>
 		 	</div>
@@ -96,25 +106,26 @@
 		<div class="col s12 m6">
 			<div class="card light-blue darken-3">
 				<div class="card-content white-text">
-					<span class="flow-text card-title">Address: <?php echo $location_address?></span>
+					<span class="flow-text card-title"><b>Address:</b> <?php echo $location_address?></span>
 					<!-- <p class="card-title"><?php echo $event_time?></p> -->
-					<p class="flow-text">Date: <?php echo $event_date?></p>
-					<p class="flow-text">An event by: <?php echo $event_org_name?></p>
-					<p class="flow-text">Percent funded: <?php echo $percent_there?>%</p>
+					<p class="flow-text"><b>Date:</b> <?php echo $event_date?></p>
+					<p class="flow-text"><b>An event by:</b> <?php echo $event_org_name?></p>
+					<p class="flow-text"><b>Percent funded:</b> <?php echo round($percent_there)?>%</p>
 					<!-- NUMBER OF PEOPLE ATTENDING THE EVENT -->
-					<p class="flow-text">People going: <?php echo $membership->find_going($event_id)?></p>
+					<p class="flow-text"><b>People going:</b> <?php echo $membership->find_going($event_id)?></p>
 					<!-- FOUND AT http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript -->
-					<button id="copy_url" onclick="copyToClipboard(document.getElementById('copy_url').innerHTML)">Copy URL</button>
-					<script>
-					  function copyToClipboard(text) {
-					    window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
-					  }
-					</script>
 				</div>
 				<div class="card-action">
 					<a href="https://www.facebook.com/sharer/sharer.php?u=ozbot.com.au/event.php?eventid=<?php echo $event_id ?>" target="_blank">Share with facebook</a>
 					<a data-target="modal2" href="#modal2" class="modal-trigger">Donate</a>
 					<a href="mailto:example@example.com">Contact</a>
+					<!-- I hope you dont mind i did this, really nice function by the way, also i dont know why the cursor doesnt show as a pointer please fix -->
+					<a id="copy_url" onclick="copyToClipboard(document.getElementById('copy_url').innerHTML)">Event Link</a>
+						<script>
+							function copyToClipboard() {
+								window.prompt("Copy to clipboard: Ctrl+C, Enter", "straya.tech/event.php?eventid=<?php echo $event_id?>");
+							}
+						</script>
 				</div>
 			</div>
 			<h4>INFO</h4>
