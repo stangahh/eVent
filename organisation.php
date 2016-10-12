@@ -23,9 +23,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
+<?php include 'includes/navigation.php' ?>
 <main>
 
-	<?php include 'includes/navigation.php' ?>
 
 	<!-- org page content  -->
 	<div class="center row">

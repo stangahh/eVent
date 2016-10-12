@@ -38,9 +38,9 @@
   </style>
 </head>
 
+<?php include 'includes/navigation.php' ?>
 <body>
 
-  <?php include 'includes/navigation.php' ?>
 
     <!-- home page content  -->
     <h1 class="center heading">eVents</h1>

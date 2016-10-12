@@ -58,7 +58,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title><?php echo $event_name?> - eVent</title>
@@ -67,11 +67,11 @@
   <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
+</header>
 
-<body>
+<?php include 'includes/navigation.php' ?>
+<main>
 
-	<?php include 'includes/navigation.php' ?>
 
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
@@ -356,7 +356,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
-</body>
+</main>
 
   <?php include 'includes/footer.php' ?>
 
