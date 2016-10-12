@@ -1,7 +1,7 @@
 <form class="col s12 m8 l6 offset-l3 offset-m2 offset-s0" enctype="multipart/form-data" type="file" method="post" action="event_preview.php">
   <div class="row">
     <div class="input-field col s12">
-      <input id="event_name" name="event_name" type="text" class="validate" required>
+      <input id="event_name" name="event_name" type="text" class="validate" data-error="wrong" data-success="right" required>
       <label for="event_name">Event Name</label>
     </div>
 
@@ -17,30 +17,30 @@
 
   <div class="row">
     <div class="input-field col l6 s12">
-      <input id="amt_required" type="number" min="00000" required max="99999" class="validate" required name="amt_required">
+      <input id="amt_required" type="number" min="00000" required max="99999" class="validate" data-error="wrong" data-success="right" required name="amt_required">
       <label for="amt_required">Funding Required (AUD$) </label>
     </div>
 
     <div class="input-field col l6 s12">
-      <input id="event_date" type="date" name="event_date" class="datepicker" validate required>
+      <input id="event_date" type="date" name="event_date" class="datepicker" data-error="wrong" data-success="right" validate required>
       <label for="event_date">Event Date</label>
     </div>
   </div>
 <!-- autofilled feilds -->
     <div class="input-field col s8 m8 l5">
-      <input id="locality" placeholder="" name="Event_Area" type="text" class="validate">
+      <input id="locality" placeholder="" name="Event_Area" type="text" data-error="wrong" data-success="right" class="validate">
       <label for="locality">Event Area </label>
     </div>
     <div class="input-field col s4 m4 l2">
-      <input placeholder="" id="postal_code" type="text" class="validate" name="postal_code">
+      <input placeholder="" id="postal_code" type="number" class="validate" data-error="wrong" data-success="right" name="postal_code">
       <label for="postal_code">Postcode</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lat" placeholder="" name="lat" type="text" class="validate" required>
+      <input id="lat" placeholder="" name="lat" type="text" data-error="wrong" data-success="right" class="validate" required>
       <label for="lat">Latitude</label>
     </div>
     <div class="input-field col s6 m6 l2">
-      <input id="lng" placeholder="" name="lng" type="text" class="validate" required>
+      <input id="lng" placeholder="" name="lng" type="text" data-error="wrong" data-success="right" class="validate" required>
       <label for="lng">Longitude</label>
     </div>
 <div class="row">
