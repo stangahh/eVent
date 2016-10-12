@@ -53,7 +53,6 @@
 			echo "<script>Materialize.toast('Failed to Update Details', 4000);</script>";
 		} else{
 			echo "<script>Materialize.toast('Details Updated', 4000);</script>";
-			header("location: accountsettings.php");
 		}
 	}
 
