@@ -231,6 +231,40 @@
 			return $event_info;
 		}
 
+		//method to get user info from the user id
+		//@input userid
+		//@output spec_info, @(true), @catch(mysqli_error);
+		function get_spec_info($userid) {
+			$spec_info = array();
+
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
+					ud_user_id = '". $userid . "' LIMIT 1";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					array_push($spec_info, $row['ud_title']);
+					array_push($spec_info, $row['ud_fname']);
+					array_push($spec_info, $row['ud_username']);
+					array_push($spec_info, $row['ud_lname']);
+					array_push($spec_info, $row['ud_phone']);
+					array_push($spec_info, $row['ud_address']);
+					array_push($spec_info, $row['ud_dob']);
+					array_push($spec_info, $row['ud_sex']);
+					array_push($spec_info, $row['ud_email']);
+					array_push($spec_info, $row['ud_occupation']);
+				}
+			} else {
+				echo "FAILURE";
+			}
+			
+			mysqli_close($connection);
+
+			return $spec_info;
+		}
+
 		//returns event information as array
 		//@input user_id
 		//@output user's latest single uploaded event as array

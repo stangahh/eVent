@@ -14,37 +14,17 @@
 	$titlearray = array("Mr", "Mrs", "Ms", "Miss", "Mx", "Master", "Maid" ,"Madam", "Other");
 	$genderarray = array("Male", "Female", "Other", "Not Applicable");
 
-	get_spec_info($userid);
-
-	//fetches info from database and assigns it to the globals
-	function get_spec_info($userid){
-
-		$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-		$query = "SELECT ud_title, ud_fname, ud_lname, ud_username, ud_phone, ud_address, ud_email, ud_dob, ud_sex, ud_occupation FROM user_details WHERE
-			ud_user_id = '". $userid . "' LIMIT 1";
-
-		$response = mysqli_query($connection, $query);
-
-		if($response){
-			while($row = mysqli_fetch_array($response)){
-
-					$GLOBALS['title'] = $row['ud_title'];
-					$GLOBALS['first_name'] = $row['ud_fname'];
-					$GLOBALS['username'] = $row['ud_username'];
-					$GLOBALS['last_name'] = $row['ud_lname'];
-					$GLOBALS['phone'] = $row['ud_phone'];
-					$GLOBALS['address'] = $row['ud_address'];
-					$GLOBALS['DOB'] = $row['ud_dob'];
-					$GLOBALS['sex'] = $row['ud_sex'];
-					$GLOBALS['email'] = $row['ud_email'];
-					$GLOBALS['occupation'] = $row['ud_occupation'];
-			}
-		} else {
-			echo "FAILURE";
-		}
-
-		mysqli_close($connection);
-	}
+	$userinfoarray = $membership->get_spec_info($userid);
+	//WHENEVER THESE ARE USED THEY RETURN A UNDEFINED OFFSET ERROR
+	// $usertitle = $userinfoarray[0];
+	// $userfirstname = $userinfoarray[1];
+	// $userlastname = $userinfoarray[3];
+	// $userphone = $userinfoarray[4];
+	// $useraddress = $userinfoarray[5];
+	// $userdob = $userinfoarray[6];
+	// $usersex = $userinfoarray[7];
+	// $useremail = $userinfoarray[8];
+	// $useroccupation = $userinfoarray[9];
 
 	//yes this is super lazy and terrible code, please fix
 	if($_POST){
