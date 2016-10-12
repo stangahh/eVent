@@ -160,6 +160,39 @@
 			return $events;
 
 		}
+
+		//method to return array of all events,
+		//id = 'user_id' returns all events associated with that user
+		//@input id
+		//@output event_list, @(true), @catch(mysqli_error);
+		function get_event_list_user_id($id){
+			$events = array();
+
+			$modifier = "";
+
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT event_id, event_name, event_org_id, event_location FROM events WHERE event_creator_user_id = '". $id ."' ORDER BY event_name ASC";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					array_push($events, "
+						" . $row['event_id'] .
+						"<strong>" . $row['event_name'] ."</strong>, "
+						. $row['event_location'] . "
+					");
+				}
+			} else {
+				echo "FAILURE";
+			}
+
+			mysqli_close($connection);
+
+			return $events;
+
+		}
+
 		//method to get event infomation from the event id
 		//@input event_id
 		//@output event_info, @(true), @catch(mysqli_error);

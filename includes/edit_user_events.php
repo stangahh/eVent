@@ -1,8 +1,8 @@
 <?php 
-$events = $membership->get_event_list($organisation_id); //fetches an array of all events and stores as local variable
+$events = $membership->get_event_list_user_id($userid); //fetches an array of all events and stores as local variable
 ?>
 
-<h2 class="center">Edit My Events</h2>
+<h3 class="center">Events I've Created</h3>
 <div class="row center">
     <ul id="listOfEvents">
 		<?php
