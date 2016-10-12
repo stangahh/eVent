@@ -7,7 +7,7 @@
 	$username = $membership->get_username(); //local variable of activer user username
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
-	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
+	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and
 
 ?>
 <!DOCTYPE html>
@@ -48,11 +48,6 @@
 		</ul>
 	</div>
 </div>
-	<p class="center">
-		No more events found
-		<br>
-		<a href="lsp.php" >Try using the map</a>
-	</p>
 
 	<!-- floating button to add event  -->
 	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
