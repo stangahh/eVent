@@ -18,7 +18,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <meta name="theme-color" content="#db5945">
@@ -28,8 +28,8 @@
   <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
+</header>
+<main>
 
   <?php include 'includes/navigation.php' ?>
 <!-- home page content  -->
@@ -91,7 +91,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
-  </body>
+</main>
 
   <?php include 'includes/footer.php' ?>
 </html>

@@ -112,7 +112,7 @@
 		//@output org_name, @(true), @catch(mysqli_error);
 		function get_org_name($org_id){
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "SELECT org_name FROM organisations WHERE org_id = '" . $org_id . "' LIMIT 1";
+			$query = "SELECT * FROM organisations WHERE org_id = '" . $org_id . "' LIMIT 1";
 			$response = mysqli_query($connection, $query);
 
 			if($response){
@@ -313,26 +313,26 @@
 				return false;
 			}
 		}
-    
+
     // Send the user a password reset e-mail and use it to reset their password
     // Author: Tom Deakin
     function reset_password($email) {
       // Connect to the database
       $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-      
+
       // Check to see if the email actually exists
-      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();    
-      
+      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();
+
       // Get the username associated with the given email address
       $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
-      $user = mysqli_fetch_object($get_id);            
-      
+      $user = mysqli_fetch_object($get_id);
+
       // Create a new, random password
       $password = substr(md5(uniqid(rand(), 1)), 3, 10);
-      
+
       // Encrypt the new password for database entry
       $encrypted_password = md5($password);
-      
+
       // Send e-mail to the user
       $to = "$email";
       $subject = "eVent Account Recovery";
@@ -342,10 +342,10 @@
                   'Content-type: text/html; charset=utf-8';
       if (mail($to, $subject, $body, $headers)) {
         echo "Email sent";
-      } else { 
+      } else {
         echo "Email sending failed";
       }
-      
+
       // Update the database
       $update_password = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE users_id = $user->ud_user_id") OR die();
       $stmt = mysqli_prepare($connection, $update_password);
@@ -392,8 +392,8 @@
 			)";
 			$stmt = mysqli_prepare($connection,$query);
 
-		    //upload image 
-      		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg'; 
+		    //upload image
+      		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
       		if (move_uploaded_file($image['tmp_name'], $uploaddir)) {
         		echo 'success';
       		} else {
@@ -505,7 +505,7 @@
 				return false;
 			}
 		}
-		
+
 		//inserts a donation amount into the database specifying the userid and their amount
 		function add_donation($amt, $user, $id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -578,10 +578,10 @@
 				return false;
 			}
 		}
-		
+
 		//Returns Number of People going to an event
 		function find_going($eventid) {
-			
+
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "SELECT SUM(going_user_amount) FROM going WHERE going_event_id = '". $eventid . "' LIMIT 1";
 
@@ -590,35 +590,35 @@
 			if($response){
 				while($row = mysqli_fetch_array($response)){
 					$going = $row['SUM(going_user_amount)'];
-					
+
 					if ($going != NULL){
 						return $going;
 					} else {
 						return 0;
 					}
-					
+
 				};
 			} else {
 				return 'ERROR';
 			}
-			
+
 			mysqli_stmt_close($stmt);
 			mysqli_close($connection);
 		}
-		
+
 		//returns true of user is going to event
 		function is_user_going($user_id, $event_id){
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "SELECT COUNT(going_event_id) FROM going WHERE going_user_id = '" . $user_id . "' AND going_event_id = '" . $event_id . "' LIMIT 1";
 
 			$response = mysqli_query($connection, $query);
-			
+
 			//wont return response if user isnt in table
 			if($response){
 				while($row = mysqli_fetch_array($response)){
-					
+
 					$count = $row['COUNT(going_event_id)'];
-					
+
 					if ($count == 0){
 						return false;
 					} else if ($count == NULL){
@@ -626,18 +626,18 @@
 					} else {
 						return true;
 					}
-					
+
 				};
 			} else {
 				return false;
 			}
-			
+
 			mysqli_stmt_close($stmt);
 			mysqli_close($connection);
 		}
-		
-		
-		
+
+
+
 	}
 
 ?>
