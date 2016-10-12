@@ -32,8 +32,9 @@
     }
 
     #map {
-      height: 70%;
+      height: 600px;
       width: 100%;
+      margin-right: 20px;
     }
   </style>
 </head>

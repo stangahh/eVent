@@ -28,7 +28,7 @@
     }
   @media screen and (min-width: 993px){
     #page{
-    padding-left: 8cm;
+    padding-left: 230px;
     }
   }
   </style>
