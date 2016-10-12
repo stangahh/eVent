@@ -163,7 +163,7 @@
 		//method to get event infomation from the event id
 		//@input event_id
 		//@output event_info, @(true), @catch(mysqli_error);
-		function get_event_information($eventid){
+		function get_event_information($eventid) {
 			$event_info = array();
 
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -173,31 +173,52 @@
 			$response = mysqli_query($connection, $query);
 
 			if($response){
-					while($row = mysqli_fetch_array($response)){
+				while($row = mysqli_fetch_array($response)){
 
-						//this should be done easier with a loop and switch
-						//it is like this for simplicity
-						array_push($event_info, $row['event_name']);
-						array_push($event_info, $row['event_org_id']);
-						array_push($event_info, $row['event_location']);
-						array_push($event_info, $row['event_latitude']);
-						array_push($event_info, $row['event_longitude']);
-						array_push($event_info, $row['event_postcode']);
-						array_push($event_info, $row['event_amount_funded']);
-						array_push($event_info, $row['event_amount_required']);
-						array_push($event_info, $row['event_creator_user_id']);
-						array_push($event_info, $row['event_date']);
-						array_push($event_info, $row['event_desc']);
-						array_push($event_info, $row['event_photo']);
+					//this should be done easier with a loop and switch
+					//it is like this for simplicity
+					array_push($event_info, $row['event_name']);
+					array_push($event_info, $row['event_org_id']);
+					array_push($event_info, $row['event_location']);
+					array_push($event_info, $row['event_latitude']);
+					array_push($event_info, $row['event_longitude']);
+					array_push($event_info, $row['event_postcode']);
+					array_push($event_info, $row['event_amount_funded']);
+					array_push($event_info, $row['event_amount_required']);
+					array_push($event_info, $row['event_creator_user_id']);
+					array_push($event_info, $row['event_date']);
+					array_push($event_info, $row['event_desc']);
+					array_push($event_info, $row['event_photo']);
 
-					}
-				} else {
-					echo "FAILURE: Unable to pull event information";
 				}
+			} else {
+				echo "FAILURE: Unable to pull event information";
+			}
 
 			mysqli_close($connection);
 
 			return $event_info;
+		}
+
+		//returns event information as array
+		//@input user_id
+		//@output user's latest single uploaded event as array
+		function get_latest_event_from_user($user_id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());;
+
+			$query = "SELECT event_id FROM events WHERE event_creator_user_id = '" . $user_id . "' ORDER BY event_id DESC LIMIT 1";
+
+			$retrv = mysqli_query($connection, $query);
+
+			if (!$retrv) {
+				die('Could not get data: ' . mysql_error());
+			}
+			
+			$row = mysqli_fetch_array($retrv, MYSQL_ASSOC);
+		    
+			mysqli_close($connection);
+
+			return $row['event_id'];
 		}
 
 
