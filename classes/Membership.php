@@ -259,17 +259,17 @@
 		function update_details($userid, $title, $fname, $username, $lname, $phone, $address, $dob, $sex, $email, $occupation){
 
 			//i created these to try and find the issue
-			$userid = "67863";
-			$title = "Mr";
-			$fname = "Aden";
-			$username = "username";
-			$lname = "Max";
-			$phone = "0412345678";
-			$address = "27 Smith Lane, Greater Brisbane, 4311, Australia";
-			$dob = "1994-09-07";
-			$sex = "Male";
-			$email = "adenjames@corpmail.com";
-			$occupation = "Office Administrator";
+			// $userid = "67863";
+			// $title = "Mr";
+			// $fname = "Aden";
+			// $username = "username";
+			// $lname = "Max";
+			// $phone = "0412345678";
+			// $address = "27 Smith Lane, Greater Brisbane, 4311, Australia";
+			// $dob = "1994-09-07";
+			// $sex = "Male";
+			// $email = "adenjames@corpmail.com";
+			// $occupation = "Office Administrator";
 
 			//I found the issue. SQL returns an error if you try to update a field with the exact same information. I will fix this later.
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -299,7 +299,7 @@
 				return true;
 
 			} else {
-				//echo mysqli_error($stmt);
+				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;
@@ -559,8 +559,8 @@
 		//inserts a donation amount into the database specifying the userid and their amount
 		function add_donation($amt, $user, $id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO donations (don_user_id, don_amount_donated, don_event_id)
-					VALUES ('" . $user ."','" . $amt . "','" . $id ."')";
+			$query = "INSERT INTO donations (don_id, don_user_id, don_amount_donated, don_event_id)
+					VALUES ('0','" . $user ."','" . $amt . "','" . $id ."')";
 
 			$stmt = mysqli_prepare($connection, $query);
 
@@ -579,6 +579,32 @@
 				mysqli_close($connection);
 				return false;
 			}
+		}
+
+		//returns the total number of donations made to a specific event
+		function sum_donation($id) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT SUM(don_amount_donated) FROM donations WHERE don_event_id = '". $id . "'";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					$sum = $row['SUM(don_amount_donated)'];
+
+					if ($sum != NULL){
+						return $sum;
+					} else {
+						return 0;
+					}
+				};
+			} else {
+				return 'ERROR';
+			}
+
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+
 		}
 
 		//method to return array of all events a user has donated to, and amount donated

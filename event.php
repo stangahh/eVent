@@ -12,8 +12,7 @@
 	$event_id = $_GET['eventid'];
 
 	if ($_POST && !empty($_POST['amt_required'])) {
-		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
-		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
+		$membership->add_donation($_POST['amt_required'], $membership->get_id($username), $event_id);
 	}
 
 	//marks the user as going and submits amount
@@ -47,7 +46,7 @@
 	$latitude = $eventarray[3];
 	$longitude = $eventarray[4];
 	$postcode = $eventarray[5];
-	$amount_funded = $eventarray[6];
+	$amount_funded = $membership->sum_donation($event_id);
 	$amount_needed = $eventarray[7];
 	$creator_id = $eventarray[8];
 	$event_date = $eventarray[9];
