@@ -16,14 +16,27 @@
 		$membership->update_donations($_POST['amt_required'], $membership->get_id($username), $_GET['eventid']);
 	}
 	
+	//marks the user as going and submits amount
+	if (isset($_GET['going'])){
+		echo "<script type='text/javascript'>alert('You are now Attending this Event.');</script>";
+	}
+	
+	//run cancel event if set
+	if (!empty($_GET['cancel'])) {
+		$membership->cancel_part($membership->get_id($username));
+		echo "<script type='text/javascript'>alert('You are no Longer Attending this Event.');</script>";
+	}
+	
 	//check if current user is already going
 	$check_going = $membership->is_user_going($membership->get_id($username), $event_id); //true if user is going
 	
 	$going_button_text = 'GOING?';
+	$going_button_action = 'data-target="modal3"';
 	
 	//change button text f user is going to the event
 	if ($check_going) { 
 		$going_button_text = 'ALREADY GOING - CANCEL?';
+		$going_button_action = 'href="event.php?eventid=' . $event_id . '&cancel=1"';
 	}
 
 	$eventarray = $membership->get_event_information($event_id);
@@ -70,9 +83,9 @@
 				<!-- donate button -->
 					<a data-target="modal2" class="btn-large modal-trigger waves-effect waves-red light-blue darken-3 tooltipped center" data-position="bottom" data-delay="50" data-tooltip="Please help make this event happen">Donate <i class="material-icons right">thumb_up</i></a>
 					<!-- follow button -->
-						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center"
+						<a class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center <?php if(!$check_going ){echo "modal-trigger";} ?>"
 						data-position="bottom" data-delay="50" data-tooltip="Keep up to date on this event"
-						onclick="add_user_going(<?php echo $org_id . ", " . $username ?>)">
+						<?php echo $going_button_action ?>>
 							<!-- TODO: if this user is going; change text to "I'm Going"-->
 							<?php echo $going_button_text ?><i class="material-icons right">turned_in_not</i></a>
 					<!-- Event Remove Button -->
@@ -199,6 +212,35 @@
 					<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
 						<i class="material-icons right">send</i>
 					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!-- People Going to the Event Form -->
+	<div id="modal3" class="modal <!--modal-fixed-footer -->">
+		<div class="modal-content">
+			<h4>How Many People will be Attending?</h4>
+			
+			<!-- donation form -->
+			<form  method="post" action="event_add_going.php">
+				<div class="col s12 m8 l6 offset-l3 offset-m2 offset-s0">
+					<div class="row">
+						<div class="input-field col s3">
+							<input id="people_going" name="people_going" type="number" min="1" max="5" class="validate">
+							<label for="amt_required">People Attending</label>
+						</div>
+						
+						<input id="event_id" style="display :none" name="event_id" type="number" value="<?php echo $event_id ?>">
+						<input id="user_id" style="display :none" name="user_id" type="number" value="<?php echo $membership->get_id($username) ?>">
+						
+					</div>
+				</div>
+
+				<!-- <div class="modal-footer"> -->
+					<button class="modal-action modal-close btn-flat waves-effect waves-red light-blue darken-3 white-text center tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit
+						<i class="material-icons right">send</i>
+				<!--	</button> -->
 				</div>
 			</form>
 		</div>

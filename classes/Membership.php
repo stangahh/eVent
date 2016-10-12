@@ -535,10 +535,9 @@
 		//method that inserts users going status into the database
 		//@input $event_id, $user_id, $username
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
-		function add_user_going($event_id, $username) {
+		function add_user_going($event_id, $user_id, $amount_going) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-			$query = "INSERT INTO 'going' ('going_event_id', 'going_user_id', 'going_username')
-					VALUES ('" . $event_id . "','" . get_id($username) . "','" . $username . "')";
+			$query = "INSERT INTO `going` (`going_event_id`, `going_user_id`, `going_user_amount`) VALUES ('" . $event_id . "', '" . $user_id . "', '" . $amount_going . "')";
 
 			$stmt = mysqli_prepare($connection, $query);
 
@@ -546,10 +545,9 @@
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
 
-			if ($affected_rows == 1) {
+			if ($affected_rows >= 1) {
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
-				header("location: event.php?eventid=$event_id.php");
 				return true;
 
 			} else {
@@ -690,7 +688,27 @@
 			mysqli_close($connection);
 		}
 
+				//function to cancel a user going to an event
+		function cancel_part($user_id){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "DELETE FROM going WHERE going_user_id = '" . $user_id . "'";
 
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if($affected_rows >= 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+			}
+		}
 
 	}
 
