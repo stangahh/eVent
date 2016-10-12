@@ -9,7 +9,7 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$userid = $membership->get_id($username); //local variable of activer user id
-	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and 
+	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -23,9 +23,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
+<?php include 'includes/navigation.php' ?>
 <body>
-	<?php include 'includes/navigation.php' ?>
-	
+
 	<!-- Page Content -->
 		<header class="center">
 			<h1>Events I'm Going To</h1>

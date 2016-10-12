@@ -1,3 +1,5 @@
+</div>
+</div>
 <!-- footer with team name -->
 <footer class="page-footer orange">
   <div class="footer-copyright">

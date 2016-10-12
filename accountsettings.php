@@ -9,7 +9,7 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$userid = $membership->get_id($username); //local variable of activer user id
-	
+
 
 	$titlearray = array("Mr", "Mrs", "Ms", "Miss", "Mx", "Master", "Maid" ,"Madam", "Other");
 	$genderarray = array("Male", "Female", "Other", "Not Applicable");
@@ -53,7 +53,6 @@
 			echo "<script>Materialize.toast('Failed to Update Details', 4000);</script>";
 		} else{
 			echo "<script>Materialize.toast('Details Updated', 4000);</script>";
-			header("location: accountsettings.php");
 		}
 	}
 
@@ -70,9 +69,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
+<?php include 'includes/navigation.php' ?>
 <body>
-	<?php include 'includes/navigation.php' ?>
-	
+
 	<!-- Page Content -->
 	<container>
 		<header class="center">
@@ -80,7 +79,7 @@
 			<h3>Edit and View your Information Here</h3>
 			<h3>User ID: <?php echo $userid; ?></h3>
 		</header>
-		
+
 		<div class="row">
 			<?php include 'includes/edit_user_details_form.php' ?>
 		</div>

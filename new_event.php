@@ -10,11 +10,11 @@
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>eVent - New Event</title>
@@ -23,8 +23,8 @@
   <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
+</header>
+<main>
 
   <?php include 'includes/navigation.php' ?>
 
@@ -40,7 +40,7 @@
 <script src="js/init.js"></script>
 
 
-</body>
+</main>
 
 <?php include 'includes/footer.php' ?>
 
