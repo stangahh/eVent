@@ -4,11 +4,9 @@
     <div class="nav-wrapper container">
       <!-- <a id="logo-container" href="home.php" class="brand-logo">eVent</a> -->
 
-
       <!-- Code for the sidenav -->
-      <ul id="nav-mobile" class="side-nav fixed">
+      <ul id="nav-mobile" class="side-nav fixed center">
         <li><img class="background" src="media/event_img.png"></li>
-
         <li><a href="home.php" class="tooltipped" data-position="right" data-tooltip="All Events">Home</a></li>
         <li><a href="new_event.php" class="tooltipped" data-position="right" data-tooltip="Create a New Event here">New Event</a></li>
         <li><a href="lsp.php" class="tooltipped" data-position="right" data-tooltip="Find all the nearest events to you">Find Events</a></li>
