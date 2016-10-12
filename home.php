@@ -29,9 +29,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </header>
+<?php include 'includes/navigation.php' ?>
 <main>
 
-  <?php include 'includes/navigation.php' ?>
 <!-- home page content  -->
 <h1 class="center heading">eVents</h1>
 	<article>

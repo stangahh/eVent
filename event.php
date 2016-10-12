@@ -18,13 +18,13 @@
 
 	//marks the user as going and submits amount
 	if (isset($_GET['going'])){
-		echo "<script type='text/javascript'>alert('You are now Attending this Event.');</script>";
+		echo "<script>alert('You are now Attending this Event.');</script>";
 	}
 
 	//run cancel event if set
 	if (!empty($_GET['cancel'])) {
 		$membership->cancel_part($membership->get_id($username));
-		echo "<script type='text/javascript'>alert('You are no Longer Attending this Event.');</script>";
+		echo "<script>alert('You are no Longer Attending this Event.');	</script>";
 	}
 
 	//check if current user is already going
@@ -69,9 +69,9 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
+<?php include 'includes/navigation.php' ?>
 <body>
 
-	<?php include 'includes/navigation.php' ?>
 
 	<!-- event page content  -->
 	<h2 class="center"><?php echo $event_name?></h2>
@@ -99,10 +99,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-  <div class="container">
+
 	<div class="row">
+		<div class="container">
 
 		<?php
 			if ($amount_needed == 0) {
