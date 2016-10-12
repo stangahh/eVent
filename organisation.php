@@ -25,9 +25,15 @@
 </head>
 <main>
 
-  <?php include 'includes/navigation.php' ?>
-<!-- org page content  -->
-<h1 class="center heading"><?php echo $organisation_name?></h1>
+	<?php include 'includes/navigation.php' ?>
+
+	<!-- org page content  -->
+	<div class="center row">
+		<h1>Edit Events</h1>
+		<h3>
+			<?php echo $membership->get_username() . ". From organisation: " . $organisation_name . "(".$organisation_id.")"; ?>
+		</h3>
+	</div>
 	<article>
 		<div class="row container">
 			<div class="col s12 m6 l8">
