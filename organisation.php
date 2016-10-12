@@ -29,8 +29,13 @@
 <!-- org page content  -->
 <h1 class="center heading"><?php echo $organisation_name?></h1>
 	<article>
-		<div class="row">
-			<div class="container">
+		<div class="row container">
+			<div class="col s12 m6 l8">
+					<blockquote class="flow-text">
+	      	This is an example quotation that uses the blockquote tag.
+	    		</blockquote>
+			</div>
+			<div class="col s12 m6 l4">
 		<ul class="collection">
 			<?php
 				foreach( $events as &$p ):
