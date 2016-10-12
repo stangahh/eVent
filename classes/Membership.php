@@ -168,8 +168,6 @@
 		function get_event_list_user_id($id){
 			$events = array();
 
-			$modifier = "";
-
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "SELECT event_id, event_name, event_org_id, event_location FROM events WHERE event_creator_user_id = '". $id ."' ORDER BY event_name ASC";
 
@@ -188,7 +186,7 @@
 			}
 
 			mysqli_close($connection);
-
+			
 			return $events;
 
 		}
@@ -581,6 +579,31 @@
 				mysqli_close($connection);
 				return false;
 			}
+		}
+
+		//method to return array of all events a user has donated to, and amount donated
+		//id = 'user_id'
+		//@input id
+		//@output event array
+		function get_donated_events($id){
+			$events = array();
+
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT don_event_id,don_amount_donated FROM donations WHERE don_user_id = '" . $id . "'";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					array_push($events, $row['don_event_id'] . $row['don_amount_donated']);
+				}
+			} else {
+				echo "Failed to retrieve donation information. Have you donated to any events? :)";
+			}
+
+			mysqli_close($connection);
+
+			return $events;
 		}
 
 		// If the event is created by the current user, return true

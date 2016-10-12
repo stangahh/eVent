@@ -9,7 +9,6 @@
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$userid = $membership->get_id($username); //local variable of activer user id
-	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and 
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -27,10 +26,15 @@
 	<?php include 'includes/navigation.php' ?>
 	
 	<!-- Page Content -->
-		<header class="center">
-			<h1>Events I'm Going To</h1>
-		</header>
-
+		<div class="center">
+			<h2>Events I'm Going To</h2>
+			<?php include 'includes/events_going_to.php' ?>
+		</div>
+		<div class="center">
+			<h2>Events I've Donated To</h2>
+			<p>Current bug: plz fix below error and remove this paragraph</p>
+			<?php include 'includes/events_donated_to.php' ?>
+		</div>
 </body>
 
 <?php include 'includes/footer.php' ?>
