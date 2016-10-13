@@ -14,6 +14,16 @@
 	$titlearray = array("Mr", "Mrs", "Ms", "Miss", "Mx", "Master", "Maid" ,"Madam", "Other");
 	$genderarray = array("Male", "Female", "Other", "Not Applicable");
 
+	//yes this is super lazy and terrible code, please fix
+	if($_POST){
+		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
+				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
+			echo "<script>Materialize.toast('Failed to Update Details', 4000);</script>";
+		} else {
+			echo "<script>Materialize.toast('Details Updated', 4000);</script>";
+		}
+	}
+
 	$userinfoarray = $membership->get_spec_info($userid);
 	//WHENEVER THESE ARE USED THEY RETURN A UNDEFINED OFFSET ERROR
 	$usertitle = $userinfoarray[0];
@@ -25,18 +35,8 @@
 	$usersex = $userinfoarray[7];
 	$useremail = $userinfoarray[8];
 	$useroccupation = $userinfoarray[9];
-
-	//yes this is super lazy and terrible code, please fix
-	if($_POST){
-		if(!$membership->update_details($userid, $_POST['title'], $_POST['fname'], $_POST['username'], $_POST['lname'], $_POST['phone'],
-				$_POST['address'], $_POST['dob'], $_POST['sex'], $_POST['email'], $_POST['occupation'])){
-			echo "<script>Materialize.toast('Failed to Update Details', 4000);</script>";
-		} else{
-			echo "<script>Materialize.toast('Details Updated', 4000);</script>";
-		}
-	}
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
