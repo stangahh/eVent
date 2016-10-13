@@ -10,6 +10,10 @@
 	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list(0); //fetches an array of all events and stores as local variable
 
+	if($_POST && !empty($_POST['event_name']) && !empty($_POST['lat']) && !empty($_POST['lng'])){
+		$membership->create_event($_POST['event_name'], $organisation_id, $_POST['location'], $_POST['lat'], $_POST['lng'], $_POST['postal_code'], $_POST['amt_required'], $user_id, $_POST['event_desc'], $_POST['event_date'], $_FILES['event_img']);
+		header("location: event_preview.php");
+}
 
 ?>
 <!DOCTYPE html>

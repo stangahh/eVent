@@ -16,15 +16,15 @@
 
 	$userinfoarray = $membership->get_spec_info($userid);
 	//WHENEVER THESE ARE USED THEY RETURN A UNDEFINED OFFSET ERROR
-	// $usertitle = $userinfoarray[0];
-	// $userfirstname = $userinfoarray[1];
-	// $userlastname = $userinfoarray[3];
-	// $userphone = $userinfoarray[4];
-	// $useraddress = $userinfoarray[5];
-	// $userdob = $userinfoarray[6];
-	// $usersex = $userinfoarray[7];
-	// $useremail = $userinfoarray[8];
-	// $useroccupation = $userinfoarray[9];
+	$usertitle = $userinfoarray[0];
+	$userfirstname = $userinfoarray[1];
+	$userlastname = $userinfoarray[3];
+	$userphone = $userinfoarray[4];
+	$useraddress = $userinfoarray[5];
+	$userdob = $userinfoarray[6];
+	$usersex = $userinfoarray[7];
+	$useremail = $userinfoarray[8];
+	$useroccupation = $userinfoarray[9];
 
 	//yes this is super lazy and terrible code, please fix
 	if($_POST){
