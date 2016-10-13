@@ -1,7 +1,7 @@
 <?php
   $events = array();
   //TODO: write get_events_going_to();
-  // $events = $membership->get_events_going_to($userid); //fetches an array of all events and stores as local variable
+  $events = $membership->get_events_going_to($userid); //fetches an array of all events and stores as local variable
 ?>
 
 <div class="row container">
