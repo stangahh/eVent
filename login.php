@@ -21,9 +21,15 @@
 
   // User forgot password
   if ($_POST && !empty($_POST['pw_email'])) {
-    //$membership->debug_to_console($_POST['pw_email']); 
-    $membership->reset_password(($_POST['pw_email']));
-	echo "<script>alert('Password Reset Email Sent!');</script>";
+	  
+	if ($membership->valid_email($_POST['pw_email'])){
+		//$membership->debug_to_console($_POST['pw_email']); 
+		$membership->reset_password(($_POST['pw_email']));
+		echo "<script>alert('Password Reset Email Sent!');</script>";
+	} else {
+		echo "<script>alert('Invalid Email. Password Wont Be Reset!');</script>";
+	}
+    
   }
   
   if(isset($_GET['pw_change'])){

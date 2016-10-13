@@ -812,6 +812,37 @@
 				mysqli_close($connection);
 			}
 		}
+		
+		//returns true if email is valid
+		function valid_email($email){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT COUNT(ud_email) FROM user_details WHERE ud_email= '" . $email . "'";
+
+			$response = mysqli_query($connection, $query);
+
+			//wont return response if user isnt in table
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+
+					$count = $row['COUNT(ud_email)'];
+
+					if ($count == 1){
+						return true;
+					} else {
+						return false;
+					}
+
+				};
+			} else {
+				return false;
+			}
+
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+		}
+		
+		
+		
 	}
 
 ?>
