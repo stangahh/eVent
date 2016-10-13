@@ -164,7 +164,7 @@
 </div>
 
   <div class="row center">
-    <a class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Scrap this event and start again" type="submit" href="home.php?delete=<?php echo $latest_event?>" name="trash">Trash and Restart<i class="material-icons right">delete</i></a>
+    <a class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Scrap this event and start again" type="submit" href="home.php?delete=<?php echo $latest_event?>" name="trash">Scrap and Restart<i class="material-icons right">delete</i></a>
   	<a href="going_to.php" class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="left" data-delay="50" data-tooltip="Press to upload your event!" >Submit<i class="material-icons right">send</i>
   	</a>
   </div>
