@@ -891,7 +891,7 @@
 
 			return $events_going;
 		}
-
-	}
+    
+  }
 
 ?>

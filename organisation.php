@@ -2,7 +2,7 @@
 	//Author: Maxwell McLeod
 	require_once 'classes/Membership.php';
 
-	$membership = New Membership(); //simple new class call
+	$membership = new Membership(); //simple new class call
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
 	$username = $membership->get_username(); //local variable of activer user username
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
@@ -52,23 +52,30 @@
 	    		</blockquote>
 			</div>
 			<div class="col s12 m6 l4">
-		<ul class="collection">
-			<?php
-				foreach( $events as &$p ):
-				$p = trim($p);
-				$id = substr($p, 0, 5);
-				$eventarray = $membership->get_event_information($id);
-				$event_photo = $eventarray[11];
-				$p = substr($p, 5);
-			?>
-              <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
-			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
-	    <span class="title"><p><?php echo $p; ?></p>
-		 	</a>
-              <?php endforeach; ?>
-          </ul>
-        </div>
+        <ul class="collection">
+          <?php
+            foreach( $events as &$p ):
+            $p = trim($p);
+            $id = substr($p, 0, 5);
+            $eventarray = $membership->get_event_information($id);
+            $event_photo = $eventarray[11];
+            $p = substr($p, 5);
+          ?>
+          <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
+            <img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
+            <span class="title"><p><?php echo $p; ?></p>
+          </a>
+          <?php endforeach; ?>
+        </ul>
       </div>
+      <div>
+        <form>
+          <select name="test">
+            <option value="test">test</option>
+          </select>
+        </form>
+      </div>
+    </div>
 
       <!-- floating button to add event  -->
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -81,7 +88,7 @@
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
 
-  </main>
+</main>
 
   <?php include 'includes/footer.php' ?>
 
