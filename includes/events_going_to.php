@@ -1,7 +1,6 @@
 <?php
   $events = array();
-  //TODO: write get_events_going_to();
-  $events = $membership->get_events_going_to($userid); //fetches an array of all events and stores as local variable
+  $events = $membership->get_events_going_to($userid);
 ?>
 
 <div class="row container">
@@ -11,12 +10,13 @@
       $p = trim($p);
       $id = substr($p, 0, 5);
       $eventarray = $membership->get_event_information($id);
+      $event_name = $eventarray[0];
       $event_photo = $eventarray[11];
       $p = substr($p, 5);
     ?>
     <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
     <img class="circle responsive-img" alt="event icon" src="eventimg/<?php echo $event_photo; ?>.jpg">
-    <span class="title"><?php echo $p; ?></span>
+    <span class="left title"><?php echo $event_name; ?></span>
     </a>
     <?php endforeach; ?>
   </ul>
