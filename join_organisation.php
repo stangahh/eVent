@@ -6,11 +6,22 @@
   $membership = New Membership(); //simple new class call 
   $membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =) 
   $username = $membership->get_username(); //local variable of activer user username 
-  $organisation_id = $membership->get_org_id($username); //get organisation id for user 
-  $organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user 
   $userid = $membership->get_id($username); //local variable of activer user id 
 
+  if ($_POST && $_POST['pword'] && $_POST['orgname']) {
+    if ($membership->check_org_pass($_POST['orgname'], $_POST['pword'])) {
+      $membership->set_org($userid, $membership->get_org_id_from_name($_POST['orgname']));
+      echo "<script>alert('You have successfully joined the organisation');</script>";
+    } else {
+      echo "<script>alert('Password incorrect');</script>";
+    }
+  }
+
+  $organisation_id = $membership->get_org_id($username); //get organisation id for user 
+  $organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user 
   $orgarray = $membership->get_org_array();
+
+  
 ?> 
 
 <!DOCTYPE html>
@@ -43,7 +54,10 @@
       <br>
       <div class="input-field col m6 s12">
         <label for="pword" class="active">Organisation Password</label>
-        <input type="text" id="pword" name="pword" value="">
+        <input type="password" id="pword" name="pword" value="">
+      </div>
+      <div class="row">
+        <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
       </div>
     </form>
   </div>

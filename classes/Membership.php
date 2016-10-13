@@ -930,6 +930,71 @@
       $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
     }
 
+		function check_org_pass($org, $pw) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT COUNT(org_id) FROM organisations WHERE org_name = '" . $org . "' AND org_password = '" . $pw . "' LIMIT 1";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)) {
+					$count = $row['COUNT(org_id)'];
+
+					if ($count == 0){
+						return false;
+					} else if ($count == NULL){
+						return false;
+					} else {
+						return true;
+					}
+				}
+			} else {
+				return false;
+			}
+
+			mysqli_stmt_close($stmt);
+			mysqli_close($connection);
+		}
+
+		function set_org($user, $org) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+
+			$query = "UPDATE users
+			SET users_org_id = '" . $org . "' WHERE users_id = '" . $user . "'";;
+
+			$stmt = mysqli_prepare($connection,$query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if($affected_rows == 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return true;
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+				return false;
+			}
+
+		}
+
+		function get_org_id_from_name($org_name){
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT * FROM organisations WHERE org_name = '" . $org_name . "' LIMIT 1";
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					return $name = $row['org_id'];
+				};
+				//return $name;
+			}
+		}
+
   }
 
 ?>
