@@ -57,7 +57,7 @@
     <div class="card medium hoverable">
 			<a href="event.php?eventid=<?php echo $id; ?>">
       <div class="card-image waves-effect waves-block waves-light">
-        <img alt="error image not found 404"src="eventimg/<?php echo $event_photo; ?>.jpg">
+        <img alt="error image not found 404" src="eventimg/<?php echo $event_photo; ?>">
       </div>
 			</a>
       <div class="card-stacked">

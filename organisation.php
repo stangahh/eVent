@@ -58,7 +58,7 @@
 				$p = substr($p, 5);
 			?>
 			<a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
-			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
+			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>">
 	    <span class="title"><p><?php echo $p; ?></p>
 		 	</a>
 			<?php endforeach; ?>

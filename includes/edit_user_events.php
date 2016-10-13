@@ -14,7 +14,7 @@ $events = $membership->get_event_list_user_id($userid); //fetches an array of al
       $p = substr($p, 5);
     ?>
     <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
-    <img class="circle responsive-img" alt="event icon" src="eventimg/<?php echo $event_photo; ?>.jpg">
+    <img class="circle responsive-img" alt="event icon" src="eventimg/<?php echo $event_photo; ?>">
     <span class="title"><?php echo $p; ?></span>
     </a>
     <?php endforeach; ?>
