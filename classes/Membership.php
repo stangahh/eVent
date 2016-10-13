@@ -10,7 +10,7 @@
 	require_once 'includes/constants.php';
 
 	class Membership{
-		
+
 		//function for debuging to javascript console
 		function debug_to_console( $data ) {
 			if ( is_array( $data ) )
@@ -122,7 +122,38 @@
 				//return $name;
 			}
 		}
+		//method to fetch organisation name using an organisation id
+		//@input org_id
+		//@output org_name, @(true), @catch(mysqli_error);
+		function get_org($org_id){
+			$org_info = array();
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT * FROM organisations WHERE org_id = '" . $org_id . "' LIMIT 1";
+			$response = mysqli_query($connection, $query);
 
+			// if($response){
+			// 	while($row = mysqli_fetch_array($response)){
+			// 		return $name = $row['org_name'];
+			// 		org_details
+			// 		org_logo
+			// 		org_contact_person
+			// 	};
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					array_push($org_info, $row['org_name']);
+					array_push($org_info, $row['org_details']);
+					array_push($org_info, $row['org_logo']);
+					array_push($org_info, $row['org_contact_person']);
+					array_push($org_info, $row['org_password']);
+				}
+			} else {
+				echo "FAILURE";
+			}
+			mysqli_close($connection);
+
+			return $org_info;
+		}
 		//method to return array of all events,
 		//id = '0', returns all events
 		//id = 'org_id' returns all associated with that organisation
@@ -370,7 +401,7 @@
 				return false;
 			}
 		}
-		
+
 		//method used to create an account detials for user
 		//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -400,7 +431,7 @@
 				return false;
 			}
 		}
-	
+
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -641,8 +672,8 @@
 		function remove_going($event_id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
-			
-		
+
+
 			$stmt = mysqli_prepare($connection, $query);
 
 			mysqli_stmt_execute($stmt);
@@ -740,7 +771,7 @@
 				mysqli_close($connection);
 			}
 		}
-		
+
 		// Send the user a password reset e-mail and use it to reset their password
 		// Author: Tom Deakin
 		function reset_password($email) {
@@ -751,30 +782,30 @@
 
 			// Get the username associated with the given email address
 			$get_id = "SELECT ud_user_id FROM user_details WHERE ud_email = '" . $email . "' LIMIT 1";
-			
+
 			// Get the username associated with the given email address
 			$get_name = "SELECT ud_fname FROM user_details WHERE ud_email = '" . $email . "' LIMIT 1";
-			
+
 			$r_user = mysqli_query($connection, $get_id);
 			$r_name = mysqli_query($connection, $get_name);
 			$r_email = mysqli_query($connection, $valid_email);
-			
+
 			$user_id;
 			$user_dp_name;
 			$user_email;
-			
+
 			if($r_user){
 				while($row = mysqli_fetch_array($r_user)){
 					$user_id = $row['ud_user_id'];
 				}
 			}
-			
+
 			if($r_name){
 				while($row = mysqli_fetch_array($r_name)){
 					$user_dp_name = $row['ud_fname'];
 				}
 			}
-			
+
 			if($r_email){
 				while($row = mysqli_fetch_array($r_email)){
 					$user_email = $row['ud_email'];
@@ -790,7 +821,7 @@
                   'Content-type: text/html; charset=utf-8';
 			mail($to, $subject, $body, $headers);
 		}
-		
+
 		//change user password
 	    function change_user_password($userid, $password){
         $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -812,7 +843,7 @@
 				mysqli_close($connection);
 			}
 		}
-		
+
 		//returns true if email is valid
 		function valid_email($email){
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -840,9 +871,9 @@
 			mysqli_stmt_close($stmt);
 			mysqli_close($connection);
 		}
-		
-		
-		
+
+
+
 	}
 
 ?>

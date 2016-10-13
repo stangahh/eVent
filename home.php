@@ -6,7 +6,8 @@
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
 	$username = $membership->get_username(); //local variable of activer user username
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
-	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
+	$org_info = $membership->get_org($organisation_id); //get organisation name for user
+	$organisation_name = $org_info[0];
 
   if (isset($_GET['delete'])) {
 		$membership->remove_going($_GET['delete']);
