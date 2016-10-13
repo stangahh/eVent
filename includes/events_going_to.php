@@ -11,12 +11,14 @@
       $id = substr($p, 0, 5);
       $eventarray = $membership->get_event_information($id);
       $event_name = $eventarray[0];
+      $event_date = $eventarray[9];
       $event_photo = $eventarray[11];
       $p = substr($p, 5);
     ?>
     <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
     <img class="circle responsive-img" alt="event icon" src="eventimg/<?php echo $event_photo; ?>.jpg">
     <span class="left title"><?php echo $event_name; ?></span>
+    <span class="right">Date of event: <?php echo $event_date; ?></span>
     </a>
     <?php endforeach; ?>
   </ul>

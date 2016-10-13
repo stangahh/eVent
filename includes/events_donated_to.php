@@ -16,7 +16,7 @@ $events = $membership->get_donated_events($userid); //fetches an array of all ev
     <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
     <img class="circle responsive-img" alt="event icon" src="eventimg/<?php echo $event_photo; ?>.jpg">
     <span class="left title"><?php echo $event_name; ?></span>
-    <span class="right">Donation amount: <?php echo $p; ?></span>
+    <span class="right">Donation amount: $<?php echo $p; ?></span>
     </a>
     <?php endforeach; ?>
   </ul>
