@@ -456,20 +456,14 @@
 			)";
 
 			//upload image
-      		$uploads_dir = 'eventimg';
-			foreach ($image["error"] as $key => $error) {
-			    if ($error == UPLOAD_ERR_OK) {
-			        $tmp_name = $image["tmp_name"][$key];
-			        $name = basename($image["name"][$key]);
-			        move_uploaded_file($tmp_name, "$uploads_dir/$name");
-			    }
-			}
+	        move_uploaded_file($image['tmp_name'], "eventimg/" . basename($image['name']));
 
 			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
 			if($affected_rows == 1){
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
