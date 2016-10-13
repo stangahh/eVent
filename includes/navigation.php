@@ -6,7 +6,7 @@
       <!-- Items on the top nav bar in desktop mode -->
       <ul class="right hide-on-med-and-down">
         <li><a href="home.php" class="tooltipped" data-position="bottom" data-tooltip="All Events">Home</a></li>
-        <li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="Create a New Event here">New Event</a></li>
+        <?php if ($organisation_id != '1'){ echo '<li><a href="new_event.php" class="tooltipped" data-position="bottom" data-tooltip="Create a New Event here">New Event</a></li>'; } ?>
         <li><a href="lsp.php" class="tooltipped" data-position="bottom" data-tooltip="Find all the nearest events to you">Find Events</a></li>
         <li><a href="going_to.php" class="tooltipped" data-position="bottom" data-tooltip="Check the events you are interested in">Going To</a></li>
         <!-- Dropdown Trigger -->
@@ -14,8 +14,10 @@
 
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="organisation.php" class="tooltipped" data-position="left" data-tooltip="View events connected to my organisation"><?php echo "Organisation - " . $organisation_name ?></a></li>
-          <li><a href="accountsettings.php" class="tooltipped" data-position="left" data-tooltip="Change your account details"><span class="name">My Account</span></a></li>
+          <?php if ($organisation_id != '1'){ echo '<li><a href="organisation.php" class="tooltipped" data-position="left" data-tooltip="View events connected to my organisation">' . $organisation_name . '</a></li>'; } ?>
+          <?php if ($organisation_id == '1'){ echo '<li><a href="new_org.php" class="tooltipped" data-position="left" data-tooltip="Create a New Organisation">Create Organisation</a></li>'; } ?>
+		  <?php if ($organisation_id == '1'){ echo '<li><a href="join_org.php" class="tooltipped" data-position="left" data-tooltip="Join an Exisiting Organisation">Join Organisation</a></li>'; } ?>
+		  <li><a href="accountsettings.php" class="tooltipped" data-position="left" data-tooltip="Change your account details"><span class="name">My Account</span></a></li>
           <li class="divider"></li>
           <li><a href="login.php?status=logout" class="tooltipped" data-position="left" data-tooltip="Goodbye!"><?php echo "Logout - " . $username ?></a></li>
         </ul>

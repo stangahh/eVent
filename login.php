@@ -181,8 +181,8 @@
           </div>
         </div>
         <div class="input-field col s12">
-          <input id="su_org_id" name="su_org_id" type="text" class="validate" required>
-          <label for="su_org_id">Organisation ID</label>
+          <input id="su_org_id" name="su_org_id" type="text" style="display :none" value="1" class="validate" required>
+          <label for="su_org_id"></label>
         </div>
         <p class="col s6">Already registered? <a href="#">Sign In</a></p>
         <button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Thanks" type="submit" name="signup">Submit
