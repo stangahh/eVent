@@ -52,30 +52,23 @@
 	    		</blockquote>
 			</div>
 			<div class="col s12 m6 l4">
-        <ul class="collection">
-          <?php
-            foreach( $events as &$p ):
-            $p = trim($p);
-            $id = substr($p, 0, 5);
-            $eventarray = $membership->get_event_information($id);
-            $event_photo = $eventarray[11];
-            $p = substr($p, 5);
-          ?>
-          <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
-            <img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
-            <span class="title"><p><?php echo $p; ?></p>
-          </a>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-      <div>
-        <form>
-          <select name="test">
-            <option value="test">test</option>
-          </select>
-        </form>
-      </div>
-    </div>
+		<ul class="collection">
+			<?php
+				foreach( $events as &$p ):
+				$p = trim($p);
+				$id = substr($p, 0, 5);
+				$eventarray = $membership->get_event_information($id);
+				$event_photo = $eventarray[11];
+				$p = substr($p, 5);
+			?>
+			<a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
+			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>">
+	    <span class="title"><p><?php echo $p; ?></p>
+		 	</a>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
 
       <!-- floating button to add event  -->
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">

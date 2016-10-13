@@ -55,7 +55,7 @@
       <h2 class="center">Card</h2>
       <div class="card medium hoverable center">
         <div class="card-image waves-effect waves-block waves-light">
-          <img alt="photo upload failed"  src="eventimg/<?php echo $event_photo; ?>.jpg">
+          <img alt="photo upload failed"  src="eventimg/<?php echo $event_photo; ?>">
         </div>
 
         <div class="card-stacked">
@@ -71,7 +71,7 @@
     <!-- event page content  -->
   	<h2 class="center"><?php echo $event_name?></h2>
   	<div class="parallax-container z-depth-2">
-  		<div class="parallax"><img alt="event image not found 404" src="eventimg/<?php echo $event_photo?>.jpg"></div>
+  		<div class="parallax"><img alt="event image not found 404" src="eventimg/<?php echo $event_photo?>"></div>
   		<div class="section no-pad-bot" id="index-banner">
   			<div class="center">
   				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

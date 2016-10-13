@@ -436,9 +436,9 @@
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
 		function create_event($event_name, $org_id, $event_loc, $event_lat, $event_lng, $event_postcode, $amount_required, $user_id, $desc, $date, $image){
-			$latest_img_num = $this ->lastestimgnumber();
 			$starting_funds = '0';
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
+
 			$query = "INSERT INTO `events` (`event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
 			(
 			'". $event_name ."',
@@ -451,18 +451,21 @@
 			'". $amount_required ."',
 			'". $user_id ."',
 			'". $desc ."',
-			'". $latest_img_num ."',
+			'". $image['name'] ."',
 			'". $date ."'
 			)";
-			$stmt = mysqli_prepare($connection,$query);
 
-		    //upload image
-      		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
-      		if (move_uploaded_file($image['tmp_name'], $uploaddir)) {
-        		echo 'Success';
-      		} else {
-        		echo 'fail';
-      		}
+			//upload image
+      		$uploads_dir = 'eventimg';
+			foreach ($image["error"] as $key => $error) {
+			    if ($error == UPLOAD_ERR_OK) {
+			        $tmp_name = $image["tmp_name"][$key];
+			        $name = basename($image["name"][$key]);
+			        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+			    }
+			}
+
+			$stmt = mysqli_prepare($connection,$query);
 
 			mysqli_stmt_execute($stmt);
 
@@ -520,6 +523,16 @@
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
 		function delete_event($event_id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+
+			$delete_stmt = "SELECT event_photo FROM events WHERE event_id ='" . $event_id . "'";
+			$image_to_delete = mysqli_query($connection, $delete_stmt);
+
+			$img_path = "eventimg/" . $image_to_delete;
+
+			if (file_exists($img_path)) {
+			    unlink($img_path);
+			}
+
 			$query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
 
 			$stmt = mysqli_prepare($connection, $query);
