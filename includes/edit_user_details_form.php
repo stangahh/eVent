@@ -55,14 +55,6 @@
 			</select>
 		</div>
 
-	<!-- Email -->
-	<div class="row">
-		<div class="input-field col s12">
-			<label for="email" class="active">Email Address</label>
-			<input type="text" id="email" name="email" value="<?php echo $useremail; ?>">
-		</div>
-	</div>
-
 	<!--Occupation -->
 		<div class="input-field col m6 s12">
 			<label for="occupation" class="active">Occupation</label>
@@ -72,8 +64,9 @@
 		<!-- Email -->
 		<div class="input-field col m12 s12">
 			<label for="email" class="active">Email Address</label>
-			<input type="text" id="email" name="email" value="<?php echo $GLOBALS['email']; ?>">
+			<input type="text" id="email" name="email" value="<?php echo $useremail; ?>">
 		</div>
+		
 	<!-- Submit -->
 	<div class="row">
 		<button class="btn-large waves-effect waves-light right tooltipped" type="submit" data-position="left" data-delay="50" data-tooltip="Cool beans" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
