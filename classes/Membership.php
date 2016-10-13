@@ -10,14 +10,14 @@
 	require_once 'includes/constants.php';
 
 	class Membership{
+		
 		//function for debuging to javascript console
 		function debug_to_console( $data ) {
-    if ( is_array( $data ) )
+			if ( is_array( $data ) )
         $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-    else
+			else
         $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-    echo $output;
+			echo $output;
 		}
 		//used in login page, forwards a user to home.php if they are a
 		//valid user in the database
@@ -370,6 +370,7 @@
 				return false;
 			}
 		}
+		
 		//method used to create an account detials for user
 		//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 		//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -399,61 +400,7 @@
 				return false;
 			}
 		}
-
-    // Send the user a password reset e-mail and use it to reset their password
-    // Author: Tom Deakin
-    function reset_password($email) {
-      // Connect to the database
-      $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die ("Database Connection Error: " . mysqli_connect_error());
-
-      // Check to see if the email actually exists
-      $valid_email = mysqli_query($connection, "SELECT ud_email FROM user_deatils WHERE ud_email = '$email'") OR die();
-
-      // Get the username associated with the given email address
-      $get_id = mysqli_query($connection, "SELECT ud_user_id FROM user_details WHERE ud_email = '$email'") OR die();
-      $user = mysqli_fetch_object($get_id);
-
-      // Create a new, random password
-      $password = substr(md5(uniqid(rand(), 1)), 3, 10);
-
-      // Encrypt the new password for database entry
-      $encrypted_password = md5($password);
-
-      // Send e-mail to the user
-      $to = "$email";
-      $subject = "eVent Account Recovery";
-      $body = nl2br("Hi Test, \n\nYou have requested a password reset. \n\nUsername: Test. \nNew password: $password. \n\nPlease login and change your password to something more memorable as soon as possible. If you did not request this reset, then your email is probably compromised too, in which case, you're fucked. Try not using qwerty as your password next time. \n\nRegards, \n\neVent Admin");
-      $headers  = 'From: ifb299event@gmail.com' . "\r\n" .
-                  'MIME-Version: 1.0' . "\r\n" .
-                  'Content-type: text/html; charset=utf-8';
-      if (mail($to, $subject, $body, $headers)) {
-        echo "Email sent";
-      } else {
-        echo "Email sending failed";
-      }
-
-      // Update the database
-      $update_password = mysqli_query($connection, "UPDATE users SET users_password='$encrypted_password' WHERE users_id = $user->ud_user_id") OR die();
-      $stmt = mysqli_prepare($connection, $update_password);
-			mysqli_stmt_execute($stmt);
-
-      // Check that the user's password was updated correctly
-			$affected_rows = mysqli_stmt_affected_rows($stmt);
-			if ($affected_rows == 1) {
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return true;
-			} else {
-				echo mysqli_error($stmt);
-				mysqli_stmt_close($stmt);
-				mysqli_close($connection);
-				return false;
-			}
-
-      // Close database connection if it's still open
-			mysqli_close($connection);
-    }
-
+	
 				//create an event by inserting information into database, also uploads an image
 				//@input $title, $fn, $ln, $un, $ph, $add, $email, $dob, $sex, $occ
 				//@output void 'true', @(mysqli_query), @(mysqli_error);
@@ -694,14 +641,15 @@
 		function remove_going($event_id) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
-
+			
+		
 			$stmt = mysqli_prepare($connection, $query);
 
 			mysqli_stmt_execute($stmt);
 
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
 
-			if($affected_rows == 1){
+			if($affected_rows >= 0){
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
@@ -792,7 +740,78 @@
 				mysqli_close($connection);
 			}
 		}
+		
+		// Send the user a password reset e-mail and use it to reset their password
+		// Author: Tom Deakin
+		function reset_password($email) {
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
+			// Check to see if the email actually exists
+			$valid_email = "SELECT ud_email FROM user_deatils WHERE ud_email = '" . $email . "' LIMIT 1";
+
+			// Get the username associated with the given email address
+			$get_id = "SELECT ud_user_id FROM user_details WHERE ud_email = '" . $email . "' LIMIT 1";
+			
+			// Get the username associated with the given email address
+			$get_name = "SELECT ud_fname FROM user_details WHERE ud_email = '" . $email . "' LIMIT 1";
+			
+			$r_user = mysqli_query($connection, $get_id);
+			$r_name = mysqli_query($connection, $get_name);
+			$r_email = mysqli_query($connection, $valid_email);
+			
+			$user_id;
+			$user_dp_name;
+			$user_email;
+			
+			if($r_user){
+				while($row = mysqli_fetch_array($r_user)){
+					$user_id = $row['ud_user_id'];
+				}
+			}
+			
+			if($r_name){
+				while($row = mysqli_fetch_array($r_name)){
+					$user_dp_name = $row['ud_fname'];
+				}
+			}
+			
+			if($r_email){
+				while($row = mysqli_fetch_array($r_email)){
+					$user_email = $row['ud_email'];
+				}
+			}
+
+			// Send e-mail to the user
+			$to = $email;
+			$subject = "eVent Account Recovery";
+			$body = nl2br("Hi ". $user_dp_name .", \n\nYou have requested a password reset. Please click the following link to set your new password: \n\nhttp://straya.tech/passreset.php?id=". $user_id ."&io7u=1  \n\nIf you did not request this reset, please ignore this email. \n\nRegards, \n\neVent Admin");
+			$headers  = 'From: ifb299event@gmail.com' . "\r\n" .
+                  'MIME-Version: 1.0' . "\r\n" .
+                  'Content-type: text/html; charset=utf-8';
+			mail($to, $subject, $body, $headers);
+		}
+		
+		//change user password
+	    function change_user_password($userid, $password){
+        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "UPDATE users SET users_password = '". $password ."' WHERE users_id = '". $userid ."'";
+
+			$stmt = mysqli_prepare($connection, $query);
+
+			mysqli_stmt_execute($stmt);
+
+			$affected_rows = mysqli_stmt_affected_rows($stmt);
+
+			if($affected_rows >= 1){
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+
+			} else {
+				echo mysqli_error($stmt);
+				mysqli_stmt_close($stmt);
+				mysqli_close($connection);
+			}
+		}
 	}
 
 ?>

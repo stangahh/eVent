@@ -21,9 +21,15 @@
 
   // User forgot password
   if ($_POST && !empty($_POST['pw_email'])) {
-    $membership->debug_to_console($_POST['pw_email']); 
-    $membership->reset_password(trim($_POST['pw_email']));  
+    //$membership->debug_to_console($_POST['pw_email']); 
+    $membership->reset_password(($_POST['pw_email']));
+	echo "<script>alert('Password Reset Email Sent!');</script>";
   }
+  
+  if(isset($_GET['pw_change'])){
+	  echo "<script>alert('Password Successfully Changed');</script>";
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -182,10 +188,10 @@
   <!-- Password reset form -->
   <div id="modal2" class="modal">
     <div class="row modal-content">
-      <form class="col s12 m10 l8 offset-l2 offset-m1 offset-s0" method="post" action="">
+      <form class="col s12 m10 l8 offset-l2 offset-m1 offset-s0" method="post" action="login.php">
         <div class="row">
           <div class="input-field col s12">
-            <input id="test" name="pw_email" type="email" class="validate">
+            <input id="pw_email" name="pw_email" type="email" class="validate">
             <label for="test" data-error="wrong" data-success="right">Email</label>
           </div>
         </div>
