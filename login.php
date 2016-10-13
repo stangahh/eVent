@@ -21,21 +21,21 @@
 
   // User forgot password
   if ($_POST && !empty($_POST['pw_email'])) {
-	  
+
 	if ($membership->valid_email($_POST['pw_email'])){
-		//$membership->debug_to_console($_POST['pw_email']); 
+		//$membership->debug_to_console($_POST['pw_email']);
 		$membership->reset_password(($_POST['pw_email']));
 		echo "<script>alert('Password Reset Email Sent!');</script>";
 	} else {
 		echo "<script>alert('Invalid Email. Password Wont Be Reset!');</script>";
 	}
-    
+
   }
-  
+
   if(isset($_GET['pw_change'])){
 	  echo "<script>alert('Password Successfully Changed');</script>";
   }
-  
+
 ?>
 
 <!DOCTYPE html>
@@ -56,11 +56,13 @@
 <body>
 
   <!--Login unique top nav -->
+  <div class="navbar-fixed">
   <nav class="orange darken-2 lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#home.php" class="brand-logo">eVent</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="login.php" class="brand-logo">eVent</a>
       <ul class="right hide-on-med-and-down">
         <!-- login page dosn't have links to site content -->
   </nav>
+   </div>
 
   <div class="parallax-container z-depth-2">
   <div class="parallax"><img alt="image" src="http://technext.github.io/Evento/images/demo/bg-slide-01.jpg"></div>
@@ -214,9 +216,24 @@
   <div class="parallax-container z-depth-2">
 <div class="parallax"><img alt="image" src="http://www.americanspiritcentre.com/wp-content/uploads/2015/06/concert.jpeg"></div>
   </div>
+  <br><br>
   <div class="row">
-    <p class="flow-text center col s12 m6 offset-s0 offset-m3">Bacon ipsum dolor amet andouille cupim ground round voluptate bresaola consequat. Labore shankle chicken fatback pork ea ham hock id est short ribs short loin jerky veniam. Boudin velit sunt quis tongue tri-tip mollit picanha beef frankfurter prosciutto pork chop. Beef ribs eu pancetta spare ribs. Ham hock cow pariatur ribeye beef ribs jerky pig pork loin ham meatball kielbasa eu t-bone esse.</p>
-  </div>
+    <div class="center promo promo-example col s3">
+        <i class="large material-icons">supervisor_account</i>
+        <p class="promo-caption">Supports Large Events</p>
+      </div>
+      <div class="center promo promo-example col s3">
+        <i class="large material-icons">payment</i>
+        <p class="promo-caption">Croud funding model</p>
+      </div>
+      <div class="center promo promo-example col s3">
+        <i class="large material-icons">vpn_key</i>
+        <p class="promo-caption">Secure Platform</p>
+      </div>
+      <div class="center promo promo-example col s3">
+        <i class="large material-icons">phone</i>
+        <p class="promo-caption">24/7 support</p>
+      </div>  </div>
 
   <!-- Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

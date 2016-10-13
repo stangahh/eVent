@@ -1,4 +1,5 @@
 <!--Top nav bar -->
+ <div class="navbar-fixed">
   <nav class="orange darken-3" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">eVent</a>
 
@@ -37,3 +38,4 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+</div>
