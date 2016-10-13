@@ -32,7 +32,6 @@
 		</div>
 		<div class="center">
 			<h2>Events I've Donated To</h2>
-			<p>Current bug: plz fix below error and remove this paragraph</p>
 			<?php include 'includes/events_donated_to.php' ?>
 		</div>
 </body>
