@@ -32,10 +32,8 @@
   <div class="center">
     <h2>Join an Organisation</h2>
     <form>
-      <select name="orgname">
-        <option>Test 1</option>
-        <option>Test 2</option>
-        <option>Test 3</option>
+      <select class="browser-default" name="orgname">
+      <?php $membership->get_organisations(); ?> 
       </select>
     </form>
   </div>

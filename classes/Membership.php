@@ -905,6 +905,16 @@
 			return $events_going;
 		}
     
+    function get_organisations() {
+      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+      $result = $connection->query("SELECT org_name FROM organisations");
+      while ($row = $result->fetch_assoc()) {
+        unset($name);
+        $name = $row['org_name']; 
+        echo '<option value="'.$id.'">'.$name.'</option>';
+      };
+    }
+    
   }
 
 ?>
