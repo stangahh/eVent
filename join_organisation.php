@@ -9,6 +9,8 @@
   $organisation_id = $membership->get_org_id($username); //get organisation id for user 
   $organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user 
   $userid = $membership->get_id($username); //local variable of activer user id 
+
+  $orgarray = $membership->get_org_array();
 ?> 
 
 <!DOCTYPE html>
@@ -27,17 +29,24 @@
 
   <?php include 'includes/navigation.php' ?>
 
-<body>
+<main>
   <!-- Page Content -->
   <div class="center">
-    <h2>Join an Organisation</h2>
-    <form>
+    <h2>Join Organisation</h2>
+    <form class="container" method="post" action="">
       <select class="browser-default" name="orgname">
-      <?php $membership->get_organisations(); ?> 
+        <?php foreach ($orgarray as $org): ?>
+          <option value="<?php echo $org; ?>"><?php echo $org; ?></option>
+        <?php endforeach; ?>
       </select>
+      <br>
+      <div class="input-field col m6 s12">
+        <label for="pword" class="active">Organisation Password</label>
+        <input type="text" id="pword" name="pword" value="">
+      </div>
     </form>
   </div>
-</body>
+</main>
 
   <?php include 'includes/footer.php' ?>
 

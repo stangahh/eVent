@@ -905,16 +905,27 @@
 			return $events_going;
 		}
     
-    function get_organisations() {
-      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-      $result = $connection->query("SELECT org_name FROM organisations");
-      while ($row = $result->fetch_assoc()) {
-        unset($name);
-        $name = $row['org_name']; 
-        echo '<option value="'.$id.'">'.$name.'</option>';
-      };
-    }
-    
+		function get_org_array() {
+			$orgs = array();
+
+			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+			$query = "SELECT org_name FROM organisations";
+
+			$response = mysqli_query($connection, $query);
+
+			if($response){
+				while($row = mysqli_fetch_array($response)){
+					array_push($orgs, $row['org_name']);
+				}
+			} else {
+				echo "FAILURE";
+			}
+
+			mysqli_close($connection);
+
+			return $orgs;
+		}
+
   }
 
 ?>
