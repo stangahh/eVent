@@ -10,40 +10,50 @@
 	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <meta name="theme-color" content="#db5945">
-  <title>eVent - <?php echo $organisation_name ?></title>
+  <title>eVent -
+    <?php echo $organisation_name ?>
+  </title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 <?php include 'includes/navigation.php' ?>
-<main>
-
-
-	<!-- org page content  -->
-	<div class="center row">
-		<h1>Edit Events</h1>
-		<h3>
-			<?php echo $membership->get_username() . ". From organisation: " . $organisation_name . "(".$organisation_id.")"; ?>
-		</h3>
-	</div>
-	<article>
-		<div class="row container">
-			<div class="col s12 m6 l8">
-					<blockquote class="flow-text">
-	      	This is an example quotation that uses the blockquote tag.
-	    		</blockquote>
-			</div>
-			<div class="col s12 m6 l4">
-		<ul class="collection">
-			<?php
+  <main>
+    <!-- org page content  -->
+    <div class="center row">
+      <h1>Edit Events</h1>
+    <h3>
+		  <?php echo $membership->get_username() . ". From organisation: " . $organisation_name . "(".$organisation_id.")"; ?>
+    </h3>
+    </div>
+    <article>
+      <div class="row container">
+        <div class="col s12 m6 l8">
+          <h3>Organisation Dropdown List Thing</h3>
+          <form>
+            Organisation:<br>
+            <select name="orgname">
+              <option value="1">Test</option>
+              <option value="2">Test</option>
+              <option value="3">Test</option>
+            </select>
+            Organisation password:<br>
+            <input type="text" name="orgpassword">
+          </form> 
+        </div>
+        <div class="col s12 m6 l4">
+          <ul class="collection">
+            <?php
 				foreach( $events as &$p ):
 				$p = trim($p);
 				$id = substr($p, 0, 5);
@@ -51,28 +61,28 @@
 				$event_photo = $eventarray[11];
 				$p = substr($p, 5);
 			?>
-			<a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
+              <a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
 			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
 	    <span class="title"><p><?php echo $p; ?></p>
 		 	</a>
-			<?php endforeach; ?>
-		</ul>
-	</div>
-</div>
+              <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
 
-	<!-- floating button to add event  -->
-	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-		<a href="#DOTO" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">mode_edit</i></a>
-	</div>
+      <!-- floating button to add event  -->
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a href="#DOTO" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">mode_edit</i></a>
+      </div>
+    </article>
 
-	</article>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-</main>
+  </main>
 
   <?php include 'includes/footer.php' ?>
+
 </html>

@@ -742,14 +742,13 @@
 		}
 		
 		// Send the user a password reset e-mail and use it to reset their password
-		// Author: Tom Deakin
 		function reset_password($email) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
 			// Check to see if the email actually exists
 			$valid_email = "SELECT ud_email FROM user_deatils WHERE ud_email = '" . $email . "' LIMIT 1";
 
-			// Get the username associated with the given email address
+			// Get the ID associated with the given email address
 			$get_id = "SELECT ud_user_id FROM user_details WHERE ud_email = '" . $email . "' LIMIT 1";
 			
 			// Get the username associated with the given email address
@@ -793,7 +792,7 @@
 		
 		//change user password
 	    function change_user_password($userid, $password){
-        $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "UPDATE users SET users_password = '". $password ."' WHERE users_id = '". $userid ."'";
 
 			$stmt = mysqli_prepare($connection, $query);
