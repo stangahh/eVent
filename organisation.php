@@ -6,8 +6,14 @@
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
 	$username = $membership->get_username(); //local variable of activer user username
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
-	$organisation_name = $membership->get_org_name($organisation_id); //get organisation name for user
+	$organisation_info = $membership->get_org_name($organisation_id); //get organisation name for user
+	$org_info = $membership->get_org($organisation_id); //get organisation name for user
 	$events = $membership->get_event_list($organisation_id); //fetches an array of all events and
+
+	$organisation_name = $org_info[0];
+	$organisation_details = $org_info[1];
+	$organisation_logo = $org_info[2];
+	$organisation_contact_person = $org_info[3];
 
 ?>
 <!DOCTYPE html>
@@ -29,16 +35,16 @@
 
 	<!-- org page content  -->
 	<div class="center row">
-		<h1>Edit Events</h1>
-		<h3>
-			<?php echo $membership->get_username() . ". From organisation: " . $organisation_name . "(".$organisation_id.")"; ?>
-		</h3>
+		<h1><?php echo $organisation_name?></h1>
 	</div>
 	<article>
 		<div class="row container">
 			<div class="col s12 m6 l8">
 					<blockquote class="flow-text">
-	      	This is an example quotation that uses the blockquote tag.
+					<ln><img alt="404 logo not found" class="materialboxed" width="100%" src="eventimg/<?php echo $organisation_logo?>.jpg"></ln><br>
+					<ln><?php echo $organisation_name?></ln><br>
+					<ln><?php echo $organisation_details?></ln><br>
+					<ln><?php echo $organisation_contact_person?></ln>
 	    		</blockquote>
 			</div>
 			<div class="col s12 m6 l4">
