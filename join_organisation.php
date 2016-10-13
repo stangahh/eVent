@@ -19,7 +19,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>eVent - Account Settings</title>
+  <title>eVent - Join Organisation</title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
@@ -34,6 +34,7 @@
   <div class="center">
     <h2>Join Organisation</h2>
     <form class="container" method="post" action="">
+      <p>Organisation Name</p>
       <select class="browser-default" name="orgname">
         <?php foreach ($orgarray as $org): ?>
           <option value="<?php echo $org; ?>"><?php echo $org; ?></option>

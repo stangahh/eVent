@@ -925,6 +925,10 @@
 
 			return $orgs;
 		}
+    
+    function join_organisation($org_id) {
+      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+    }
 
   }
 

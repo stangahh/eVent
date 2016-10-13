@@ -14,7 +14,7 @@
       <input id="autocomplete" placeholder="" name="location" required onFocus="geolocate()" type="text" class="validate">
       <label for="autocomplete">Address</label>
     </div>
-
+    
   <div class="row">
     <div class="input-field col l6 s12">
       <input id="amt_required" type="number" min="00000" required max="99999" class="validate" data-error="wrong" data-success="right" required name="amt_required">
@@ -43,10 +43,15 @@
       <input id="lng" placeholder="" name="lng" type="text" data-error="wrong" data-success="right" class="validate" required>
       <label for="lng">Longitude</label>
     </div>
+    
+    <div class="input-field col s12">
+      <input id="contact" name="contact" type="text" class="validate" data-error="wrong" data-success="right" required>
+      <label for="contact">Contact Email</label>
+    </div>
 <div class="row">
   <div class="file-field input-field col s12 l12">
     <div class="btn">
-      <span>File</span>
+      <span>CHOOSE EVENT PHOTO</span>
       <input type="file" name="event_img" id="event_img">
     </div>
     <div class="file-path-wrapper">
