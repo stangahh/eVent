@@ -186,7 +186,7 @@
 			}
 
 			mysqli_close($connection);
-			
+
 			return $events;
 
 		}
@@ -259,7 +259,7 @@
 			} else {
 				echo "FAILURE";
 			}
-			
+
 			mysqli_close($connection);
 
 			return $spec_info;
@@ -278,9 +278,9 @@
 			if (!$retrv) {
 				die('Could not get data: ' . mysql_error());
 			}
-			
+
 			$row = mysqli_fetch_array($retrv, MYSQL_ASSOC);
-		    
+
 			mysqli_close($connection);
 
 			return $row['event_id'];
@@ -481,7 +481,7 @@
 		    //upload image
       		$uploaddir = 'eventimg/'. $latest_img_num .'.jpg';
       		if (move_uploaded_file($image['tmp_name'], $uploaddir)) {
-        		echo 'success';
+        		echo 'Success';
       		} else {
         		echo 'fail';
       		}
@@ -495,7 +495,7 @@
 				return true;
 
 			} else {
-				//echo mysqli_error($stmt);
+				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return false;

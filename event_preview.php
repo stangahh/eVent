@@ -11,16 +11,25 @@
   $latest_event = $membership->get_latest_event_from_user($user_id);
   $latest_event_info = $membership->get_event_information($latest_event);
 
-  if($_POST && !empty($_POST['event_name']) && !empty($_POST['lat']) && !empty($_POST['lng'])){
-    $membership->create_event($_POST['event_name'], $organisation_id, $_POST['location'], $_POST['lat'], $_POST['lng'], $_POST['postal_code'], $_POST['amt_required'], $user_id, $_POST['event_desc'], $_POST['event_date'], $_FILES['event_img']);
-  }
-
+  $event_name = $latest_event_info[0];
+	$org_id = $latest_event_info[1];
+	$event_org_name = $membership->get_org_name($org_id);
+	$location_address = $latest_event_info[2];
+	$latitude = $latest_event_info[3];
+	$longitude = $latest_event_info[4];
+	$postcode = $latest_event_info[5];
+	$amount_funded = $membership->sum_donation($latest_event);
+	$amount_needed = $latest_event_info[7];
+	$creator_id = $latest_event_info[8];
+	$event_date = $latest_event_info[9];
+	$event_description = $latest_event_info[10];
+	$event_photo = $latest_event_info[11];
 ?>
-  
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 
   <title>eVent - Event Preview</title>
@@ -31,18 +40,18 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
+<?php include 'includes/navigation.php' ?>
 <body>
 
-  <?php include 'includes/navigation.php' ?>
 
-  <h1 class="center">Preview of Event just created</h1>
-  
+  <h1 class="center">Preview of event just created</h1>
+
   <!-- Small preview -->
   <div class="row center">
     <card class="col s12 m6 l3">
       <div class="card medium hoverable center">
         <div class="card-image waves-effect waves-block waves-light">
-          <img src="eventimg/<?php echo $latest_event_info[11] + 1; ?>.jpg">
+          <img alt="photo upload failed"  src="eventimg/<?php echo $event_photo; ?>.jpg">
         </div>
 
         <div class="card-stacked">
@@ -52,13 +61,13 @@
         </div>
       </div>
     </card>
-  </div>
 
   <!-- Large preview -->
-  <div class="row center">
+  <div class="col s12 m6 l9">
     <h2><?php echo $latest_event_info[0] ?></h2>
     <p>TODO: Second preview</p>
   </div>
+</div>
 
   <div class="row center">
     <!-- TODO: Make this delete button delete the $latest_event -->
