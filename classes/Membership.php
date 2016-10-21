@@ -519,13 +519,13 @@
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 
 			$delete_stmt = "SELECT event_photo FROM events WHERE event_id ='" . $event_id . "'";
-			$image_to_delete = mysqli_query($connection, $delete_stmt);
+			//$image_to_delete = mysqli_query($connection, $delete_stmt);
 
-			$img_path = "eventimg/" . $image_to_delete;
+			//$img_path = "eventimg/" . $image_to_delete;
 
-			if (file_exists($img_path)) {
-			    unlink($img_path);
-			}
+			//if (file_exists($img_path)) {
+			//    unlink($img_path);
+			//}
 
 			$query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
 
@@ -621,7 +621,7 @@
 				return 'ERROR';
 			}
 
-			mysqli_stmt_close($stmt);
+			mysqli_stmt_close($connection);
 			mysqli_close($connection);
 
 		}
@@ -830,7 +830,7 @@
 
 		//change user password
 	    function change_user_password($userid, $password){
-            $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "UPDATE users SET users_password = '". $password ."' WHERE users_id = '". $userid ."'";
 
 			$stmt = mysqli_prepare($connection, $query);
