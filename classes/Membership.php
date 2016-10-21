@@ -71,17 +71,22 @@
 
 			if($response){
 				while($row = mysqli_fetch_array($response)){
+                    mysqli_stmt_close($response);
+                    mysqli_close($connection);
 					return $uname = $row['users_id'];
 				};
 				//return $uname;
+                
 			}
+            
+            mysqli_stmt_close($response);
+            mysqli_close($connection);            
 		}
 
 		//method to fetch userame
 		//@input NULL
 		//@output username, @(true), @catch(mysqli_error);
 		function get_username(){
-
 			$string_login = $_SESSION['status'];
 			$search_for = 'authorised_';
 
@@ -101,10 +106,16 @@
 
 			if($response){
 				while($row = mysqli_fetch_array($response)){
+                    mysqli_stmt_close($response);
+                    mysqli_close($connection);
 					return $id = $row['users_org_id'];
 				};
 				//return $id;
 			}
+            
+            mysqli_stmt_close($response);
+            mysqli_close($connection);             
+            
 		}
 
 		//method to fetch organisation name using an organisation id
@@ -117,10 +128,15 @@
 
 			if($response){
 				while($row = mysqli_fetch_array($response)){
+                    mysqli_stmt_close($response);
+                    mysqli_close($connection);
 					return $name = $row['org_name'];
 				};
 				//return $name;
 			}
+            
+            mysqli_stmt_close($response);
+            mysqli_close($connection); 
 		}
 		//method to fetch organisation name using an organisation id
 		//@input org_id
@@ -130,14 +146,6 @@
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "SELECT * FROM organisations WHERE org_id = '" . $org_id . "' LIMIT 1";
 			$response = mysqli_query($connection, $query);
-
-			// if($response){
-			// 	while($row = mysqli_fetch_array($response)){
-			// 		return $name = $row['org_name'];
-			// 		org_details
-			// 		org_logo
-			// 		org_contact_person
-			// 	};
 
 			if($response){
 				while($row = mysqli_fetch_array($response)){
@@ -150,6 +158,7 @@
 			} else {
 				echo "FAILURE";
 			}
+            mysqli_stmt_close($response); 
 			mysqli_close($connection);
 
 			return $org_info;
@@ -186,7 +195,8 @@
 				echo "FAILURE";
 			}
 
-			mysqli_close($connection);
+            mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $events;
 
@@ -216,7 +226,8 @@
 				echo "FAILURE";
 			}
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $events;
 
@@ -257,7 +268,8 @@
 				echo "FAILURE: Unable to pull event information";
 			}
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $event_info;
 		}
@@ -291,7 +303,8 @@
 				echo "FAILURE";
 			}
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $spec_info;
 		}
@@ -312,7 +325,8 @@
 
 			$row = mysqli_fetch_array($retrv, MYSQL_ASSOC);
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $row['event_id'];
 		}
@@ -369,6 +383,9 @@
 				mysqli_close($connection);
 				return false;
 			}
+            
+            mysqli_stmt_close($stmt);
+            mysqli_close($connection); 
 
 		}
 
@@ -391,7 +408,7 @@
 				mysqli_stmt_close($stmt_users);
 				mysqli_close($connection);
 				$_SESSION['status'] = 'authorised_' . $un;
-					header("location: home.php");
+				header("location: home.php");
 				return true;
 
 			} else {
@@ -400,6 +417,9 @@
 				mysqli_close($connection);
 				return false;
 			}
+            
+            mysqli_stmt_close($stmt);
+            mysqli_close($connection); 
 		}
 
 		//method used to create an account detials for user
@@ -421,7 +441,7 @@
 				mysqli_stmt_close($stmt_ud);
 				mysqli_close($connection);
 				$_SESSION['status'] = 'authorised_' . $un;
-					header("location: home.php");
+				header("location: home.php");
 				return true;
 
 			} else {
@@ -430,6 +450,9 @@
 				mysqli_close($connection);
 				return false;
 			}
+            
+            mysqli_stmt_close($stmt_ud);
+            mysqli_close($connection); 
 		}
 
 				//create an event by inserting information into database, also uploads an image
@@ -475,8 +498,6 @@
 				mysqli_close($connection);
 				return false;
 			}
-
-			mysqli_close($connection);
 		}
 
 		//returns next image number or default image
@@ -491,20 +512,15 @@
 			$response = mysqli_query($connection, $query);
 
 			if($response){
-
 				while($row = mysqli_fetch_array($response)){
-
 					$img = $row['event_photo'];
-
 				}
-
 			} else {
-
 				echo "FAILURE: Unable to fetch image information";
-
 			}
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			if($img != 0){
 				$img++;
@@ -612,12 +628,18 @@
 					$sum = $row['SUM(don_amount_donated)'];
 
 					if ($sum != NULL){
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return $sum;
 					} else {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return 0;
 					}
 				};
-			} else {
+			} else 
+                mysqli_stmt_close($response);
+                mysqli_close($connection); 
 				return 'ERROR';
 			}
 
@@ -646,7 +668,8 @@
 				echo "Failed to retrieve donation information. Have you donated to any events? :)";
 			}
 
-			mysqli_close($connection);
+			mysqli_stmt_close($response);
+            mysqli_close($connection); 
 
 			return $events;
 		}
@@ -657,9 +680,7 @@
 			$query = "SELECT * FROM events WHERE event_org_id = '" . $eventid . "' AND event_creator_user_id = '" . $userid . "'";
 
 			$stmt = mysqli_prepare($connection, $query);
-
 			mysqli_stmt_execute($stmt);
-
 			$affected_rows = mysqli_num_rows($stmt);
 
 			if ($affected_rows == 1) {
@@ -680,18 +701,14 @@
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "DELETE FROM going WHERE going_event_id ='" . $event_id . "'";
 
-
 			$stmt = mysqli_prepare($connection, $query);
-
 			mysqli_stmt_execute($stmt);
-
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
 
 			if($affected_rows >= 0){
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
-
 			} else {
 				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
@@ -712,18 +729,24 @@
 				while($row = mysqli_fetch_array($response)){
 					$going = $row['SUM(going_user_amount)'];
 
-					if ($going != NULL){
+					if ($going != NULL)
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return $going;
 					} else {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return 0;
 					}
 
 				};
 			} else {
+                mysqli_stmt_close($response);
+                mysqli_close($connection);
 				return 'ERROR';
 			}
 
-			mysqli_stmt_close($stmt);
+			mysqli_stmt_close($response);
 			mysqli_close($connection);
 		}
 
@@ -737,24 +760,27 @@
 			//wont return response if user isnt in table
 			if($response){
 				while($row = mysqli_fetch_array($response)){
-
 					$count = $row['COUNT(going_event_id)'];
 
 					if ($count == 0){
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection); 
 						return false;
 					} else if ($count == NULL){
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return false;
 					} else {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return true;
 					}
-
 				};
 			} else {
+                mysqli_stmt_close($response);
+                mysqli_close($connection);
 				return false;
 			}
-
-			mysqli_stmt_close($stmt);
-			mysqli_close($connection);
 		}
 
 				//function to cancel a user going to an event
@@ -771,7 +797,6 @@
 			if($affected_rows >= 1){
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
-
 			} else {
 				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
@@ -826,11 +851,16 @@
                   'MIME-Version: 1.0' . "\r\n" .
                   'Content-type: text/html; charset=utf-8';
 			mail($to, $subject, $body, $headers);
+            
+            mysqli_stmt_close($stmt);
+			mysqli_close($r_user);
+			mysqli_close($r_name);
+			mysqli_close($r_email);
 		}
 
 		//change user password
 	    function change_user_password($userid, $password){
-      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+            $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "UPDATE users SET users_password = '". $password ."' WHERE users_id = '". $userid ."'";
 
 			$stmt = mysqli_prepare($connection, $query);
@@ -864,17 +894,23 @@
 					$count = $row['COUNT(ud_email)'];
 
 					if ($count == 1){
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return true;
 					} else {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return false;
 					}
 
 				};
 			} else {
+                mysqli_stmt_close($response);
+                mysqli_close($connection);
 				return false;
 			}
 
-			mysqli_stmt_close($stmt);
+			mysqli_stmt_close($response);
 			mysqli_close($connection);
 		}
 
@@ -893,7 +929,8 @@
 			} else {
 				echo "Failed to retrieve events information. Are you attending any events? :)";
 			}
-
+            
+            mysqli_stmt_close($response);
 			mysqli_close($connection);
 
 			return $events_going;
@@ -915,14 +952,15 @@
 				echo "FAILURE";
 			}
 
+			mysqli_stmt_close($response);
 			mysqli_close($connection);
 
 			return $orgs;
 		}
     
-    function join_organisation($org_id) {
-      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-    }
+        //function join_organisation($org_id) {
+        //  $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+        //}
 
 		function check_org_pass($org, $pw) {
 			$connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
@@ -934,20 +972,25 @@
 				while($row = mysqli_fetch_array($response)) {
 					$count = $row['COUNT(org_id)'];
 
-					if ($count == 0){
+					if ($count == 0) {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return false;
 					} else if ($count == NULL){
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return false;
 					} else {
+                        mysqli_stmt_close($response);
+                        mysqli_close($connection);
 						return true;
 					}
 				}
 			} else {
+                mysqli_stmt_close($response);
+                mysqli_close($connection);
 				return false;
 			}
-
-			mysqli_stmt_close($stmt);
-			mysqli_close($connection);
 		}
 
 		function set_org($user, $org) {
@@ -957,16 +1000,13 @@
 			SET users_org_id = '" . $org . "' WHERE users_id = '" . $user . "'";;
 
 			$stmt = mysqli_prepare($connection,$query);
-
 			mysqli_stmt_execute($stmt);
-
 			$affected_rows = mysqli_stmt_affected_rows($stmt);
 
 			if($affected_rows == 1){
 				mysqli_stmt_close($stmt);
 				mysqli_close($connection);
 				return true;
-
 			} else {
 				echo mysqli_error($stmt);
 				mysqli_stmt_close($stmt);
@@ -983,10 +1023,15 @@
 
 			if($response){
 				while($row = mysqli_fetch_array($response)){
+                    mysqli_stmt_close($response);
+                    mysqli_close($connection);
 					return $name = $row['org_id'];
 				};
 				//return $name;
 			}
+            
+            mysqli_stmt_close($response);
+            mysqli_close($connection);
 		}
 
   }
