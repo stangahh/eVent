@@ -830,7 +830,7 @@
 
 		//change user password
 	    function change_user_password($userid, $password){
-      $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
+            $connection = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
 			$query = "UPDATE users SET users_password = '". $password ."' WHERE users_id = '". $userid ."'";
 
 			$stmt = mysqli_prepare($connection, $query);
