@@ -7,8 +7,7 @@ require 'Mysql.php';
 require_once 'includes/constants.php';
 
 class Membership {
-    
-    //function for debuging to javascript console
+    //function for debguging to javascript console
     function debug_to_console($data) {
         if (is_array($data)) {
             $output = "<script>console.log( 'Debug Objects: " . implode(',', $data) . "' );</script>";
@@ -51,8 +50,7 @@ class Membership {
     //@input NULL
     //@output void 'true|false'
     function confirm_member() {
-        session_start();
-        
+        session_start();        
         $string_login = $_SESSION['status'];
         $search_for = 'authorised_';
         
@@ -314,8 +312,7 @@ class Membership {
             mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return false;
-        }
-        
+        }        
     }
     
     //method used to create an account
@@ -456,8 +453,7 @@ class Membership {
             mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return false;
-        }
-        
+        }        
     }
     
     //method that inserts users going status into the database
