@@ -306,12 +306,11 @@ class Membership {
         mysqli_stmt_execute($stmt);         
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         
-        if ($affected_rows == 1) {
+        if ($affected_rows >= 1) {
             mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return true;
         } else {
-            echo mysqli_error($stmt);
             mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return false;
