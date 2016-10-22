@@ -374,7 +374,7 @@ class Membership {
         
         $query = "INSERT INTO `events` (`event_name`, `event_org_id`, `event_location`, `event_latitude`, `event_longitude`, `event_postcode`, `event_amount_funded`, `event_amount_required`, `event_creator_user_id`, `event_desc`, `event_photo`, `event_date`) VALUES
 			(
-			'" . $event_name . "',
+			'" . mysqli_real_escape_string($connection, $event_name) . "',
 			'" . $org_id . "',
 			'" . $event_loc . "',
 			'" . $event_lat . "',
@@ -383,7 +383,7 @@ class Membership {
 			'" . $starting_funds . "',
 			'" . $amount_required . "',
 			'" . $user_id . "',
-			'" . $desc . "',
+			'" . mysqli_real_escape_string($connection, $desc) . "',
 			'" . $image['name'] . "',
 			'" . $date . "'
 			)";
