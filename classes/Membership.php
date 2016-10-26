@@ -499,6 +499,8 @@ class Membership {
     }
     
     //returns the total number of donations made to a specific event
+    //@input $id
+    //@output $sum (total donations for event according to id)
     function sum_donation($id) {
         $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
         $query = "SELECT SUM(don_amount_donated) FROM donations WHERE don_event_id = '" . $id . "'";        
