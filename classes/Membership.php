@@ -439,13 +439,22 @@ class Membership {
     //@output void 'true', @(mysqli_query), @(mysqli_error);
     function delete_event($event_id) {
         $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME) OR die("Database Connection Error: " . mysqli_connect_error());
-        $query = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
-        $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_execute($stmt);        
+        $delete_event = "DELETE FROM events WHERE event_id ='" . $event_id . "'";
+        $stmt = mysqli_prepare($connection, $delete_event);
+        mysqli_stmt_execute($stmt);   
         $affected_rows = mysqli_stmt_affected_rows($stmt);
         
         if ($affected_rows == 1) {
+            //also replace info in donation table
+            $alter_donation = "UPDATE donations SET don_event_id='00000' WHERE don_event_id ='" . $event_id . "'";
+            $stmt2 = mysqli_prepare($connection, $alter_donation);
+            mysqli_stmt_execute($stmt2);
+
+            //remove from going table
+            //remove_going($event_id);
+
             mysqli_stmt_close($stmt);
+            mysqli_stmt_close($stmt2);
             mysqli_close($connection);
             return true;
         } else {
