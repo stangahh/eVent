@@ -178,7 +178,7 @@
                   lng: <?php echo $longitude; ?>
                },
                   map: map,
-                  url: "http://ozbot.com.au/event.php?eventid=<?php echo $id; ?>",
+                  url: "http://straya.tech/event.php?eventid=<?php echo $id; ?>",
                   icon: image,
                   title: <?php echo $id; ?>,
                   animation: google.maps.Animation.DROP
