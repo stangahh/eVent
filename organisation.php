@@ -2,7 +2,7 @@
 	//Author: Maxwell McLeod
 	require_once 'classes/Membership.php';
 
-	$membership = New Membership(); //simple new class call
+	$membership = new Membership(); //simple new class call
 	$membership->confirm_member(); //checks if a user is logged in, any user! (yes this is insecure but i made it simple =)
 	$username = $membership->get_username(); //local variable of activer user username
 	$organisation_id = $membership->get_org_id($username); //get organisation id for user
@@ -16,18 +16,22 @@
 	$organisation_contact_person = $org_info[3];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <meta name="theme-color" content="#db5945">
-  <title>eVent - <?php echo $organisation_name ?></title>
+  <title>eVent -
+    <?php echo $organisation_name ?>
+  </title>
 
   <!-- CSS  -->
   <link rel="shortcut icon" href="media/favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 <?php include 'includes/navigation.php' ?>
 <main>
@@ -58,7 +62,7 @@
 				$p = substr($p, 5);
 			?>
 			<a class="collection-item avatar" href="event.php?eventid=<?php echo $id; ?>">
-			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>.jpg">
+			<img class="circle responsive-img" alt="" src="eventimg/<?php echo $event_photo; ?>">
 	    <span class="title"><p><?php echo $p; ?></p>
 		 	</a>
 			<?php endforeach; ?>
@@ -66,19 +70,19 @@
 	</div>
 </div>
 
-	<!-- floating button to add event  -->
-	<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-		<a href="#DOTO" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">mode_edit</i></a>
-	</div>
+      <!-- floating button to add event  -->
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a href="#DOTO" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">mode_edit</i></a>
+      </div>
+    </article>
 
-	</article>
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
 </main>
 
   <?php include 'includes/footer.php' ?>
+
 </html>

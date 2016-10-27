@@ -55,7 +55,7 @@
       <h2 class="center">Card</h2>
       <div class="card medium hoverable center">
         <div class="card-image waves-effect waves-block waves-light">
-          <img alt="photo upload failed"  src="eventimg/<?php echo $event_photo; ?>.jpg">
+          <img alt="photo upload failed"  src="eventimg/<?php echo $event_photo; ?>">
         </div>
 
         <div class="card-stacked">
@@ -71,7 +71,7 @@
     <!-- event page content  -->
   	<h2 class="center"><?php echo $event_name?></h2>
   	<div class="parallax-container z-depth-2">
-  		<div class="parallax"><img alt="event image not found 404" src="eventimg/<?php echo $event_photo?>.jpg"></div>
+  		<div class="parallax"><img alt="event image not found 404" src="eventimg/<?php echo $event_photo?>"></div>
   		<div class="section no-pad-bot" id="index-banner">
   			<div class="center">
   				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -164,7 +164,7 @@
 </div>
 
   <div class="row center">
-    <a class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Scrap this event and start again" type="submit" href="home.php?delete=<?php echo $latest_event?>" name="trash">Trash and Restart<i class="material-icons right">delete</i></a>
+    <a class="btn-large waves-effect waves-red red tooltipped center" data-position="left" data-delay="50" data-tooltip="Scrap this event and start again" type="submit" href="home.php?delete=<?php echo $latest_event?>" name="trash">Scrap and Restart<i class="material-icons right">delete</i></a>
   	<a href="going_to.php" class="btn-large waves-effect waves-red light-blue darken-3 tooltipped center" data-position="left" data-delay="50" data-tooltip="Press to upload your event!" >Submit<i class="material-icons right">send</i>
   	</a>
   </div>
