@@ -15,7 +15,7 @@
         <!-- Dropdown Structure -->
         <ul id='dropdown1' class='dropdown-content'>
           <?php if ($organisation_id != '1'){ echo '<li><a href="organisation.php" class="tooltipped" data-position="left" data-tooltip="View events connected to my organisation">' . $organisation_name . '</a></li>'; } ?>
-          <?php if ($organisation_id == '1'){ echo '<li><a href="new_org.php" class="tooltipped" data-position="left" data-tooltip="Create a New Organisation">Create Organisation</a></li>'; } ?>
+          <?php if ($organisation_id == ''){ echo '<li><a href="new_org.php" class="tooltipped" data-position="left" data-tooltip="Create a New Organisation">Create Organisation</a></li>'; } ?>
 		  <?php //if ($organisation_id == '1'){ echo '<li><a href="join_org.php" class="tooltipped" data-position="left" data-tooltip="Join an Exisiting Organisation">Join Organisation</a></li>'; } ?>
       <li><a href="join_organisation.php" class="tooltipped" data-position="left" data-tooltip="Join an organisation"><span class="name">Join Organisation</span></a></li>
 		  <li><a href="accountsettings.php" class="tooltipped" data-position="left" data-tooltip="Change your account details"><span class="name">My Account</span></a></li>
